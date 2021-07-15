@@ -1,8 +1,0 @@
-D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\TicketsManager\Shared\bin\Debug\netstandard2.1\TicketsManager.Shared.deps.json
-D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\TicketsManager\Shared\bin\Debug\netstandard2.1\TicketsManager.Shared.dll
-D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\TicketsManager\Shared\bin\Debug\netstandard2.1\TicketsManager.Shared.pdb
-D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\TicketsManager\Shared\obj\Debug\netstandard2.1\TicketsManager.Shared.AssemblyInfoInputs.cache
-D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\TicketsManager\Shared\obj\Debug\netstandard2.1\TicketsManager.Shared.AssemblyInfo.cs
-D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\TicketsManager\Shared\obj\Debug\netstandard2.1\TicketsManager.Shared.csproj.CoreCompileInputs.cache
-D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\TicketsManager\Shared\obj\Debug\netstandard2.1\TicketsManager.Shared.dll
-D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\TicketsManager\Shared\obj\Debug\netstandard2.1\TicketsManager.Shared.pdb
