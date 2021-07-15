@@ -1,0 +1,11 @@
+D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\BackEnd\bin\Debug\netcoreapp3.1\BackEnd.deps.json
+D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\BackEnd\bin\Debug\netcoreapp3.1\BackEnd.runtimeconfig.json
+D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\BackEnd\bin\Debug\netcoreapp3.1\BackEnd.runtimeconfig.dev.json
+D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\BackEnd\bin\Debug\netcoreapp3.1\BackEnd.dll
+D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\BackEnd\bin\Debug\netcoreapp3.1\BackEnd.pdb
+D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\BackEnd\obj\Debug\netcoreapp3.1\BackEnd.AssemblyInfoInputs.cache
+D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\BackEnd\obj\Debug\netcoreapp3.1\BackEnd.AssemblyInfo.cs
+D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\BackEnd\obj\Debug\netcoreapp3.1\BackEnd.csproj.CoreCompileInputs.cache
+D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\BackEnd\obj\Debug\netcoreapp3.1\BackEnd.dll
+D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\BackEnd\obj\Debug\netcoreapp3.1\BackEnd.pdb
+D:\Personales\Universidad\Progra 5\Proyecto\TicketsManager\BackEnd\obj\Debug\netcoreapp3.1\BackEnd.genruntimeconfig.cache
