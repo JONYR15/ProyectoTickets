@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Personales\\Universidad\\Progra 5\\Sistema de Tickets\\TicketsManager\\TicketsManager\\Backend.csproj": {}
+    "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\Backend.csproj": {}
   },
   "projects": {
-    "D:\\Personales\\Universidad\\Progra 5\\Sistema de Tickets\\TicketsManager\\TicketsManager\\Backend.csproj": {
+    "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Personales\\Universidad\\Progra 5\\Sistema de Tickets\\TicketsManager\\TicketsManager\\Backend.csproj",
+        "projectUniqueName": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "D:\\Personales\\Universidad\\Progra 5\\Sistema de Tickets\\TicketsManager\\TicketsManager\\Backend.csproj",
+        "projectPath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\Backend.csproj",
         "packagesPath": "C:\\Users\\berna\\.nuget\\packages\\",
-        "outputPath": "D:\\Personales\\Universidad\\Progra 5\\Sistema de Tickets\\TicketsManager\\TicketsManager\\obj\\",
+        "outputPath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\berna\\AppData\\Roaming\\NuGet\\NuGet.Config",

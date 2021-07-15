@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Threading.Tasks;
 
 namespace FrontEnd
 {
@@ -37,9 +39,10 @@ namespace FrontEnd
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             app.UseAuthentication();
+            this.CreateRoles(serviceProvider).Wait();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -66,7 +69,46 @@ namespace FrontEnd
         }
 
 
+        private async Task CreateRoles(IServiceProvider serviceProvider)
+        {
+            //initializing custom roles 
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            //var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            string[] roleNames = { "Administrador", "Soportista", "Cliente" };
+            IdentityResult roleResult;
 
+            foreach (var roleName in roleNames)
+            {
+                var roleExist = await RoleManager.RoleExistsAsync(roleName);
+                if (!roleExist)
+                {
+                    //create the roles and seed them to the database: Question 1
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
+                }
+            }
+
+            ////Here you could create a super user who will maintain the web app
+            //var poweruser = new ApplicationUser
+            //{
+
+            //    UserName = "Admin",
+            //    Email = "usuario@correo.com",
+            //};
+            ////Ensure you have these values in your appsettings.json file
+            //string userPWD = "Pa$$w0rd";
+            //var _user = await UserManager.FindByEmailAsync("usuario@correo.com");
+
+            //if (_user == null)
+            //{
+            //    var createPowerUser = await UserManager.CreateAsync(poweruser, userPWD);
+            //    if (createPowerUser.Succeeded)
+            //    {
+            //        //here we tie the new user to the role
+            //        await UserManager.AddToRoleAsync(poweruser, "Administrador");
+
+            //    }
+            //}
+        }
 
 
     }

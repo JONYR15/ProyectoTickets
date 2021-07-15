@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oOVE5kJsd+MOl1xQ+3tog7JJKFI2JpRcS4dsX4BXN8h8fKziLMKHENBDSbxmuyi+pEKPD1uSSrl3FjNxCW+uqw==",
+  "dgSpecHash": "WXTlIjsQbd7D5o/E5A9NimbLg6StHBPVmp/pYgwmF43Yr+1C5QBXBaaBOV6NL3cAh7xhkTVyffrZIHiJFycZUQ==",
   "success": true,
-  "projectFilePath": "D:\\Personales\\Universidad\\Progra 5\\Sistema de Tickets\\TicketsManager\\TicketsManager\\Backend.csproj",
+  "projectFilePath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\berna\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\berna\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.7\\microsoft.aspnetcore.cryptography.internal.5.0.7.nupkg.sha512",
