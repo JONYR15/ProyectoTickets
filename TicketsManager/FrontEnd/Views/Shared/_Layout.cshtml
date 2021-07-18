@@ -27,6 +27,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @User.IsInRole("Administrador"){
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Priority" asp-action="Index">Priority</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Status" asp-action="Index">Status</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Department" asp-action="Index">Department</a>
+                        </li>
+                        }
                     </ul>
                 </div>
             </div>

@@ -79,9 +79,9 @@ namespace TicketsManager.DAL
             {
                 return Context.Set<TEntity>().ToList();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                var m = e.Message;
                 return null;
             }
         }

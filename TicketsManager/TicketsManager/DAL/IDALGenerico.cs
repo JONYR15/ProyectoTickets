@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace TicketsManager.DAL
 {
@@ -21,6 +20,8 @@ namespace TicketsManager.DAL
         bool Update(TEntity entity);
         bool Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
+
+
 
     }
 

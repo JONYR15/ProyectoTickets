@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Backend.Utilities
+﻿namespace Backend.Utilities
 {
     public static class Util
     {

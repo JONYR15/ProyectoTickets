@@ -21,3 +21,4 @@ D:\Personales\Universidad\Progra 5\ProyectoTickets\TicketsManager\TicketsManager
 D:\Personales\Universidad\Progra 5\ProyectoTickets\TicketsManager\TicketsManager\obj\Debug\netcoreapp3.1\Backend.dll
 D:\Personales\Universidad\Progra 5\ProyectoTickets\TicketsManager\TicketsManager\obj\Debug\netcoreapp3.1\Backend.pdb
 D:\Personales\Universidad\Progra 5\ProyectoTickets\TicketsManager\TicketsManager\obj\Debug\netcoreapp3.1\Backend.genruntimeconfig.cache
+D:\Personales\Universidad\Progra 5\ProyectoTickets\TicketsManager\TicketsManager\obj\Debug\netcoreapp3.1\Backend.csproj.AssemblyReference.cache

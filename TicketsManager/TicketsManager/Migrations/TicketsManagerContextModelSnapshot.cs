@@ -20,147 +20,147 @@ namespace Backend.Migrations
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Backend.Entities.Department", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+            //modelBuilder.Entity("Backend.Entities.Department", b =>
+            //    {
+            //        b.Property<int>("Id")
+            //            .ValueGeneratedOnAdd()
+            //            .HasColumnType("int")
+            //            .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+            //        b.Property<string>("Name")
+            //            .IsRequired()
+            //            .HasMaxLength(100)
+            //            .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id");
+            //        b.HasKey("Id");
 
-                    b.ToTable("Department");
-                });
+            //        b.ToTable("Department");
+            //    });
 
-            modelBuilder.Entity("Backend.Entities.Incident", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+            //modelBuilder.Entity("Backend.Entities.Incident", b =>
+            //    {
+            //        b.Property<int>("Id")
+            //            .ValueGeneratedOnAdd()
+            //            .HasColumnType("int")
+            //            .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Attended")
-                        .HasColumnType("datetime2");
+            //        b.Property<DateTime>("Attended")
+            //            .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+            //        b.Property<DateTime>("Created")
+            //            .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+            //        b.Property<string>("Description")
+            //            .IsRequired()
+            //            .HasMaxLength(500)
+            //            .HasColumnType("nvarchar(500)");
 
-                    b.Property<int>("PriorityId")
-                        .HasColumnType("int")
-                        .HasColumnName("Priority_Id");
+            //        b.Property<int>("PriorityId")
+            //            .HasColumnType("int")
+            //            .HasColumnName("Priority_Id");
 
-                    b.Property<string>("RequestById")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)")
-                        .HasColumnName("RequestBy_Id");
+            //        b.Property<string>("RequestById")
+            //            .HasMaxLength(128)
+            //            .HasColumnType("nvarchar(128)")
+            //            .HasColumnName("RequestBy_Id");
 
-                    b.Property<DateTime>("Resolved")
-                        .HasColumnType("datetime2");
+            //        b.Property<DateTime>("Resolved")
+            //            .HasColumnType("datetime2");
 
-                    b.Property<int?>("StatusId")
-                        .HasColumnType("int")
-                        .HasColumnName("Status_Id");
+            //        b.Property<int?>("StatusId")
+            //            .HasColumnType("int")
+            //            .HasColumnName("Status_Id");
 
-                    b.Property<string>("Theme")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+            //        b.Property<string>("Theme")
+            //            .HasMaxLength(100)
+            //            .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("UserId")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)")
-                        .HasColumnName("User_Id");
+            //        b.Property<string>("UserId")
+            //            .HasMaxLength(128)
+            //            .HasColumnType("nvarchar(128)")
+            //            .HasColumnName("User_Id");
 
-                    b.HasKey("Id");
+            //        b.HasKey("Id");
 
-                    b.HasIndex("PriorityId");
+            //        b.HasIndex("PriorityId");
 
-                    b.HasIndex("StatusId");
+            //        b.HasIndex("StatusId");
 
-                    b.ToTable("Incident");
-                });
+            //        b.ToTable("Incident");
+            //    });
 
-            modelBuilder.Entity("Backend.Entities.Priority", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+            //modelBuilder.Entity("Backend.Entities.Priority", b =>
+            //    {
+            //        b.Property<int>("Id")
+            //            .ValueGeneratedOnAdd()
+            //            .HasColumnType("int")
+            //            .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+            //        b.Property<string>("Description")
+            //            .IsRequired()
+            //            .HasMaxLength(100)
+            //            .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id");
+            //        b.HasKey("Id");
 
-                    b.ToTable("Priority");
-                });
+            //        b.ToTable("Priority");
+            //    });
 
-            modelBuilder.Entity("Backend.Entities.Sesion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+            //modelBuilder.Entity("Backend.Entities.Sesion", b =>
+            //    {
+            //        b.Property<int>("Id")
+            //            .ValueGeneratedOnAdd()
+            //            .HasColumnType("int")
+            //            .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+            //        b.Property<DateTime>("Created")
+            //            .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+            //        b.Property<string>("Description")
+            //            .IsRequired()
+            //            .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Hour")
-                        .HasColumnType("int");
+            //        b.Property<int>("Hour")
+            //            .HasColumnType("int");
 
-                    b.Property<int>("IncidentId")
-                        .HasColumnType("int")
-                        .HasColumnName("Incident_Id");
+            //        b.Property<int>("IncidentId")
+            //            .HasColumnType("int")
+            //            .HasColumnName("Incident_Id");
 
-                    b.Property<int>("StatusId")
-                        .HasColumnType("int")
-                        .HasColumnName("Status_Id");
+            //        b.Property<int>("StatusId")
+            //            .HasColumnType("int")
+            //            .HasColumnName("Status_Id");
 
-                    b.Property<string>("UserId")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)")
-                        .HasColumnName("User_Id");
+            //        b.Property<string>("UserId")
+            //            .HasMaxLength(128)
+            //            .HasColumnType("nvarchar(128)")
+            //            .HasColumnName("User_Id");
 
-                    b.HasKey("Id");
+            //        b.HasKey("Id");
 
-                    b.HasIndex("IncidentId");
+            //        b.HasIndex("IncidentId");
 
-                    b.HasIndex("StatusId");
+            //        b.HasIndex("StatusId");
 
-                    b.ToTable("Sesion");
-                });
+            //        b.ToTable("Sesion");
+            //    });
 
-            modelBuilder.Entity("Backend.Entities.Status", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+            //modelBuilder.Entity("Backend.Entities.Status", b =>
+            //    {
+            //        b.Property<int>("Id")
+            //            .ValueGeneratedOnAdd()
+            //            .HasColumnType("int")
+            //            .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+            //        b.Property<string>("Description")
+            //            .IsRequired()
+            //            .HasMaxLength(100)
+            //            .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id");
+            //        b.HasKey("Id");
 
-                    b.ToTable("Status");
-                });
+            //        b.ToTable("Status");
+            //    });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -358,42 +358,42 @@ namespace Backend.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Backend.Entities.Incident", b =>
-                {
-                    b.HasOne("Backend.Entities.Priority", "Priority")
-                        .WithMany("Incidents")
-                        .HasForeignKey("PriorityId")
-                        .HasConstraintName("FK_dbo.Incidente_dbo.Prioridad_Prioridad_Id")
-                        .IsRequired();
+            //modelBuilder.Entity("Backend.Entities.Incident", b =>
+            //    {
+            //        b.HasOne("Backend.Entities.Priority", "Priority")
+            //            .WithMany("Incidents")
+            //            .HasForeignKey("PriorityId")
+            //            .HasConstraintName("FK_dbo.Incidente_dbo.Prioridad_Prioridad_Id")
+            //            .IsRequired();
 
-                    b.HasOne("Backend.Entities.Status", "Status")
-                        .WithMany("Incidents")
-                        .HasForeignKey("StatusId")
-                        .HasConstraintName("FK_dbo.Incidente_dbo.Estado_Estado_Id");
+            //        b.HasOne("Backend.Entities.Status", "Status")
+            //            .WithMany("Incidents")
+            //            .HasForeignKey("StatusId")
+            //            .HasConstraintName("FK_dbo.Incidente_dbo.Estado_Estado_Id");
 
-                    b.Navigation("Priority");
+            //        b.Navigation("Priority");
 
-                    b.Navigation("Status");
-                });
+            //        b.Navigation("Status");
+            //    });
 
-            modelBuilder.Entity("Backend.Entities.Sesion", b =>
-                {
-                    b.HasOne("Backend.Entities.Incident", "Incident")
-                        .WithMany("Sesions")
-                        .HasForeignKey("IncidentId")
-                        .HasConstraintName("FK_dbo.Sesion_dbo.Incidente_Incidente_Id")
-                        .IsRequired();
+            //modelBuilder.Entity("Backend.Entities.Sesion", b =>
+            //    {
+            //        b.HasOne("Backend.Entities.Incident", "Incident")
+            //            .WithMany("Sesions")
+            //            .HasForeignKey("IncidentId")
+            //            .HasConstraintName("FK_dbo.Sesion_dbo.Incidente_Incidente_Id")
+            //            .IsRequired();
 
-                    b.HasOne("Backend.Entities.Status", "Status")
-                        .WithMany("Sesions")
-                        .HasForeignKey("StatusId")
-                        .HasConstraintName("FK_dbo.Sesion_dbo.Estado_Estado_Id")
-                        .IsRequired();
+            //        b.HasOne("Backend.Entities.Status", "Status")
+            //            .WithMany("Sesions")
+            //            .HasForeignKey("StatusId")
+            //            .HasConstraintName("FK_dbo.Sesion_dbo.Estado_Estado_Id")
+            //            .IsRequired();
 
-                    b.Navigation("Incident");
+            //        b.Navigation("Incident");
 
-                    b.Navigation("Status");
-                });
+            //        b.Navigation("Status");
+            //    });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
@@ -446,22 +446,22 @@ namespace Backend.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Backend.Entities.Incident", b =>
-                {
-                    b.Navigation("Sesions");
-                });
+            //modelBuilder.Entity("Backend.Entities.Incident", b =>
+            //    {
+            //        b.Navigation("Sesions");
+            //    });
 
-            modelBuilder.Entity("Backend.Entities.Priority", b =>
-                {
-                    b.Navigation("Incidents");
-                });
+            //modelBuilder.Entity("Backend.Entities.Priority", b =>
+            //    {
+            //        b.Navigation("Incidents");
+            //    });
 
-            modelBuilder.Entity("Backend.Entities.Status", b =>
-                {
-                    b.Navigation("Incidents");
+            //modelBuilder.Entity("Backend.Entities.Status", b =>
+            //    {
+            //        b.Navigation("Incidents");
 
-                    b.Navigation("Sesions");
-                });
+            //        b.Navigation("Sesions");
+            //    });
 #pragma warning restore 612, 618
         }
     }

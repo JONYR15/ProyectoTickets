@@ -31,6 +31,7 @@ namespace TicketsManager.DAL
 
         }
 
+
         public void Dispose()
         {
             context.Dispose();
