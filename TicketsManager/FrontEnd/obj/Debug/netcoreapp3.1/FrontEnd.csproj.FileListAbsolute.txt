@@ -266,3 +266,4 @@ D:\Personales\Universidad\Progra 5\ProyectoTickets\TicketsManager\FrontEnd\obj\D
 D:\Personales\Universidad\Progra 5\ProyectoTickets\TicketsManager\FrontEnd\obj\Debug\netcoreapp3.1\Razor\Views\Department\Create.cshtml.g.cs
 D:\Personales\Universidad\Progra 5\ProyectoTickets\TicketsManager\FrontEnd\obj\Debug\netcoreapp3.1\Razor\Views\Department\Edit.cshtml.g.cs
 D:\Personales\Universidad\Progra 5\ProyectoTickets\TicketsManager\FrontEnd\obj\Debug\netcoreapp3.1\Razor\Views\Department\Delete.cshtml.g.cs
+D:\Personales\Universidad\Progra 5\ProyectoTickets\TicketsManager\FrontEnd\obj\Debug\netcoreapp3.1\Razor\Views\Department\Details.cshtml.g.cs
