@@ -266,6 +266,7 @@ D:\Personales\Universidad\Progra 5\ProyectoTickets\TicketsManager\FrontEnd\obj\D
 D:\Personales\Universidad\Progra 5\ProyectoTickets\TicketsManager\FrontEnd\obj\Debug\netcoreapp3.1\Razor\Views\Department\Create.cshtml.g.cs
 D:\Personales\Universidad\Progra 5\ProyectoTickets\TicketsManager\FrontEnd\obj\Debug\netcoreapp3.1\Razor\Views\Department\Edit.cshtml.g.cs
 D:\Personales\Universidad\Progra 5\ProyectoTickets\TicketsManager\FrontEnd\obj\Debug\netcoreapp3.1\Razor\Views\Department\Delete.cshtml.g.cs
+<<<<<<< HEAD
 C:\Users\Jonathan Ramirez\Documents\Progra 5\ProyectoTickets\TicketsManager\FrontEnd\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\Jonathan Ramirez\Documents\Progra 5\ProyectoTickets\TicketsManager\FrontEnd\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\Jonathan Ramirez\Documents\Progra 5\ProyectoTickets\TicketsManager\FrontEnd\bin\Debug\netcoreapp3.1\FrontEnd.exe
@@ -448,3 +449,6 @@ C:\Users\Jonathan Ramirez\Documents\Progra 5\ProyectoTickets\TicketsManager\Fron
 C:\Users\Jonathan Ramirez\Documents\Progra 5\ProyectoTickets\TicketsManager\FrontEnd\obj\Debug\netcoreapp3.1\FrontEnd.dll
 C:\Users\Jonathan Ramirez\Documents\Progra 5\ProyectoTickets\TicketsManager\FrontEnd\obj\Debug\netcoreapp3.1\FrontEnd.pdb
 C:\Users\Jonathan Ramirez\Documents\Progra 5\ProyectoTickets\TicketsManager\FrontEnd\obj\Debug\netcoreapp3.1\FrontEnd.genruntimeconfig.cache
+=======
+D:\Personales\Universidad\Progra 5\ProyectoTickets\TicketsManager\FrontEnd\obj\Debug\netcoreapp3.1\Razor\Views\Department\Details.cshtml.g.cs
+>>>>>>> Bernan
