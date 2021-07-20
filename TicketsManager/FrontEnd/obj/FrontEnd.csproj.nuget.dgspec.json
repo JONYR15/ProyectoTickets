@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\TicketsManager\\FrontEnd\\FrontEnd.csproj": {}
+    "C:\\Users\\Jonathan Ramirez\\Documents\\Progra 5\\ProyectoTickets\\TicketsManager\\FrontEnd\\FrontEnd.csproj": {}
   },
   "projects": {
-    "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\TicketsManager\\FrontEnd\\FrontEnd.csproj": {
+    "C:\\Users\\Jonathan Ramirez\\Documents\\Progra 5\\ProyectoTickets\\TicketsManager\\FrontEnd\\FrontEnd.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\TicketsManager\\FrontEnd\\FrontEnd.csproj",
+        "projectUniqueName": "C:\\Users\\Jonathan Ramirez\\Documents\\Progra 5\\ProyectoTickets\\TicketsManager\\FrontEnd\\FrontEnd.csproj",
         "projectName": "FrontEnd",
-        "projectPath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\TicketsManager\\FrontEnd\\FrontEnd.csproj",
-        "packagesPath": "C:\\Users\\berna\\.nuget\\packages\\",
-        "outputPath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\TicketsManager\\FrontEnd\\obj\\",
+        "projectPath": "C:\\Users\\Jonathan Ramirez\\Documents\\Progra 5\\ProyectoTickets\\TicketsManager\\FrontEnd\\FrontEnd.csproj",
+        "packagesPath": "C:\\Users\\Jonathan Ramirez\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jonathan Ramirez\\Documents\\Progra 5\\ProyectoTickets\\TicketsManager\\FrontEnd\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\berna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Jonathan Ramirez\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,15 +22,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.telerik.com/nuget": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\Backend.csproj": {
-                "projectPath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\Backend.csproj"
+              "C:\\Users\\Jonathan Ramirez\\Documents\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\Backend.csproj": {
+                "projectPath": "C:\\Users\\Jonathan Ramirez\\Documents\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\Backend.csproj"
               }
             }
           }
@@ -74,21 +73,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\Backend.csproj": {
+    "C:\\Users\\Jonathan Ramirez\\Documents\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\Backend.csproj",
+        "projectUniqueName": "C:\\Users\\Jonathan Ramirez\\Documents\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\Backend.csproj",
-        "packagesPath": "C:\\Users\\berna\\.nuget\\packages\\",
-        "outputPath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\obj\\",
+        "projectPath": "C:\\Users\\Jonathan Ramirez\\Documents\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\Backend.csproj",
+        "packagesPath": "C:\\Users\\Jonathan Ramirez\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jonathan Ramirez\\Documents\\Progra 5\\ProyectoTickets\\TicketsManager\\TicketsManager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\berna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Jonathan Ramirez\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -96,8 +95,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.telerik.com/nuget": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
@@ -159,7 +157,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
