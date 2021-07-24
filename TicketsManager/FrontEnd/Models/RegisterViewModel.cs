@@ -23,5 +23,8 @@ namespace FrontEnd.Models
         [Compare("Password",ErrorMessage ="Password and Confirmation do not match")]
         public string ComfirmPassword { get; set; }
 
+        [Required]
+        [Display(Name = "Rol")]
+        public string UserRoles { get; set; }
     }
 }

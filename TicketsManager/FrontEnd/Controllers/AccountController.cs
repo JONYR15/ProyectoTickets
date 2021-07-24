@@ -1,6 +1,7 @@
 ﻿using FrontEnd.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FrontEnd.Controllers
@@ -10,35 +11,43 @@ namespace FrontEnd.Controllers
 
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
+        private readonly RoleManager<IdentityRole> roleMngr;
+
 
         public AccountController(UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleMngr)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.roleMngr = roleMngr;
         }
 
 
         [HttpGet]
         public IActionResult Register()
         {
+            ViewBag.Name = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(roleMngr.Roles.ToList(), "Name", "Name");
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            ViewBag.Name = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(roleMngr.Roles.ToList(), "Name", "Name");
             if (ModelState.IsValid)
             {
                 // Copy data from RegisterViewModel to IdentityUser
                 var user = new IdentityUser
                 {
                     UserName = model.Email,
-                    Email = model.Email
+                    Email = model.Email,
                 };
-
+    
                 // Store user data in AspNetUsers database table
                 var result = await userManager.CreateAsync(user, model.Password);
+
+                //Assign Role to User
+                await this.userManager.AddToRoleAsync(user, model.UserRoles);
 
                 // If user is successfully created, sign-in the user using
                 // SignInManager and redirect to index action of HomeController

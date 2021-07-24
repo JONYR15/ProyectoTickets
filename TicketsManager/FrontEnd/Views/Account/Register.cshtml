@@ -29,6 +29,11 @@
                 <span asp-validation-for="ComfirmPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="UserRoles" class="control-label"></label>
+                @Html.DropDownList("UserRoles", (SelectList)ViewBag.Name, "Seleccione uno", new { @class = "form-control", @style = "width:100%;" })
+                <span asp-validation-for="ComfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Register" class="btn btn-primary" />
             </div>
         </form>
