@@ -362,4 +362,3 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 TicketsManager/.vs/TicketsManager/v16/.suo
-*.cache
