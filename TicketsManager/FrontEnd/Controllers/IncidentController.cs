@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TicketsManager.DAL;
 using Microsoft.AspNetCore.Authorization;
+using FrontEnd.Models;
 
 namespace FrontEnd.Controllers
 {
@@ -15,13 +16,29 @@ namespace FrontEnd.Controllers
         {
 
             List<Incident> incident;
+            var incidents = new List<IncidentViewModel>();
 
             using (UnidadDeTrabajo<Incident> Unidad
                 = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
             {
                 incident = Unidad.genericDAL.GetAll().ToList();
             }
-            return View(incident);
+
+            foreach (var i in incident)
+            {
+                var incidentVM = new IncidentViewModel();
+                incidentVM.Id = i.Id;
+                incidentVM.User = User.Identity.Name;
+                incidentVM.UserRequestBy = User.Identity.Name;
+                incidentVM.Theme = i.Theme;
+                incidentVM.Status = i.Status.Description.ToString();
+                incidentVM.Priority = i.Priority.Description.ToString();
+                incidentVM.Created = i.Created;
+                incidentVM.Attended = i.Attended;
+                incidents.Add(incidentVM);
+            }
+
+            return View(incidents);
         }
         #endregion
 
@@ -29,6 +46,23 @@ namespace FrontEnd.Controllers
         [Authorize]
         public IActionResult Create()
         {
+            List<Priority> priority;
+            List<Status> status;
+
+            using (UnidadDeTrabajo<Priority> Unidad
+                = new UnidadDeTrabajo<Priority>(new TicketsManagerContext()))
+            {
+                priority = Unidad.genericDAL.GetAll().ToList();
+            }
+
+            using (UnidadDeTrabajo<Status> Unidad
+                = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
+            {
+                status = Unidad.genericDAL.GetAll().ToList();
+            }
+
+            ViewBag.priority = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(priority.ToList(), "Name", "Name");
+            ViewBag.status = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(status.ToList(), "Name", "Name");
             return View();
 
         }
@@ -37,6 +71,24 @@ namespace FrontEnd.Controllers
         [HttpPost]
         public IActionResult Create(Incident incident)
         {
+            List<Priority> priority;
+            List<Status> status;
+
+            using (UnidadDeTrabajo<Priority> Unidad
+                = new UnidadDeTrabajo<Priority>(new TicketsManagerContext()))
+            {
+                priority = Unidad.genericDAL.GetAll().ToList();
+            }
+
+            using (UnidadDeTrabajo<Status> Unidad
+                = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
+            {
+                status = Unidad.genericDAL.GetAll().ToList();
+            }
+
+            ViewBag.priority = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(priority.ToList(), "Name", "Name");
+            ViewBag.status = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(status.ToList(), "Name", "Name");
+
             using (UnidadDeTrabajo<Incident> Unidad
                 = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
             {
