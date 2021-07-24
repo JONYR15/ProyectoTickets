@@ -361,4 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-TicketsManager/.vs/TicketsManager/v16/.suo
+TicketsManager/.vs/*
+TicketsManager/TicketsManager/obj/*
+TicketsManager/FrontEnd/obj/*
