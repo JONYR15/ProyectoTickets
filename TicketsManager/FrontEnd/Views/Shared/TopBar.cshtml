@@ -1,4 +1,8 @@
-﻿<nav class="navbar navbar-expand navbar-light topbar mb-2 static-top shadow">
+﻿@{ 
+    string LogOut = Url.Action("Logout","Account");
+}
+
+<nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
     </button>
@@ -196,7 +200,7 @@
 
                 <form action="/Account/LogOff" id="logoutForm" method="post">
                     @Html.AntiForgeryToken()
-                    <a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item">
+                    <a href="@LogOut" class="dropdown-item">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Cerrar Sesión
                     </a>
