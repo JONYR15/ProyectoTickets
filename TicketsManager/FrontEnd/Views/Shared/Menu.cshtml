@@ -48,6 +48,14 @@
         </a>
     </li>
 
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="@IndexDepartment">
+                <i class="fas fa-utensils"></i>
+                <span>Cliente</span>
+            </a>
+        </li>
+    </ul>
     @if (User.IsInRole("Administrador"))
 
    @*IMPORTANTE: Se comentó esta opción de menú porque no estaba funcionando  se agregó arriba*@
@@ -57,27 +65,32 @@
             Maintenance
         </div>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="@IndexPriority">
-                <i class="fas fa-fw fa-clipboard-list"></i>
-                <span>Priority</span>
-            </a>
-        </li>
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="@IndexPriority">
+                        <i class="fas fa-fw fa-clipboard-list"></i>
+                        <span>Priority</span>
+                    </a>
+                </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="@IndexStatus">
-                <i class="fas fa-money-check-alt"></i>
-                <span>Status</span>
-            </a>
-        </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="@IndexStatus">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>Status</span>
+                    </a>
+                </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="@IndexDepartment">
-                <i class="fas fa-utensils"></i>
-                <span>Department</span>
-            </a>
-        </li>
-    } 
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="@IndexDepartment">
+                        <i class="fas fa-utensils"></i>
+                        <span>Department</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    }
 
     @*<li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
