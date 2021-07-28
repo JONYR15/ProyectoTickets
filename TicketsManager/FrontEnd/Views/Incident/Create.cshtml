@@ -41,11 +41,11 @@
                 <input asp-for="PriorityId" class="form-control" />
                 <span asp-validation-for="PriorityId" class="text-danger"></span>
             </div>*@
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Priority" class="control-label"></label>
                 @Html.DropDownList("Priority", (SelectList)ViewBag.priority, "Seleccione uno", new { @class = "form-control", @style = "width:100%;" })
                 <span asp-validation-for="Priority" class="text-danger"></span>
-            </div>
+            </div>*@
             @*Select List*@
             <div class="form-group">
                 <label asp-for="StatusId" class="control-label"></label>
