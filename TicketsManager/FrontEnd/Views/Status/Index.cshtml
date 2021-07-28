@@ -26,7 +26,9 @@
             <thead class="bg-primary">
                 <tr>
                     <th>
-                        <font color="white">ID</font>
+                        <font color="white">
+                            @Html.DisplayNameFor(model => model.Id)
+                        </font>
                     </th>
                     <th class="">
                         <font color="white">Tipo de Estatus</font>
@@ -41,7 +43,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Description)
                         </th>*@
-       
+
                 </tr>
             </thead>
             <tbody>
@@ -55,7 +57,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
-                       
+
                         @*<td>
 
                                 @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
@@ -63,7 +65,7 @@
                                 @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
                             </td>*@
 
-                        <td class="col-4" style="display: inline-flex; width: 250px; " >
+                        <td class="col-4" style="display: inline-flex; width: 250px; ">
                             <a href="../Status/Edit/@item.Id" class="btn btn-facebook" style="color:white;">Editar</a>
                             <a href="../Status/Details/@item.Id" class="btn btn-facebook" style="color:white;">Detalles</a>
                             <a href="../Status/Delete/@item.Id" class="btn btn-danger" style="color:white;">Borrar</a>
