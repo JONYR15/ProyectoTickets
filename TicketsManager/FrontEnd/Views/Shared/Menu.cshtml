@@ -2,6 +2,7 @@
     string IndexPriority = Url.Action("Index", "Priority");
     string IndexStatus = Url.Action("Index", "Status");
     string IndexDepartment = Url.Action("Index", "Department");
+    string IndexIncident = Url.Action("Index", "Incident");
 
 }
 <div class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -14,8 +15,45 @@
     </div>
 
     <hr class="sidebar-divider">
+     <div class="sidebar-heading">
+ 
+        MANTENIMIENTO
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="@IndexDepartment">
+            <i class="fas fa-person-booth"></i>
+            <span>Departamentos</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="@IndexIncident">
+            <i class="fas fa-archive"></i>
+            <span>Incidentes</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="@IndexPriority">
+            <i class="fas fa-fw fa-clipboard-list"></i>
+            <span>Prioridades</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="@IndexStatus">
+            <i class="fas fa-money-check-alt"></i>
+            <span>Estatus</span>
+        </a>
+    </li>
+
+
 
     @if (User.IsInRole("Administrator"))
+
+   @*IMPORTANTE: Se comentó esta opción de menú porque no estaba funcionando  se agregó arriba*@
+
     {
         <div class="sidebar-heading">
             Maintenance
@@ -41,7 +79,7 @@
                 <span>Department</span>
             </a>
         </li>
-    }
+    } 
 
     @*<li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"

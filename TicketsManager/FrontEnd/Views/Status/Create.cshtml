@@ -5,9 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<div class="row">
+    <div class="col-12 text-center">
+        <h2>Crear Estatus</h2>
+        <hr class="hrn-hr" />
+    </div>
+</div>
 
-<h4>Status</h4>
+@*<h1>Crear Estatud</h1>*@
+
+@*<h4>Status</h4>*@
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -19,15 +26,18 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a href="~/Status/Index" class= "btn btn-danger" style=" width:30%">Regresar</a>
+             </div>
+                      
+</form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@*<div>
+    <a asp-action="Index">Volver a la lista</a>
+</div>*@
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
