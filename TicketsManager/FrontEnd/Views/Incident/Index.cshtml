@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Backend.Entities.Incident>
+﻿@model IEnumerable<FrontEnd.Models.IncidentViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -21,28 +21,22 @@
                 @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserId)
+                @Html.DisplayNameFor(model => model.User)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RequestById)
+                @Html.DisplayNameFor(model => model.UserRequestBy)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Theme)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.Priority)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PriorityId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StatusId)
+                @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Created)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Resolved)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Attended)
@@ -57,28 +51,22 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserId)
+                @Html.DisplayFor(modelItem => item.User)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RequestById)
+                @Html.DisplayFor(modelItem => item.UserRequestBy)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Theme)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.Priority)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PriorityId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StatusId)
+                @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Created)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Resolved)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Attended)
