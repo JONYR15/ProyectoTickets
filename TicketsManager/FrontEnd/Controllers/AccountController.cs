@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace FrontEnd.Controllers
 {
@@ -21,7 +22,6 @@ namespace FrontEnd.Controllers
             this.signInManager = signInManager;
             this.roleMngr = roleMngr;
         }
-
 
         [HttpGet]
         public IActionResult Register()
@@ -82,6 +82,7 @@ namespace FrontEnd.Controllers
             return View();
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
@@ -92,6 +93,8 @@ namespace FrontEnd.Controllers
 
                 if (result.Succeeded)
                 {
+                    var Usuario = userManager.FindByEmailAsync(User.Identity.Name);
+                    TempData["Id"] = Usuario.Id;
                     return RedirectToAction("index", "home");
                 }
 

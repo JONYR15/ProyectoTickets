@@ -5,14 +5,28 @@ using System.Linq;
 using TicketsManager.DAL;
 using Microsoft.AspNetCore.Authorization;
 using FrontEnd.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace FrontEnd.Controllers
 {
     public class IncidentController : Controller
     {
+        #region Obtener Valores
+
+        #endregion
+
+
         #region Lista
         [Authorize(Roles = "Administrador, Soportista")]
         public IActionResult Index()
+        {
+            return View();
+        }
+
+
+        public async Task<JsonResult> GetAllIndex()
         {
 
             List<Incident> incident;
@@ -37,8 +51,7 @@ namespace FrontEnd.Controllers
                 incidentVM.Attended = i.Attended;
                 incidents.Add(incidentVM);
             }
-
-            return View(incidents);
+            return Json(new { data = incidents });
         }
         #endregion
 
@@ -47,7 +60,6 @@ namespace FrontEnd.Controllers
         public IActionResult Create()
         {
             List<Priority> priority;
-            List<Status> status;
 
             using (UnidadDeTrabajo<Priority> Unidad
                 = new UnidadDeTrabajo<Priority>(new TicketsManagerContext()))
@@ -55,14 +67,7 @@ namespace FrontEnd.Controllers
                 priority = Unidad.genericDAL.GetAll().ToList();
             }
 
-            using (UnidadDeTrabajo<Status> Unidad
-                = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
-            {
-                status = Unidad.genericDAL.GetAll().ToList();
-            }
-
-            ViewBag.priority = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(priority.ToList(), "Name", "Name");
-            ViewBag.status = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(status.ToList(), "Name", "Name");
+            ViewBag.Description = new SelectList(priority.ToList(), "Description", "Description");
             return View();
 
         }
@@ -72,23 +77,17 @@ namespace FrontEnd.Controllers
         public IActionResult Create(Incident incident)
         {
             List<Priority> priority;
-            List<Status> status;
 
             using (UnidadDeTrabajo<Priority> Unidad
                 = new UnidadDeTrabajo<Priority>(new TicketsManagerContext()))
             {
                 priority = Unidad.genericDAL.GetAll().ToList();
             }
+            incident.UserId = User.Identity.Name;
 
-            using (UnidadDeTrabajo<Status> Unidad
-                = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
-            {
-                status = Unidad.genericDAL.GetAll().ToList();
-            }
-
-            ViewBag.priority = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(priority.ToList(), "Name", "Name");
-            ViewBag.status = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(status.ToList(), "Name", "Name");
-
+            ViewBag.Description = new SelectList(priority.ToList(), "Description", "Description");
+            var n = TempData["Id"];
+            
             using (UnidadDeTrabajo<Incident> Unidad
                 = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
             {
