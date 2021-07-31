@@ -10,6 +10,7 @@ namespace FrontEnd.Controllers
 {
     public class IncidentController : Controller
     {
+
         #region Lista
         [Authorize(Roles = "Administrador, Soportista")]
         public IActionResult Index()

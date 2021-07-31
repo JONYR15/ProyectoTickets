@@ -4,11 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using TicketsManager.DAL;
 using Microsoft.AspNetCore.Authorization;
+using FrontEnd.Models.Status;
 
 namespace FrontEnd.Controllers
 {
     public class StatusController : Controller
     {
+
+        private StatusViewModel Convertir(Status st)
+        {
+            return new StatusViewModel
+            {
+                Id = (int)st.Id,
+                Description = st.Description
+            };
+        }
         #region Lista
         [Authorize(Roles = "Administrador")]
         public IActionResult Index()
@@ -21,7 +31,16 @@ namespace FrontEnd.Controllers
             {
                 status = Unidad.genericDAL.GetAll().ToList();
             }
-            return View(status);
+
+            List<StatusViewModel> stVM = new List<StatusViewModel>();
+            StatusViewModel statusViewModel;
+            foreach (var item in status)
+            {
+                statusViewModel = this.Convertir(item);
+                stVM.Add(statusViewModel);
+            }
+
+            return View(stVM);
         }
         #endregion
 
@@ -60,8 +79,8 @@ namespace FrontEnd.Controllers
                 status = Unidad.genericDAL.Get(id);
 
             }
-
-            return View(status);
+            StatusViewModel st = this.Convertir(status);
+            return View(st);
         }
 
         [Authorize(Roles = "Administrador")]
@@ -90,8 +109,8 @@ namespace FrontEnd.Controllers
                 status = Unidad.genericDAL.Get(id);
 
             }
-
-            return View(status);
+            StatusViewModel st = this.Convertir(status);
+            return View(st);
         }
 
         [Authorize(Roles = "Administrador")]
@@ -120,8 +139,8 @@ namespace FrontEnd.Controllers
                 status = Unidad.genericDAL.Get(id);
 
             }
-
-            return View(status);
+            StatusViewModel st = this.Convertir(status);
+            return View(st);
         }
         #endregion
     }

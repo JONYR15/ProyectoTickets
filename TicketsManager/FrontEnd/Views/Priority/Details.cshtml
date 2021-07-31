@@ -1,4 +1,4 @@
-﻿@model Backend.Entities.Priority
+﻿@model FrontEnd.Models.Priority.PriorityViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -8,7 +8,6 @@
 <h1>Detalles</h1>
 
 <div>
-    @*<h4>PriorityViewModel</h4>*@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -25,7 +24,6 @@
         </dd>
     </dl>
 </div>
-@*Se cambiaron las opciones a español*@
 <div>
     @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
     <a asp-action="Index">Regresar</a>

@@ -2,15 +2,25 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using System.Threading.Tasks;
 using TicketsManager.DAL;
 using Microsoft.AspNetCore.Authorization;
-
+using FrontEnd.Models.Priority;
 
 namespace FrontEnd.Controllers
-{
-    
+{   
     public class PriorityController : Controller
     {
+        private PriorityViewModel Convertir(Priority pri)
+        {
+            return new PriorityViewModel
+            {
+                Id = (int)pri.Id,
+                Description = pri.Description
+            };
+        }
+
         #region Lista
         [Authorize(Roles = "Administrador")]
         public IActionResult Index()
@@ -23,7 +33,15 @@ namespace FrontEnd.Controllers
             {
                 priority = Unidad.genericDAL.GetAll().ToList();
             }
-            return View(priority);
+
+            List<PriorityViewModel> priorityVM = new List<PriorityViewModel>();
+            PriorityViewModel priorityViewModel;
+            foreach (var item in priority)
+            {
+                priorityViewModel = this.Convertir(item);
+                priorityVM.Add(priorityViewModel);
+            }
+            return View(priorityVM);
         }
         #endregion
 
@@ -61,8 +79,8 @@ namespace FrontEnd.Controllers
                 priority = Unidad.genericDAL.Get(id);
 
             }
-
-            return View(priority);
+            PriorityViewModel pri = this.Convertir(priority);
+            return View(pri);
         }
 
         [Authorize(Roles = "Administrador")]
@@ -91,8 +109,8 @@ namespace FrontEnd.Controllers
                 priority = Unidad.genericDAL.Get(id);
 
             }
-
-            return View(priority);
+            PriorityViewModel pri = this.Convertir(priority);
+            return View(pri);
         }
 
         [Authorize(Roles = "Administrador")]
@@ -121,8 +139,9 @@ namespace FrontEnd.Controllers
                 priority = Unidad.genericDAL.Get(id);
 
             }
+            PriorityViewModel pri = this.Convertir(priority);
 
-            return View(priority);
+            return View(pri);
         }
         #endregion
 

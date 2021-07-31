@@ -2,18 +2,29 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using System.Threading.Tasks;
 using TicketsManager.DAL;
 using Microsoft.AspNetCore.Authorization;
+using FrontEnd.Models.Departament;
 
 namespace FrontEnd.Controllers
 {
     public class DepartmentController : Controller
     {
+        private DepartmentViewModel Convertir(Department dep)
+        {
+            return new DepartmentViewModel
+            {
+                Id = (int)dep.Id,
+                Name = dep.Name
+            };
+        }
+
         #region Lista
         [Authorize(Roles = "Administrador")]
         public IActionResult Index()
         {
-
             List<Department> department;
 
             using (UnidadDeTrabajo<Department> Unidad
@@ -21,7 +32,16 @@ namespace FrontEnd.Controllers
             {
                 department = Unidad.genericDAL.GetAll().ToList();
             }
-            return View(department);
+
+            List<DepartmentViewModel> depVM = new List<DepartmentViewModel>();
+            DepartmentViewModel departmentViewModel;
+            foreach (var item in department)
+            {
+                departmentViewModel = this.Convertir(item);
+                depVM.Add(departmentViewModel);
+            }
+
+            return View(depVM);
         }
         #endregion
 
@@ -57,10 +77,11 @@ namespace FrontEnd.Controllers
                = new UnidadDeTrabajo<Department>(new TicketsManagerContext()))
             {
                 department = Unidad.genericDAL.Get(id);
-
             }
 
-            return View(department);
+            DepartmentViewModel dep = this.Convertir(department);
+
+            return View(dep);
         }
 
         [Authorize(Roles = "Administrador")]
@@ -90,7 +111,9 @@ namespace FrontEnd.Controllers
 
             }
 
-            return View(department);
+            DepartmentViewModel dep = this.Convertir(department);
+
+            return View(dep);
         }
 
         [Authorize(Roles = "Administrador")]
@@ -117,10 +140,11 @@ namespace FrontEnd.Controllers
                = new UnidadDeTrabajo<Department>(new TicketsManagerContext()))
             {
                 department = Unidad.genericDAL.Get(id);
-
             }
 
-            return View(department);
+            DepartmentViewModel dep = this.Convertir(department);
+
+            return View(dep);
         }
         #endregion
 

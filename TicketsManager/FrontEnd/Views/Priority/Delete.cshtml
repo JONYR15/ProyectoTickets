@@ -1,4 +1,4 @@
-﻿@model Backend.Entities.Priority
+﻿@model FrontEnd.Models.Priority.PriorityViewModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -9,7 +9,6 @@
 
 <h3>Esta seguro de eliminar el registro?</h3>
 <div>
-    <h4>Prioridad</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -19,7 +18,6 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
     </dl>
-    @*Se cambiaron las opciones a español*@
     <form asp-action="Delete">
         @Html.DisplayFor(model => model.Id, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
         <input type="submit" value="Delete" class="btn btn-danger" /> |
