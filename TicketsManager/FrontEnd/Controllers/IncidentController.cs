@@ -13,10 +13,6 @@ namespace FrontEnd.Controllers
 {
     public class IncidentController : Controller
     {
-        #region Obtener Valores
-
-        #endregion
-
 
         #region Lista
         [Authorize(Roles = "Administrador, Soportista")]
@@ -30,12 +26,27 @@ namespace FrontEnd.Controllers
         {
 
             List<Incident> incident;
+            List<Status> status;
+            List<Priority> priority;
+
             var incidents = new List<IncidentViewModel>();
 
             using (UnidadDeTrabajo<Incident> Unidad
                 = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
             {
                 incident = Unidad.genericDAL.GetAll().ToList();
+            }
+
+            using (UnidadDeTrabajo<Status> Unidad
+            = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
+            {
+                status = Unidad.genericDAL.GetAll().ToList();
+            }
+
+            using (UnidadDeTrabajo<Priority> Unidad
+            = new UnidadDeTrabajo<Priority>(new TicketsManagerContext()))
+            {
+                priority = Unidad.genericDAL.GetAll().ToList();
             }
 
             foreach (var i in incident)
@@ -45,10 +56,9 @@ namespace FrontEnd.Controllers
                 incidentVM.User = User.Identity.Name;
                 incidentVM.UserRequestBy = User.Identity.Name;
                 incidentVM.Theme = i.Theme;
-                incidentVM.Status = i.Status.Description.ToString();
-                incidentVM.Priority = i.Priority.Description.ToString();
+                incidentVM.Status = status.Where(x => x.Id == i.StatusId).Select(y => y.Description).FirstOrDefault();
+                incidentVM.Priority = priority.Where(x => x.Id == i.PriorityId).Select(y => y.Description).FirstOrDefault();
                 incidentVM.Created = i.Created;
-                incidentVM.Attended = i.Attended;
                 incidents.Add(incidentVM);
             }
             return Json(new { data = incidents });
@@ -60,6 +70,7 @@ namespace FrontEnd.Controllers
         public IActionResult Create()
         {
             List<Priority> priority;
+            List<Category> categories;
 
             using (UnidadDeTrabajo<Priority> Unidad
                 = new UnidadDeTrabajo<Priority>(new TicketsManagerContext()))
@@ -67,27 +78,56 @@ namespace FrontEnd.Controllers
                 priority = Unidad.genericDAL.GetAll().ToList();
             }
 
+            using (UnidadDeTrabajo<Category> Unidad
+                 = new UnidadDeTrabajo<Category>(new TicketsManagerContext()))
+            {
+                categories = Unidad.genericDAL.GetAll().ToList();
+            }
+
             ViewBag.Description = new SelectList(priority.ToList(), "Description", "Description");
+            ViewBag.CategoryName = new SelectList(categories.ToList(), "CategoryName", "CategoryName");
             return View();
 
         }
 
         [Authorize]
         [HttpPost]
-        public IActionResult Create(Incident incident)
+        public IActionResult Create(IncidentViewModelCreate incidentVM)
         {
             List<Priority> priority;
+            List<Status> status;
+            List<Category> categories;
+            Incident incident = new Incident();
 
             using (UnidadDeTrabajo<Priority> Unidad
                 = new UnidadDeTrabajo<Priority>(new TicketsManagerContext()))
             {
                 priority = Unidad.genericDAL.GetAll().ToList();
             }
-            incident.UserId = User.Identity.Name;
 
-            ViewBag.Description = new SelectList(priority.ToList(), "Description", "Description");
-            var n = TempData["Id"];
-            
+            using (UnidadDeTrabajo<Category> Unidad
+                = new UnidadDeTrabajo<Category>(new TicketsManagerContext()))
+            {
+                categories = Unidad.genericDAL.GetAll().ToList();
+            }
+
+            //ViewBag.CategoryName = new SelectList(categories.ToList(), "CategoryName", "CategoryName");
+            //ViewBag.Description = new SelectList(priority.ToList(), "Description", "Description");
+
+            using (UnidadDeTrabajo<Status> Unidad
+             = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
+            {
+                status = Unidad.genericDAL.GetAll().ToList();
+            }
+
+            incident.UserId = User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
+            incident.CategoryId = categories.Where(x => x.CategoryName.Equals(incidentVM.Category)).Select(y => y.Id).FirstOrDefault();
+            incident.Theme = incidentVM.Theme;
+            incident.Description = incidentVM.Description;
+            incident.PriorityId = priority.Where(x => x.Description.Equals(incidentVM.Priority)).Select(y => y.Id).FirstOrDefault();
+            incident.StatusId = status.Where(x => x.Description.Equals("Creado")).Select(y => y.Id).FirstOrDefault();
+            incident.Created = System.DateTime.Now;
+
             using (UnidadDeTrabajo<Incident> Unidad
                 = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
             {
@@ -100,18 +140,53 @@ namespace FrontEnd.Controllers
         #endregion
 
         #region Editar
-        [Authorize(Roles = "Administrador")]
+        [Authorize]
         public IActionResult Edit(int id)
         {
             Incident incident;
+            List<Priority> priority;
+            List<Category> categories;
+            List<Status> status;
+            IncidentViewModelEdit incidentVM = new IncidentViewModelEdit();
+
+            using (UnidadDeTrabajo<Priority> Unidad
+                = new UnidadDeTrabajo<Priority>(new TicketsManagerContext()))
+            {
+                priority = Unidad.genericDAL.GetAll().ToList();
+            }
+
+            using (UnidadDeTrabajo<Status> Unidad
+                = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
+            {
+                status = Unidad.genericDAL.GetAll().ToList();
+            }
+
+            using (UnidadDeTrabajo<Category> Unidad
+                 = new UnidadDeTrabajo<Category>(new TicketsManagerContext()))
+            {
+                categories = Unidad.genericDAL.GetAll().ToList();
+            }
+
             using (UnidadDeTrabajo<Incident> Unidad
                = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
             {
                 incident = Unidad.genericDAL.Get(id);
-
+            }
+            incidentVM.Id = incident.Id;
+            incidentVM.Category = categories.Where(x => x.Id == incident.CategoryId).Select(y => y.CategoryName).FirstOrDefault();
+            incidentVM.Theme = incident.Theme;
+            incidentVM.Description = incident.Description;
+            incidentVM.Priority = priority.Where(x => x.Id == incident.PriorityId).Select(y => y.Description).FirstOrDefault();
+            incidentVM.Status = status.Where(x => x.Id == incident.StatusId).Select(y => y.Description).FirstOrDefault();
+            incidentVM.Created = incident.Created;
+            incidentVM.Attended = System.DateTime.Now;
+            if (User.IsInRole("Soportista, Administrador"))
+            {
+                incidentVM.RequestById = User.Identity.Name;
+                ViewBag.Description = new SelectList(status.ToList(), "Status", "Status");
             }
 
-            return View(incident);
+            return View(incidentVM);
         }
 
         [Authorize(Roles = "Administrador")]

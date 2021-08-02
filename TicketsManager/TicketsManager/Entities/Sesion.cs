@@ -15,7 +15,6 @@ namespace Backend.Entities
         public int Hour { get; set; }
         public DateTime Created { get; set; }
 
-        public virtual Incident Incident { get; set; }
         public virtual Status Status { get; set; }
     }
 }

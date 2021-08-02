@@ -5,19 +5,17 @@ using System.Collections.Generic;
 
 namespace Backend.Entities
 {
-    public partial class Status
+    public partial class Category
     {
-        public Status()
+        public Category()
         {
             Incidents = new HashSet<Incident>();
-            Sesions = new HashSet<Sesion>();
         }
 
         public int Id { get; set; }
-        public string Description { get; set; }
+        public string CategoryName { get; set; }
         public bool? Active { get; set; }
 
         public virtual ICollection<Incident> Incidents { get; set; }
-        public virtual ICollection<Sesion> Sesions { get; set; }
     }
 }

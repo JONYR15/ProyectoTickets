@@ -1,4 +1,4 @@
-﻿@model Backend.Entities.Incident
+﻿@model FrontEnd.Models.IncidentViewModelCreate
 
 @{
     ViewData["Title"] = "Create";
@@ -13,18 +13,6 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*Hidden*@
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            @*Hidden*@
-            <div class="form-group">
-                <label asp-for="RequestById" class="control-label"></label>
-                <input asp-for="RequestById" class="form-control" />
-                <span asp-validation-for="RequestById" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="Theme" class="control-label"></label>
                 <input asp-for="Theme" class="form-control" />
@@ -39,6 +27,11 @@
                 <label asp-for="Priority" class="control-label"></label>
                 @Html.DropDownList("Priority", (SelectList)ViewBag.Description, "Seleccione uno", new { @class = "form-control", @style = "width:100%;" })
                 <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                @Html.DropDownList("Category", (SelectList)ViewBag.CategoryName, "Seleccione uno", new { @class = "form-control", @style = "width:100%;" })
+                <span asp-validation-for="Category" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
