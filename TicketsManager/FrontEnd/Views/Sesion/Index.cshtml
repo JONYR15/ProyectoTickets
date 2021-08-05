@@ -2,7 +2,7 @@
 
 @{
     ViewBag.title = "Sessions";
-    var URLGetSessions = Url.Action("GetSesionsByIncident", "Sesion", new { incidentId = Model.Id });
+    var URLGetSessions = Url.Action("GetSesionsByIncident", "Sesion");
 }
 
 @section styles{
@@ -67,7 +67,7 @@
         var initialTitle = 'The ticket has been created! <br> <strong>@Model.Created.ToShortDateString()</strong>';
 
         const SetOrRefreshTimelineSessions = () => {
-            $.getJSON('@URLGetSessions', function (data) {
+            $.post('@URLGetSessions', {incidentId: @Model.Id}, function (data) {
                 let items = [];
                 let totalHours = 0;
 

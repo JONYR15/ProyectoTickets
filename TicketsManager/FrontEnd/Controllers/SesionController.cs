@@ -56,6 +56,7 @@ namespace FrontEnd.Controllers
             return View(incidentVM);
         }
 
+        [HttpPost]
         public async Task<List<Sesion>> GetSesionsByIncident(int incidentId)
         {
             try
