@@ -125,6 +125,19 @@
                     top: -17.5px;
                 }
 
+            .jtimeline ul.jtimeline-events > li.jtimeline-event:hover, .jtimeline ul.jtimeline-events > li.jtimeline-event.is-inactive {
+                z-index: 20;
+            }
+
+                .jtimeline ul.jtimeline-events > li.jtimeline-event:hover > .jtimeline-event-bullet, .jtimeline ul.jtimeline-events > li.jtimeline-event.is-inactive > .jtimeline-event-bullet {
+                    border-color: red;
+                    background-color: red;
+                }
+
+                .jtimeline ul.jtimeline-events > li.jtimeline-event:hover > .jtimeline-event-label:after, .jtimeline ul.jtimeline-events > li.jtimeline-event.is-inactive > .jtimeline-event-label:after {
+                    background-color: red;
+                }
+
             .jtimeline ul.jtimeline-events > li.jtimeline-event:hover, .jtimeline ul.jtimeline-events > li.jtimeline-event.is-active {
                 z-index: 20;
             }
@@ -137,5 +150,3 @@
                 .jtimeline ul.jtimeline-events > li.jtimeline-event:hover > .jtimeline-event-label:after, .jtimeline ul.jtimeline-events > li.jtimeline-event.is-active > .jtimeline-event-label:after {
                     background-color: #3abb67;
                 }
-
-/*# sourceMappingURL=jtimeline.css.map */

@@ -1,4 +1,8 @@
-﻿.loader,
+﻿.pointer {
+    cursor: pointer;
+}
+
+.loader,
 .loader:before,
 .loader:after {
     border-radius: 50%;

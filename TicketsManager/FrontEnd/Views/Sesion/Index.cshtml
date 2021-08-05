@@ -35,12 +35,14 @@
             </div>
 
             <div class="card-body">
-                <div class="mb-5 pb-3 d-flex justify-content-between border-bottom">
-                    <div class="d-flex justify-content-center align-items-center">
-                        Sessions view in timeline
+                <div class="mb-5 pb-1 d-flex justify-content-between border-bottom">
+                    <div class="">
+                        <p>Sessions view in timeline</p>
+                        <p class="small"><strong><span id="total-hours"></span></strong> hours recorded in attention to the incident</p>
                     </div>
-                    <div>
-                        <button class="btn btn-secondary"><i class="fas fa-plus"></i> Add</button>
+                    <div class="text-center">
+                        <p>Options</p>
+                        <button id="add-btn" class="btn bg-transparent" title="Add"><i class="fas fa-plus"></i></button>
                         <button id="refresh-btn" class="btn bg-transparent" title="Refresh"><i class="fas fa-sync"></i></button>
                     </div>
                 </div>
@@ -60,23 +62,27 @@
         var $timeline = $('#jtimeline-demo');
         var $timelineItems = $('#jtimeline-events');
         var $refrehButton = $("#refresh-btn");
+        var $totalHoursLabel = $("#total-hours");
         var initialTimestamp = new Date('@Model.Created').getTime() / 1000;
         var initialTitle = 'The ticket has been created! <br> <strong>@Model.Created.ToShortDateString()</strong>';
 
         const SetOrRefreshTimelineSessions = () => {
             $.getJSON('@URLGetSessions', function (data) {
                 let items = [];
+                let totalHours = 0;
 
                 items.push("<li class='jtimeline-event is-active' data-timestamp='" + initialTimestamp + "'><div>" + initialTitle + "</div></li>");
 
                 $.each(data, function (key, val) {
+                    totalHours += val.hour;
                     let dateCreated = new Date(val.created);
                     let timestamp = dateCreated.getTime() / 1000;
-                    let title = val.description + "<br><strong>" + dateCreated.toLocaleDateString() + "</strong>"
+                    let title = val.description + "<br><strong>" + dateCreated.toLocaleDateString() + " ("+val.hour+" hours)</strong><br><i class='mr-2 fas fa-eye text-info pointer' title='Details'></i><i class='fas fa-trash text-danger pointer' title='Delete'></i>"
                     items.push("<li class='jtimeline-event' data-timestamp='" + timestamp + "'><div>" + title + "</div></li>");
                 });
 
                 $timelineItems.html(items);
+                $totalHoursLabel.html(totalHours);
 
                 $timeline.jTimeline();
             });
