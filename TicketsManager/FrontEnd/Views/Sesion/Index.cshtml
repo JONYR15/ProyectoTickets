@@ -1,0 +1,89 @@
+﻿@model IncidentViewModelEdit
+
+@{
+    ViewBag.title = "Sessions";
+    var URLGetSessions = Url.Action("GetSesionsByIncident", "Sesion", new { incidentId = Model.Id });
+}
+
+@section styles{
+    <link href="~/lib/timeline/dist/css/jtimeline.css" rel="stylesheet" />
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 j-df j-color-text j-jc-center">
+                <h6>Details</h6>
+            </div>
+
+            <div class="card-body">
+                <p>Number: @Model.Id</p>
+                <p>Theme: @Model.Theme</p>
+                <p>Created: @Model.Created</p>
+                <hr />
+                <p>Description: @Model.Description</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 j-df j-color-text j-jc-center">
+                <h6>Sessions for the incident @Model.Theme</h6>
+            </div>
+
+            <div class="card-body">
+                <div class="mb-5 pb-3 d-flex justify-content-between border-bottom">
+                    <div class="d-flex justify-content-center align-items-center">
+                        Sessions view in timeline
+                    </div>
+                    <div>
+                        <button class="btn btn-secondary"><i class="fas fa-plus"></i> Add</button>
+                        <button id="refresh-btn" class="btn bg-transparent" title="Refresh"><i class="fas fa-sync"></i></button>
+                    </div>
+                </div>
+
+                <div id="jtimeline-demo" class="jtimeline hide">
+                    <ul class="jtimeline-events" id="jtimeline-events">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/lib/timeline/dist/js/jtimeline.js"></script>
+    <script>
+        var $timeline = $('#jtimeline-demo');
+        var $timelineItems = $('#jtimeline-events');
+        var $refrehButton = $("#refresh-btn");
+        var initialTimestamp = new Date('@Model.Created').getTime() / 1000;
+        var initialTitle = 'The ticket has been created! <br> <strong>@Model.Created.ToShortDateString()</strong>';
+
+        const SetOrRefreshTimelineSessions = () => {
+            $.getJSON('@URLGetSessions', function (data) {
+                let items = [];
+
+                items.push("<li class='jtimeline-event is-active' data-timestamp='" + initialTimestamp + "'><div>" + initialTitle + "</div></li>");
+
+                $.each(data, function (key, val) {
+                    let dateCreated = new Date(val.created);
+                    let timestamp = dateCreated.getTime() / 1000;
+                    let title = val.description + "<br><strong>" + dateCreated.toLocaleDateString() + "</strong>"
+                    items.push("<li class='jtimeline-event' data-timestamp='" + timestamp + "'><div>" + title + "</div></li>");
+                });
+
+                $timelineItems.html(items);
+
+                $timeline.jTimeline();
+            });
+        }
+
+        $refrehButton.on("click", function () { SetOrRefreshTimelineSessions() });
+
+        SetOrRefreshTimelineSessions()
+    </script>
+}

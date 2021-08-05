@@ -8,6 +8,7 @@ using FrontEnd.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace FrontEnd.Controllers
 {
@@ -249,6 +250,23 @@ namespace FrontEnd.Controllers
             return View(incident);
         }
         #endregion
+
+        public async Task<List<Incident>> GetIncidentsByStatus(int statusId)
+        {
+            try
+            {
+                using (TicketsManagerContext dbContext = new TicketsManagerContext())
+                {
+                    var incidents = await dbContext.Incidents.Where(x => x.Status.Id.Equals(statusId)).ToListAsync();
+
+                    return incidents;
+                }
+            }
+            catch (System.Exception)
+            {
+                return null;
+            }
+        }
 
     }
 }
