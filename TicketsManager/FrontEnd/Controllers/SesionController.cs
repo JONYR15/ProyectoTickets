@@ -1,5 +1,6 @@
 ﻿using Backend.Entities;
 using FrontEnd.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,57 +15,64 @@ namespace FrontEnd.Controllers
     {
         #region Agregar
         [HttpGet]
-        public IActionResult Create(int id)
+        public PartialViewResult Create(int id)
         {
             ViewBag.Id = id;
-            return View();
-
+            return PartialView();
         }
 
         [HttpPost]
-        public IActionResult Create(Sesion sesions)
+        [Authorize]
+        public bool Create(Sesion sesions)
         {
-            sesions.UserId = User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
-            sesions.Created = System.DateTime.Now;
-            using (UnidadDeTrabajo<Sesion> Unidad
-                = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
+            try
             {
-                Unidad.genericDAL.Add(sesions);
-                Unidad.Complete();
-            }
+                sesions.UserId = User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
+                sesions.Created = System.DateTime.Now;
+                using (UnidadDeTrabajo<Sesion> Unidad
+                    = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
+                {
+                    Unidad.genericDAL.Add(sesions);
+                    Unidad.Complete();
+                }
 
-            return RedirectToAction("Index");
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         #endregion
 
         #region Editar
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            Sesion sesion;
-            using (UnidadDeTrabajo<Sesion> Unidad
-               = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
-            {
-                sesion = Unidad.genericDAL.Get(id);
+        //[HttpGet]
+        //public PartialViewResult Edit(int id)
+        //{
+        //    Sesion sesion;
+        //    using (UnidadDeTrabajo<Sesion> Unidad
+        //       = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
+        //    {
+        //        sesion = Unidad.genericDAL.Get(id);
 
-            }
+        //    }
 
-            return View(sesion);
-        }
+        //    return PartialView(sesion);
+        //}
 
 
-        [HttpPost]
-        public IActionResult Edit(Sesion sesion)
-        {
-            using (UnidadDeTrabajo<Sesion> Unidad
-               = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
-            {
-                Unidad.genericDAL.Update(sesion);
-                Unidad.Complete();
-            }
+        //[HttpPost]
+        //public IActionResult Edit(Sesion sesion)
+        //{
+        //    using (UnidadDeTrabajo<Sesion> Unidad
+        //       = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
+        //    {
+        //        Unidad.genericDAL.Update(sesion);
+        //        Unidad.Complete();
+        //    }
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
         #endregion
 
         #region Eliminar
@@ -92,6 +100,7 @@ namespace FrontEnd.Controllers
         #endregion
 
         #region Detalles
+        [HttpGet]
         public IActionResult Index(int id)
         {
             Incident incident;
@@ -136,7 +145,8 @@ namespace FrontEnd.Controllers
             return View(incidentVM);
         }
 
-        public IActionResult Details(int id)
+        [HttpGet]
+        public PartialViewResult Details(int id)
         {
             Sesion sesion;
             using (UnidadDeTrabajo<Sesion> Unidad
@@ -146,7 +156,7 @@ namespace FrontEnd.Controllers
 
             }
 
-            return View(sesion);
+            return PartialView(sesion);
         }
 
         [HttpPost]
