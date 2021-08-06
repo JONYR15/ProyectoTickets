@@ -75,9 +75,10 @@
 
                 $.each(data, function (key, val) {
                     totalHours += val.hour;
+                    let sessionId = val.id;
                     let dateCreated = new Date(val.created);
                     let timestamp = dateCreated.getTime() / 1000;
-                    let title = val.description + "<br><strong>" + dateCreated.toLocaleDateString() + " ("+val.hour+" hours)</strong><br><i class='mr-2 fas fa-eye text-info pointer' title='Details'></i><i class='fas fa-trash text-danger pointer' title='Delete'></i>"
+                    let title = val.description + "<br><strong>" + dateCreated.toLocaleDateString() + " (" + val.hour + " hours)</strong><br><i id='edit-session' class='mr-2 fas fa-eye text-info pointer' title='Details' data-id='" + sessionId + "'></i><i id='delete-session' class='fas fa-trash text-danger pointer' title='Delete' data-id='" + sessionId +"'></i>"
                     items.push("<li class='jtimeline-event' data-timestamp='" + timestamp + "'><div>" + title + "</div></li>");
                 });
 
@@ -89,6 +90,24 @@
         }
 
         $refrehButton.on("click", function () { SetOrRefreshTimelineSessions() });
+
+        $("body").on("click", "#delete-session", (e) => {
+            e.preventDefault();
+
+            let element = $(e.target);
+            let id = element.data("id");
+
+            alert(id);
+        });
+
+        $("body").on("click", "#edit-session", (e) => {
+            e.preventDefault();
+
+            let element = $(e.target);
+            let id = element.data("id");
+
+            alert(id);
+        });
 
         SetOrRefreshTimelineSessions()
     </script>

@@ -9,11 +9,22 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using FrontEnd.Hubs;
+using Microsoft.AspNetCore.SignalR;
+using System.Security.Claims;
 
 namespace FrontEnd.Controllers
 {
     public class IncidentController : Controller
     {
+        IHubContext<NotificationHub> _notificationHubContext;
+
+        public IncidentController(
+            IHubContext<NotificationHub> notificationHubContext
+            )
+        {
+            _notificationHubContext = notificationHubContext;
+        }
 
         #region Lista
         [Authorize(Roles = "Administrador, Soportista")]
@@ -134,6 +145,28 @@ namespace FrontEnd.Controllers
             {
                 Unidad.genericDAL.Add(incident);
                 Unidad.Complete();
+            }
+
+            var connectionIds = NotificationHub._connections.GetConnections(User.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.NameIdentifier)).Value);
+            var urlSessionsDetails = Url.Action("Index", "Sesion", new { id = incident.Id });
+
+            foreach (var connectionId in connectionIds)
+            {
+                _notificationHubContext.Clients.AllExcept(connectionId).SendAsync("ReceiveNotification", new RecieveNotificationModel
+                {
+                    Message = "New incident has been registered",
+                    DropDownElement = $"<a class='dropdown-item d-flex align-items-center' href='{urlSessionsDetails}'>" +
+                        $"<div class='mr-3'>" +
+                            $"<div class='icon-circle bg-success'>" +
+                                $"<i class='fas fa-archive text-white'></i>" +
+                            $"</div>" +
+                        $"</div>" +
+                       $" <div>" +
+                            $"<div class='small text-gray-500'>{incident.Created.ToShortDateString()}</div>" +
+                            $"{incident.Theme}" +
+                        $"</div>" +
+                   $" </a>"
+                });
             }
 
             return RedirectToAction("Index");
