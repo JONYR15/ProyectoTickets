@@ -28,10 +28,9 @@
             <!-- Main Content -->
 
             <div id="content">            
+                <partial name="~/Views/Shared/TopBar.cshtml" />
+                
                 <div class="container-fluid">
-                    <partial name="~/Views/Shared/TopBar.cshtml" />
-                </div>
-                <div class="container">
                     <main role="main" class="pb-3">
                         @RenderBody()
                     </main>
