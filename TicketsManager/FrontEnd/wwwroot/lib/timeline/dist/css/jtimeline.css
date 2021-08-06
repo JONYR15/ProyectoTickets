@@ -7,6 +7,10 @@
     position: relative;
     padding: 100px 200px;
     overflow: hidden;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
     .jtimeline .jtimeline-scroll-left,
@@ -93,7 +97,6 @@
                 min-height: 100px;
                 display: flex;
                 justify-content: center;
-                align-items: center;
                 text-align:center;
             }
 

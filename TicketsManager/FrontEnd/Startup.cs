@@ -1,4 +1,6 @@
 using Backend.Entities;
+using Backend.Helpers;
+using Backend.Models;
 using Backend.Utilities;
 using FrontEnd.Hubs;
 using Microsoft.AspNetCore.Builder;
@@ -35,6 +37,9 @@ namespace FrontEnd
                 options.Password.RequiredUniqueChars = 3;
                 options.Password.RequireNonAlphanumeric = false;
             });
+
+            services.Configure<EmailConfigurationModel>(Configuration.GetSection("EmailSettings"));
+            services.AddScoped<IEmailHelper, EmailHelper>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 

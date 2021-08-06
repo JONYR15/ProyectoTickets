@@ -1,10 +1,10 @@
 ﻿var $notificationBtn = $("a[notification-alert]");
+var $notificationItems = $("#notification-items");
 
 if (userAuthorized) {
     var connection = new signalR.HubConnectionBuilder().withUrl("/notificationHub").build();
     var $notificationCounterSpan = $("#notification-counter");
     var notificationCount = 0;
-    var $notificationItems = $("#notification-items");
 
     if (!localStorage.getItem("notification-count")) {
         localStorage.setItem("notification-count", 0);
@@ -52,4 +52,13 @@ $notificationBtn.on("click", (e) => {
         localStorage.setItem("notification-count", 0);
         $notificationCounterSpan.html(0);
     }
-})
+});
+
+$("#remove-notification-items").on("click", (e) => {
+    e.preventDefault();
+
+    if (localStorage.getItem("notification-items")) {
+        localStorage.setItem("notification-items", "");
+        $notificationItems.html("");
+    }
+});

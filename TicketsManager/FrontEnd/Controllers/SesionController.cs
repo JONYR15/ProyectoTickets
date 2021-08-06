@@ -1,6 +1,6 @@
 ﻿using Backend.Entities;
-using Microsoft.AspNetCore.Mvc;
 using FrontEnd.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,26 +13,94 @@ namespace FrontEnd.Controllers
 {
     public class SesionController : Controller
     {
-        #region Lista
+        #region Agregar
+        [HttpGet]
+        public PartialViewResult Create(int id)
+        {
+            ViewBag.Id = id;
+            return PartialView();
+        }
 
         [HttpPost]
-        public async Task<List<Sesion>> GetSesionsByIncident(int incidentId)
+        [Authorize]
+        public bool Create(Sesion sesions)
         {
             try
             {
-                using (TicketsManagerContext dbContext = new TicketsManagerContext())
+                sesions.UserId = User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
+                sesions.Created = System.DateTime.Now;
+                using (UnidadDeTrabajo<Sesion> Unidad
+                    = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
                 {
-                    var sesions = await dbContext.Sesions.Where(x => x.IncidentId.Equals(incidentId)).ToListAsync();
-
-                    return sesions;
+                    Unidad.genericDAL.Add(sesions);
+                    Unidad.Complete();
                 }
+
+                return true;
             }
-            catch
+            catch (Exception)
             {
-                return null;
+                return false;
             }
         }
+        #endregion
 
+        #region Editar
+        //[HttpGet]
+        //public PartialViewResult Edit(int id)
+        //{
+        //    Sesion sesion;
+        //    using (UnidadDeTrabajo<Sesion> Unidad
+        //       = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
+        //    {
+        //        sesion = Unidad.genericDAL.Get(id);
+
+        //    }
+
+        //    return PartialView(sesion);
+        //}
+
+
+        //[HttpPost]
+        //public IActionResult Edit(Sesion sesion)
+        //{
+        //    using (UnidadDeTrabajo<Sesion> Unidad
+        //       = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
+        //    {
+        //        Unidad.genericDAL.Update(sesion);
+        //        Unidad.Complete();
+        //    }
+
+        //    return RedirectToAction("Index");
+        //}
+        #endregion
+
+        #region Eliminar
+        [HttpPost]
+        public bool Delete(int id)
+        {
+            try
+            {
+                Sesion sesion;
+                using (UnidadDeTrabajo<Sesion> Unidad
+                   = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
+                {
+                    sesion = Unidad.genericDAL.Get(id);
+                    Unidad.genericDAL.Remove(sesion);
+                    Unidad.Complete();
+                }
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region Detalles
+        [HttpGet]
         public IActionResult Index(int id)
         {
             Incident incident;
@@ -77,36 +145,8 @@ namespace FrontEnd.Controllers
             return View(incidentVM);
         }
 
-        #endregion
-
-        #region Agregar
         [HttpGet]
-        public IActionResult Create(int id)
-        {
-            ViewBag.Id = id;
-            return View();
-
-        }
-
-        [HttpPost]
-        public IActionResult Create(Sesion sesions)
-        {
-            sesions.UserId = User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
-            sesions.Created = System.DateTime.Now;
-            using (UnidadDeTrabajo<Sesion> Unidad
-                = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
-            {
-                Unidad.genericDAL.Add(sesions);
-                Unidad.Complete();
-            }
-
-            return RedirectToAction("Index");
-        }
-        #endregion
-
-        #region Editar
-        [HttpGet]
-        public IActionResult Edit(int id)
+        public PartialViewResult Details(int id)
         {
             Sesion sesion;
             using (UnidadDeTrabajo<Sesion> Unidad
@@ -116,68 +156,27 @@ namespace FrontEnd.Controllers
 
             }
 
-            return View(sesion);
+            return PartialView(sesion);
         }
-
 
         [HttpPost]
-        public IActionResult Edit(Sesion sesion)
+        public async Task<List<Sesion>> GetSesionsByIncident(int incidentId)
         {
-            using (UnidadDeTrabajo<Sesion> Unidad
-               = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
+            try
             {
-                Unidad.genericDAL.Update(sesion);
-                Unidad.Complete();
+                using (TicketsManagerContext dbContext = new TicketsManagerContext())
+                {
+                    var sesions = await dbContext.Sesions.Where(x => x.IncidentId.Equals(incidentId)).ToListAsync();
+
+                    return sesions;
+                }
+            }
+            catch
+            {
+                return null;
             }
 
-            return RedirectToAction("Index");
         }
         #endregion
-
-        #region Eliminar
-
-        public IActionResult Delete(int id)
-        {
-            Sesion sesion;
-            using (UnidadDeTrabajo<Sesion> Unidad
-               = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
-            {
-                sesion = Unidad.genericDAL.Get(id);
-
-            }
-
-            return View(sesion);
-        }
-
-
-        [HttpPost]
-        public IActionResult Delete(Sesion sesion)
-        {
-            using (UnidadDeTrabajo<Sesion> Unidad
-               = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
-            {
-                Unidad.genericDAL.Remove(sesion);
-                Unidad.Complete();
-            }
-
-            return RedirectToAction("Index");
-        }
-        #endregion
-
-        #region Detalles
-        public IActionResult Details(int id)
-        {
-            Sesion sesion;
-            using (UnidadDeTrabajo<Sesion> Unidad
-               = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
-            {
-                sesion = Unidad.genericDAL.Get(id);
-
-            }
-
-            return View(sesion);
-        }
-        #endregion
-
     }
 }

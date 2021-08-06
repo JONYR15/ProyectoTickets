@@ -3,6 +3,9 @@
 @{
     ViewBag.title = "Sessions";
     var URLGetSessions = Url.Action("GetSesionsByIncident", "Sesion");
+    var URLDeleteSessions = Url.Action("Delete", "Sesion");
+    var URLDetailsSessions = Url.Action("Details", "Sesion");
+    var URLCreateSessions = Url.Action("Create", "Sesion");
 }
 
 @section styles{
@@ -42,7 +45,7 @@
                     </div>
                     <div class="text-center">
                         <p>Options</p>
-                        <button id="add-btn" class="btn bg-transparent" data-id="@Model.Id" title="Add"><i class="fas fa-plus"></i></button>
+                        <button id="add-btn" data-id="@Model.Id" class="btn bg-transparent" title="Add"><i class="fas fa-plus"></i></button>
                         <button id="refresh-btn" class="btn bg-transparent" title="Refresh"><i class="fas fa-sync"></i></button>
                     </div>
                 </div>
@@ -56,6 +59,17 @@
     </div>
 </div>
 
+<!-- Modal HTML embedded directly into document -->
+<div id="ex1" class="modal">
+    <div class="text-right text-danger">
+        <a href="#" rel="modal:close"><i class="fas fa-window-close" id="close-modal"></i></a>
+    </div>
+
+    <div id="modal-content">
+
+    </div>
+</div>
+
 @section scripts{
     <script src="~/lib/timeline/dist/js/jtimeline.js"></script>
     <script>
@@ -65,9 +79,12 @@
         var $totalHoursLabel = $("#total-hours");
         var initialTimestamp = new Date('@Model.Created').getTime() / 1000;
         var initialTitle = 'The ticket has been created! <br> <strong>@Model.Created.ToShortDateString()</strong>';
-        var $btnAdd = $("#add-btn");
 
-        const SetOrRefreshTimelineSessions = () => {
+        var $modalContent = $("#modal-content");
+        var $addSessionBtn = $("#add-btn");
+        var $closeModalBtn = $("#close-modal");
+
+        function SetOrRefreshTimelineSessions(){
             $.post('@URLGetSessions', {incidentId: @Model.Id}, function (data) {
                 let items = [];
                 let totalHours = 0;
@@ -79,7 +96,7 @@
                     let sessionId = val.id;
                     let dateCreated = new Date(val.created);
                     let timestamp = dateCreated.getTime() / 1000;
-                    let title = val.description + "<br><strong>" + dateCreated.toLocaleDateString() + " (" + val.hour + " hours)</strong><br><i id='edit-session' class='mr-2 fas fa-eye text-info pointer' title='Details' data-id='" + sessionId + "'></i><i id='delete-session' class='fas fa-trash text-danger pointer' title='Delete' data-id='" + sessionId +"'></i>"
+                    let title = "Session id: "+ val.id + "<br><strong>Created in: " + dateCreated.toLocaleDateString() + " (" + val.hour + " hours worked)</strong><br><i id='detail-session' class='mr-2 fas fa-eye text-info pointer' title='Details' data-id='" + sessionId + "'></i><i id='delete-session' class='fas fa-trash text-danger pointer' title='Delete' data-id='" + sessionId +"'></i>"
                     items.push("<li class='jtimeline-event' data-timestamp='" + timestamp + "'><div>" + title + "</div></li>");
                 });
 
@@ -92,22 +109,71 @@
 
         $refrehButton.on("click", function () { SetOrRefreshTimelineSessions() });
 
-        $("body").on("click", "#delete-session", (e) => {
+        $("body").on("click", "#delete-session", function(e){
             e.preventDefault();
 
-            let element = $(e.target);
+            let element = $(this);
             let id = element.data("id");
 
-            alert(id);
+            $.post('@URLDeleteSessions', { id }, function (result) {
+                if (result) {
+                    SetOrRefreshTimelineSessions();
+                    Snackbar.show({ pos: 'bottom-right', text: "Session deleted", actionText: 'Ok!', });
+                    return;
+                }
+            });
         });
 
-        $("body").on("click", "#edit-session", (e) => {
+        $("body").on("click", "#detail-session", function(e) {
             e.preventDefault();
 
-            let element = $(e.target);
+            let element = $(this);
             let id = element.data("id");
 
-            alert(id);
+            $modalContent.html("<div class='d-flex justify-content-center align-items-center h-100'><div class='lds-ellipsis'><div></div><div></div><div></div><div></div></div></div>");
+
+            $("#ex1").modal({
+                fadeDuration: 100,
+                escapeClose: false,
+                clickClose: false,
+                showClose: false
+            });
+
+            $.get("@URLDetailsSessions", { id }, function (response, status, xhr) {
+                if (status == "error") {
+                    var msg = "Sorry but there was an error: ";
+                    $modalContent.html(msg + xhr.status + " " + xhr.statusText);
+                    return;
+                }
+
+                $modalContent.html(response);
+            });
+        });
+
+        $addSessionBtn.on("click", function(e) {
+            e.preventDefault();
+
+            let element = $(this);
+            let id = element.data("id");
+
+            $modalContent.html("<div class='lds-ellipsis'><div></div><div></div><div></div><div></div></div>");
+
+            $("#ex1").modal({
+                fadeDuration: 100,
+                escapeClose: false,
+                clickClose: false,
+                showClose: false
+            });
+
+            $.get("@URLCreateSessions", { id }, function (response, status, xhr) {
+                if (status == "error") {
+                    var msg = "Sorry but there was an error: ";
+                    $modalContent.html(msg + xhr.status + " " + xhr.statusText);
+                    return;
+                }
+
+                $modalContent.html(response);
+            });
         });
 
         $btnAdd.on("click", (e) => {

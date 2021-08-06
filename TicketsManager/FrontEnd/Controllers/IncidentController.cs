@@ -12,18 +12,22 @@ using Microsoft.EntityFrameworkCore;
 using FrontEnd.Hubs;
 using Microsoft.AspNetCore.SignalR;
 using System.Security.Claims;
+using Backend.Helpers;
 
 namespace FrontEnd.Controllers
 {
     public class IncidentController : Controller
     {
-        IHubContext<NotificationHub> _notificationHubContext;
+        private readonly IHubContext<NotificationHub> _notificationHubContext;
+        private readonly IEmailHelper _emailHelper;
 
         public IncidentController(
-            IHubContext<NotificationHub> notificationHubContext
+            IHubContext<NotificationHub> notificationHubContext,
+            IEmailHelper emailHelper
             )
         {
             _notificationHubContext = notificationHubContext;
+            _emailHelper = emailHelper;
         }
 
         #region Lista
@@ -173,7 +177,7 @@ namespace FrontEnd.Controllers
                             $"</div>" +
                         $"</div>" +
                        $" <div>" +
-                            $"<div class='small text-gray-500'>{incident.Created.ToShortDateString()}</div>" +
+                            $"<div class='small text-gray-500'>{incident.Created.ToString("dd/MM/yyyy hh:ss tt")}</div>" +
                             $"{incident.Theme}" +
                         $"</div>" +
                    $" </a>"
