@@ -16,11 +16,6 @@ namespace FrontEnd.Hubs
         public readonly static ConnectionMapping<string> _connections =
             new ConnectionMapping<string>();
 
-        public async Task SendNotification(string user, string message)
-        {
-            await Clients.All.SendAsync("ReceiveNotification", message);
-        }
-
         public override Task OnConnectedAsync()
         {
             string id = Context.User.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.NameIdentifier)).Value;
