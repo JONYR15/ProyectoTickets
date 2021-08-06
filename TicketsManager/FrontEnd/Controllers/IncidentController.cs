@@ -28,6 +28,7 @@ namespace FrontEnd.Controllers
 
         #region Lista
         [Authorize(Roles = "Administrador, Soportista")]
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -79,6 +80,7 @@ namespace FrontEnd.Controllers
 
         #region Agregar
         [Authorize]
+        [HttpGet]
         public IActionResult Create()
         {
             List<Priority> priority;
@@ -175,6 +177,7 @@ namespace FrontEnd.Controllers
 
         #region Editar
         [Authorize]
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             Incident incident;
@@ -240,6 +243,7 @@ namespace FrontEnd.Controllers
 
         #region Eliminar
         [Authorize(Roles = "Administrador")]
+        [HttpGet]
         public IActionResult Delete(int id)
         {
             Incident incident;
@@ -270,6 +274,7 @@ namespace FrontEnd.Controllers
 
         #region Detalles
         [Authorize(Roles = "Administrador")]
+        [HttpGet]
         public IActionResult Details(int id)
         {
             Incident incident;

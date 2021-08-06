@@ -24,23 +24,23 @@ namespace FrontEnd.Controllers
                 = new UnidadDeTrabajo<Priority>(new TicketsManagerContext()))
             {
                 priority = Unidad.genericDAL.GetAll().ToList();
-            }
+        }
 
             using (UnidadDeTrabajo<Status> Unidad
                 = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
-            {
+        {
                 status = Unidad.genericDAL.GetAll().ToList();
             }
 
             using (UnidadDeTrabajo<Category> Unidad
                  = new UnidadDeTrabajo<Category>(new TicketsManagerContext()))
-            {
+        {
                 categories = Unidad.genericDAL.GetAll().ToList();
-            }
+        }
 
             using (UnidadDeTrabajo<Incident> Unidad
                = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
-            {
+        {
                 incident = Unidad.genericDAL.Get(id);
             }
 
@@ -56,22 +56,28 @@ namespace FrontEnd.Controllers
             return View(incidentVM);
         }
 
+
         [HttpPost]
         public async Task<List<Sesion>> GetSesionsByIncident(int incidentId)
-        {
-            try
             {
+            try
+        {
                 using(TicketsManagerContext dbContext = new TicketsManagerContext())
-                {
+            {
                     var sesions = await dbContext.Sesions.Where(x => x.IncidentId.Equals(incidentId)).ToListAsync();
 
                     return sesions;
-                }
             }
+
+            return RedirectToAction("Index");
+        }
             catch
             {
                 return null;
             }
+
+            return View(sesion);
         }
+        #endregion
     }
 }

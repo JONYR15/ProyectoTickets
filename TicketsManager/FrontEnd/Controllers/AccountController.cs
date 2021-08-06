@@ -4,9 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using TicketsManager.DAL;
+using Backend.Entities;
+using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 
 namespace FrontEnd.Controllers
 {
+
     public class AccountController : Controller
     {
 
@@ -42,7 +47,7 @@ namespace FrontEnd.Controllers
                     UserName = model.Email,
                     Email = model.Email,
                 };
-    
+
                 // Store user data in AspNetUsers database table
                 var result = await userManager.CreateAsync(user, model.Password);
 
@@ -104,5 +109,33 @@ namespace FrontEnd.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult Edit(string Id)
+        {
+            TicketsManagerContext db = new TicketsManagerContext();
+            IdentityUser user;
+
+            user = db.aspUsers.Find(Id);
+
+            return View(user);
+        }
+
+
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> ListUser()
+        {
+            TicketsManagerContext db = new TicketsManagerContext();
+            List<IdentityUser> users;
+
+            users = db.aspUsers.ToList();
+
+            return Json(new { data = users });
+        }
     }
 }

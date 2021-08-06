@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 #nullable disable
 
@@ -17,7 +18,8 @@ namespace Backend.Entities
         {
         }
 
-
+        public virtual DbSet<IdentityUser> aspUsers { get; set; }
+        public virtual DbSet<IdentityRole> AspNetRoleClaims { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Incident> Incidents { get; set; }
@@ -121,17 +123,15 @@ namespace Backend.Entities
 
                 entity.Property(e => e.IncidentId).HasColumnName("Incident_Id");
 
-                entity.Property(e => e.StatusId).HasColumnName("Status_Id");
-
                 entity.Property(e => e.UserId)
                     .HasMaxLength(128)
                     .HasColumnName("User_Id");
 
-                entity.HasOne(d => d.Status)
+                entity.HasOne(d => d.Incident)
                     .WithMany(p => p.Sesions)
-                    .HasForeignKey(d => d.StatusId)
+                    .HasForeignKey(d => d.IncidentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_dbo.Sesion_dbo.Estado_Estado_Id");
+                    .HasConstraintName("FK__Sesion__Incident__14270015");
             });
 
             modelBuilder.Entity<Status>(entity =>
