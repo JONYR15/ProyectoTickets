@@ -68,31 +68,26 @@ namespace FrontEnd.Controllers
         #endregion
 
         #region Eliminar
-        public IActionResult Delete(int id)
-        {
-            Sesion sesion;
-            using (UnidadDeTrabajo<Sesion> Unidad
-               = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
-            {
-                sesion = Unidad.genericDAL.Get(id);
-
-            }
-
-            return View(sesion);
-        }
-
-
         [HttpPost]
-        public IActionResult Delete(Sesion sesion)
+        public bool Delete(int id)
         {
-            using (UnidadDeTrabajo<Sesion> Unidad
-               = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
+            try
             {
-                Unidad.genericDAL.Remove(sesion);
-                Unidad.Complete();
-            }
+                Sesion sesion;
+                using (UnidadDeTrabajo<Sesion> Unidad
+                   = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
+                {
+                    sesion = Unidad.genericDAL.Get(id);
+                    Unidad.genericDAL.Remove(sesion);
+                    Unidad.Complete();
+                }
 
-            return RedirectToAction("Index");
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         #endregion
 

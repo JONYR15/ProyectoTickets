@@ -3,6 +3,8 @@
 @{
     ViewBag.title = "Sessions";
     var URLGetSessions = Url.Action("GetSesionsByIncident", "Sesion");
+    var URLDeleteSessions = Url.Action("Delete", "Sesion");
+
 }
 
 @section styles{
@@ -97,7 +99,13 @@
             let element = $(e.target);
             let id = element.data("id");
 
-            alert(id);
+            $.post('@URLDeleteSessions', { id }, function (result) {
+                if (result) {
+                    SetOrRefreshTimelineSessions();
+                    Snackbar.show({ pos: 'bottom-right', text: "Session deleted", actionText: 'Ok!', });
+                    return;
+                }
+            });
         });
 
         $("body").on("click", "#edit-session", (e) => {
