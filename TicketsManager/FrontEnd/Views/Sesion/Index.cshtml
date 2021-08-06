@@ -42,7 +42,7 @@
                     </div>
                     <div class="text-center">
                         <p>Options</p>
-                        <button id="add-btn" class="btn bg-transparent" title="Add"><i class="fas fa-plus"></i></button>
+                        <button id="add-btn" class="btn bg-transparent" data-id="@Model.Id" title="Add"><i class="fas fa-plus"></i></button>
                         <button id="refresh-btn" class="btn bg-transparent" title="Refresh"><i class="fas fa-sync"></i></button>
                     </div>
                 </div>
@@ -65,6 +65,7 @@
         var $totalHoursLabel = $("#total-hours");
         var initialTimestamp = new Date('@Model.Created').getTime() / 1000;
         var initialTitle = 'The ticket has been created! <br> <strong>@Model.Created.ToShortDateString()</strong>';
+        var $btnAdd = $("#add-btn");
 
         const SetOrRefreshTimelineSessions = () => {
             $.post('@URLGetSessions', {incidentId: @Model.Id}, function (data) {
@@ -101,6 +102,15 @@
         });
 
         $("body").on("click", "#edit-session", (e) => {
+            e.preventDefault();
+
+            let element = $(e.target);
+            let id = element.data("id");
+
+            alert(id);
+        });
+
+        $btnAdd.on("click", (e) => {
             e.preventDefault();
 
             let element = $(e.target);
