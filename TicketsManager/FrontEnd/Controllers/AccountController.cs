@@ -101,5 +101,39 @@ namespace FrontEnd.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(PasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var usuario = await userManager.GetUserAsync(User);
+                if (usuario == null)
+                {
+                    return RedirectToAction("index", "home");
+                }
+
+                var result = await userManager.ChangePasswordAsync(usuario,
+                    model.PasswordActual, model.NewPassword);
+
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                    return View();
+                }
+
+                await signInManager.RefreshSignInAsync(usuario);
+                return View(model);
+            }
+            return View(model);
+        }
     }
 }
