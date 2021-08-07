@@ -23,6 +23,11 @@ namespace FrontEnd.Controllers
         [Authorize(Roles = "Administrador")]
         public IActionResult Index()
         {
+            return View();
+        }
+
+        public async Task<JsonResult> GetAllIndex()
+        {
 
             List<Status> status;
 
@@ -39,9 +44,9 @@ namespace FrontEnd.Controllers
                 statusViewModel = this.Convertir(item);
                 stVM.Add(statusViewModel);
             }
-
-            return View(stVM);
+            return Json(new { data = status });
         }
+
         #endregion
 
         #region Agregar

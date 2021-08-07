@@ -25,7 +25,12 @@ namespace FrontEnd.Controllers
         [Authorize(Roles = "Administrador")]
         public IActionResult Index()
         {
+            return View();
+        }
 
+
+        public async Task<JsonResult> GetAllIndex()
+        {
             List<Priority> priority;
 
             using (UnidadDeTrabajo<Priority> Unidad
@@ -33,7 +38,6 @@ namespace FrontEnd.Controllers
             {
                 priority = Unidad.genericDAL.GetAll().ToList();
             }
-
             List<PriorityViewModel> priorityVM = new List<PriorityViewModel>();
             PriorityViewModel priorityViewModel;
             foreach (var item in priority)
@@ -41,8 +45,9 @@ namespace FrontEnd.Controllers
                 priorityViewModel = this.Convertir(item);
                 priorityVM.Add(priorityViewModel);
             }
-            return View(priorityVM);
+            return Json(new { data = priority });
         }
+
         #endregion
 
         #region Agregar

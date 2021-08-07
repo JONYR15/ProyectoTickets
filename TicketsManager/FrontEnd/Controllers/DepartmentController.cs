@@ -25,6 +25,14 @@ namespace FrontEnd.Controllers
         [Authorize(Roles = "Administrador")]
         public IActionResult Index()
         {
+
+
+            return View();
+        }
+
+        [Authorize(Roles = "Administrador")]
+        public async Task<JsonResult> GetAllIndex()
+        {
             List<Department> department;
 
             using (UnidadDeTrabajo<Department> Unidad
@@ -41,7 +49,7 @@ namespace FrontEnd.Controllers
                 depVM.Add(departmentViewModel);
             }
 
-            return View(depVM);
+            return Json(new { data = department });
         }
         #endregion
 
