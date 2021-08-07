@@ -53,6 +53,7 @@
 
     </div>
 </div>
+<<<<<<< Updated upstream
 
 @section scripts{
     <script src="~/lib/datatable/js/jquery.dataTables.js"></script>
@@ -116,3 +117,96 @@
         });
     </script>
 }
+=======
+<p>
+    <a asp-action="Create">Crear Incidente</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserRequestBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Theme)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Priority)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Attended)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserRequestBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Theme)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Priority)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Attended)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new {  id=item.Id  }) |
+                @Html.ActionLink("Detalles", "Details", new {  id=item.Id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<style>
+
+    .table-bordered {
+        color: #463f57;
+        background-color: #004aad;
+        border-color: #463f57;
+    }
+
+    .btn-primary {
+        color: #FCFCFF;
+        background-color: #463f57;
+        border-color: #463f57;
+    }
+
+    .fa-building {
+        color: #463f57;
+    }
+
+    .j-color-text {
+        color: #463f57;
+    }
+</style>
+>>>>>>> Stashed changes
