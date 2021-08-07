@@ -20,7 +20,7 @@
 
                 <hr />
 
-                <table class="table-bordered w-100" id="incidentesCreados">
+                <table class="table-bordered w-100" id="incidentes">
 
                     <thead>
 
@@ -62,6 +62,10 @@
     <script>
         $(document).ready(function () {
             $("#incidentesCreados").DataTable().destroy();
+            $("#incidentesAsignados").DataTable().destroy();
+            $("#incidentesRevision").DataTable().destroy();
+            $("#incidentesResueltos").DataTable().destroy();
+            $("#incidentesFinalizados").DataTable().destroy();
 
             var urlMetodo = "/Incident/GetAllIndex";
             $("#incidentesCreados").DataTable({

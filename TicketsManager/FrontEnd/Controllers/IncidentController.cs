@@ -8,14 +8,31 @@ using FrontEnd.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using FrontEnd.Hubs;
+using Microsoft.AspNetCore.SignalR;
+using System.Security.Claims;
+using Backend.Helpers;
 
 namespace FrontEnd.Controllers
 {
     public class IncidentController : Controller
     {
+        private readonly IHubContext<NotificationHub> _notificationHubContext;
+        private readonly IEmailHelper _emailHelper;
+
+        public IncidentController(
+            IHubContext<NotificationHub> notificationHubContext,
+            IEmailHelper emailHelper
+            )
+        {
+            _notificationHubContext = notificationHubContext;
+            _emailHelper = emailHelper;
+        }
 
         #region Lista
-        [Authorize(Roles = "Administrador, Soportista")]
+        [Authorize]
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -31,17 +48,29 @@ namespace FrontEnd.Controllers
 
             var incidents = new List<IncidentViewModel>();
 
-            using (UnidadDeTrabajo<Incident> Unidad
-                = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
-            {
-                incident = Unidad.genericDAL.GetAll().ToList();
-            }
-
             using (UnidadDeTrabajo<Status> Unidad
-            = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
+                = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
             {
                 status = Unidad.genericDAL.GetAll().ToList();
             }
+
+            using (UnidadDeTrabajo<Incident> Unidad
+                = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
+            {
+                /*Casos Activos*/
+                if (User.IsInRole("Administrador") || User.IsInRole("Soportista"))
+                {
+                    incident = Unidad.genericDAL.GetAll().Where(x=> x.StatusId != status.Where(y => y.Description.Equals("Finalizado")).Select(z => z.Id).FirstOrDefault())
+                        .ToList();
+                }
+                else
+                {
+                    incident = Unidad.genericDAL.GetAll().Where(x=> x.UserId == User.Claims.First(c => c.Type.Contains("nameidentifier")).Value &&
+                    x.StatusId != status.Where(y=> y.Description.Equals("Finalizado")).Select(z=> z.Id).FirstOrDefault())
+                    .ToList();
+                }
+            }
+
 
             using (UnidadDeTrabajo<Priority> Unidad
             = new UnidadDeTrabajo<Priority>(new TicketsManagerContext()))
@@ -67,6 +96,7 @@ namespace FrontEnd.Controllers
 
         #region Agregar
         [Authorize]
+        [HttpGet]
         public IActionResult Create()
         {
             List<Priority> priority;
@@ -111,9 +141,6 @@ namespace FrontEnd.Controllers
                 categories = Unidad.genericDAL.GetAll().ToList();
             }
 
-            //ViewBag.CategoryName = new SelectList(categories.ToList(), "CategoryName", "CategoryName");
-            //ViewBag.Description = new SelectList(priority.ToList(), "Description", "Description");
-
             using (UnidadDeTrabajo<Status> Unidad
              = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
             {
@@ -135,12 +162,35 @@ namespace FrontEnd.Controllers
                 Unidad.Complete();
             }
 
+            var connectionIds = NotificationHub._connections.GetConnections(User.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.NameIdentifier)).Value);
+            var urlSessionsDetails = Url.Action("Index", "Sesion", new { id = incident.Id });
+
+            foreach (var connectionId in connectionIds)
+            {
+                _notificationHubContext.Clients.AllExcept(connectionId).SendAsync("ReceiveNotification", new RecieveNotificationModel
+                {
+                    Message = "New incident has been registered",
+                    DropDownElement = $"<a class='dropdown-item d-flex align-items-center' href='{urlSessionsDetails}'>" +
+                        $"<div class='mr-3'>" +
+                            $"<div class='icon-circle bg-success'>" +
+                                $"<i class='fas fa-archive text-white'></i>" +
+                            $"</div>" +
+                        $"</div>" +
+                       $" <div>" +
+                            $"<div class='small text-gray-500'>{incident.Created.ToString("dd/MM/yyyy hh:ss tt")}</div>" +
+                            $"{incident.Theme}" +
+                        $"</div>" +
+                   $" </a>"
+                });
+            }
+
             return RedirectToAction("Index");
         }
         #endregion
 
         #region Editar
         [Authorize]
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             Incident incident;
@@ -206,6 +256,7 @@ namespace FrontEnd.Controllers
 
         #region Eliminar
         [Authorize(Roles = "Administrador")]
+        [HttpGet]
         public IActionResult Delete(int id)
         {
             Incident incident;
@@ -236,6 +287,7 @@ namespace FrontEnd.Controllers
 
         #region Detalles
         [Authorize(Roles = "Administrador")]
+        [HttpGet]
         public IActionResult Details(int id)
         {
             Incident incident;
@@ -249,6 +301,23 @@ namespace FrontEnd.Controllers
             return View(incident);
         }
         #endregion
+
+        public async Task<List<Incident>> GetIncidentsByStatus(int statusId)
+        {
+            try
+            {
+                using (TicketsManagerContext dbContext = new TicketsManagerContext())
+                {
+                    var incidents = await dbContext.Incidents.Where(x => x.Status.Id.Equals(statusId)).ToListAsync();
+
+                    return incidents;
+                }
+            }
+            catch (System.Exception)
+            {
+                return null;
+            }
+        }
 
     }
 }
