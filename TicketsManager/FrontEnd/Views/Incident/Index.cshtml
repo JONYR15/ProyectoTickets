@@ -61,10 +61,14 @@
 
     <script>
         $(document).ready(function () {
-            $("#incidentes").DataTable().destroy();
+            $("#incidentesCreados").DataTable().destroy();
+            $("#incidentesAsignados").DataTable().destroy();
+            $("#incidentesRevision").DataTable().destroy();
+            $("#incidentesResueltos").DataTable().destroy();
+            $("#incidentesFinalizados").DataTable().destroy();
 
             var urlMetodo = "/Incident/GetAllIndex";
-            $("#incidentes").DataTable({
+            $("#incidentesCreados").DataTable({
 
                 ajax: {
                     url: urlMetodo,

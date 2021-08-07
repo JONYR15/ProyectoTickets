@@ -79,6 +79,7 @@
         var $totalHoursLabel = $("#total-hours");
         var initialTimestamp = new Date('@Model.Created').getTime() / 1000;
         var initialTitle = 'The ticket has been created! <br> <strong>@Model.Created.ToShortDateString()</strong>';
+
         var $modalContent = $("#modal-content");
         var $addSessionBtn = $("#add-btn");
         var $closeModalBtn = $("#close-modal");
@@ -173,6 +174,15 @@
 
                 $modalContent.html(response);
             });
+        });
+
+        $btnAdd.on("click", (e) => {
+            e.preventDefault();
+
+            let element = $(e.target);
+            let id = element.data("id");
+
+            alert(id);
         });
 
         SetOrRefreshTimelineSessions()

@@ -31,7 +31,7 @@ namespace FrontEnd.Controllers
         }
 
         #region Lista
-        [Authorize(Roles = "Administrador, Soportista")]
+        [Authorize]
         [HttpGet]
         public IActionResult Index()
         {
@@ -48,17 +48,29 @@ namespace FrontEnd.Controllers
 
             var incidents = new List<IncidentViewModel>();
 
-            using (UnidadDeTrabajo<Incident> Unidad
-                = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
-            {
-                incident = Unidad.genericDAL.GetAll().ToList();
-            }
-
             using (UnidadDeTrabajo<Status> Unidad
-            = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
+                = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
             {
                 status = Unidad.genericDAL.GetAll().ToList();
             }
+
+            using (UnidadDeTrabajo<Incident> Unidad
+                = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
+            {
+                /*Casos Activos*/
+                if (User.IsInRole("Administrador") || User.IsInRole("Soportista"))
+                {
+                    incident = Unidad.genericDAL.GetAll().Where(x=> x.StatusId != status.Where(y => y.Description.Equals("Finalizado")).Select(z => z.Id).FirstOrDefault())
+                        .ToList();
+                }
+                else
+                {
+                    incident = Unidad.genericDAL.GetAll().Where(x=> x.UserId == User.Claims.First(c => c.Type.Contains("nameidentifier")).Value &&
+                    x.StatusId != status.Where(y=> y.Description.Equals("Finalizado")).Select(z=> z.Id).FirstOrDefault())
+                    .ToList();
+                }
+            }
+
 
             using (UnidadDeTrabajo<Priority> Unidad
             = new UnidadDeTrabajo<Priority>(new TicketsManagerContext()))
@@ -128,9 +140,6 @@ namespace FrontEnd.Controllers
             {
                 categories = Unidad.genericDAL.GetAll().ToList();
             }
-
-            //ViewBag.CategoryName = new SelectList(categories.ToList(), "CategoryName", "CategoryName");
-            //ViewBag.Description = new SelectList(priority.ToList(), "Description", "Description");
 
             using (UnidadDeTrabajo<Status> Unidad
              = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
