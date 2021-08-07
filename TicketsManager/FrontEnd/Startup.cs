@@ -1,5 +1,8 @@
 using Backend.Entities;
+using Backend.Helpers;
+using Backend.Models;
 using Backend.Utilities;
+using FrontEnd.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -34,8 +37,13 @@ namespace FrontEnd
                 options.Password.RequiredUniqueChars = 3;
                 options.Password.RequireNonAlphanumeric = false;
             });
-            services.AddControllersWithViews();
 
+            services.Configure<EmailConfigurationModel>(Configuration.GetSection("EmailSettings"));
+            services.AddScoped<IEmailHelper, EmailHelper>();
+
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,6 +73,8 @@ namespace FrontEnd
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapHub<NotificationHub>("/NotificationHub");
             });
         }
 

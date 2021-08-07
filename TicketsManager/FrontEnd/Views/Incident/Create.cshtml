@@ -1,4 +1,4 @@
-﻿@model Backend.Entities.Incident
+﻿@model FrontEnd.Models.IncidentViewModelCreate
 
 @{
     ViewData["Title"] = "Create";
@@ -13,18 +13,6 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*Hidden*@
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            @*Hidden*@
-            <div class="form-group">
-                <label asp-for="RequestById" class="control-label"></label>
-                <input asp-for="RequestById" class="form-control" />
-                <span asp-validation-for="RequestById" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="Theme" class="control-label"></label>
                 <input asp-for="Theme" class="form-control" />
@@ -35,28 +23,16 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            @*Select List*@
-            @*<div class="form-group">
-                <label asp-for="PriorityId" class="control-label"></label>
-                <input asp-for="PriorityId" class="form-control" />
-                <span asp-validation-for="PriorityId" class="text-danger"></span>
-            </div>*@
-            @*<div class="form-group">
-                <label asp-for="Priority" class="control-label"></label>
-                @Html.DropDownList("Priority", (SelectList)ViewBag.priority, "Seleccione uno", new { @class = "form-control", @style = "width:100%;" })
-                <span asp-validation-for="Priority" class="text-danger"></span>
-            </div>*@
-            @*Select List*@
             <div class="form-group">
-                <label asp-for="StatusId" class="control-label"></label>
-                <input asp-for="StatusId" class="form-control" />
-                <span asp-validation-for="StatusId" class="text-danger"></span>
+                <label asp-for="Priority" class="control-label"></label>
+                @Html.DropDownList("Priority", (SelectList)ViewBag.Description, "Seleccione uno", new { @class = "form-control", @style = "width:100%;" })
+                <span asp-validation-for="Priority" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="UserRoles" class="control-label"></label>
-                @Html.DropDownList("UserRoles", (SelectList)ViewBag.Name, "Seleccione uno", new { @class = "form-control", @style = "width:100%;" })
-                <span asp-validation-for="ComfirmPassword" class="text-danger"></span>
-            </div>*@
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                @Html.DropDownList("Category", (SelectList)ViewBag.CategoryName, "Seleccione uno", new { @class = "form-control", @style = "width:100%;" })
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TicketsManager.DAL;
 using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
 
 namespace FrontEnd.Controllers
 {
@@ -13,6 +14,11 @@ namespace FrontEnd.Controllers
         [Authorize(Roles = "Administrador")]
         public IActionResult Index()
         {
+            return View();
+        }
+
+        public async Task<JsonResult> GetAllIndex()
+        {
 
             List<Status> status;
 
@@ -21,8 +27,9 @@ namespace FrontEnd.Controllers
             {
                 status = Unidad.genericDAL.GetAll().ToList();
             }
-            return View(status);
+            return Json(new { data = status });
         }
+
         #endregion
 
         #region Agregar
