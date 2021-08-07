@@ -4,56 +4,52 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     string URLAgregar = Url.Action("Create", "Incident");
     string URLActualizar = Url.Action("Edit", "Incident");
+    string URLSesiones = Url.Action("Index", "Sesion");
 }
 
-<div class="container">
-    <div class="card shadow mb-4">
-        <div class="card-header py-3 j-df j-color-text j-jc-center">
-            <h2><i class="fas fa-building">&nbsp;&nbsp;</i> INCIDENTES</h2>
-        </div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3 j-df j-color-text j-jc-center">
+        <h2><i class="fas fa-building">&nbsp;&nbsp;</i> INCIDENTES</h2>
+    </div>
 
-        <div class="card-body">
-            <div class="row my-4">
+    <div class="card-body">
+        <div class="row my-4">
 
-                <div class="col-sm-12">
-                    <a href="@URLAgregar" class="btn btn-primary">Agregar</a>
+            <div class="col-sm-12">
+                <a href="@URLAgregar" class="btn btn-primary">Agregar</a>
 
-                    <hr />
+                <hr />
 
-                    <table class="table-bordered w-100" id="incidentes">
+                <table class="table-bordered w-100" id="incidentesCreados">
 
-                        <thead>
+                    <thead>
 
-                            <tr>
-                                <th>USUARIO</th>
-                                <th>TEMA</th>
-                                <th>PRIORIDAD</th>
-                                <th>ESTATUS</th>
-                                <th>CREADA</th>
-                                <th>ACCIONES</th>
-                            </tr>
+                        <tr>
+                            <th>USUARIO</th>
+                            <th>TEMA</th>
+                            <th>PRIORIDAD</th>
+                            <th>ESTATUS</th>
+                            <th>CREADA</th>
+                            <th>ACCIONES</th>
+                        </tr>
 
-                        </thead>
+                    </thead>
 
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-
-
     </div>
 </div>
-<<<<<<< Updated upstream
 
 @section scripts{
     <script src="~/lib/datatable/js/jquery.dataTables.js"></script>
@@ -65,10 +61,10 @@
 
     <script>
         $(document).ready(function () {
-            $("#incidentes").DataTable().destroy();
+            $("#incidentesCreados").DataTable().destroy();
 
             var urlMetodo = "/Incident/GetAllIndex";
-            $("#incidentes").DataTable({
+            $("#incidentesCreados").DataTable({
 
                 ajax: {
                     url: urlMetodo,
@@ -109,6 +105,7 @@
                      {
                          className: "text-center",  data: function (data) {
                              var btn = `<a style="color:var(--primary)" class="tooltipped btn btn-xs waves-effect secondary-button blue-ina" href="@URLActualizar?id=${data.id}"><b><i class="align-middle fas fa-fw fa-edit mr-2"></i></b></a>&nbsp;&nbsp;`;
+                             btn += `<a style="color:var(--primary)" class="tooltipped btn btn-xs waves-effect secondary-button blue-ina" href="@URLSesiones?id=${data.id}"><b><i class="align-middle fas fa-fw fa-eye mr-2"></i></b></a>&nbsp;&nbsp;`;
                                return btn;
                             }
                      }
@@ -117,96 +114,3 @@
         });
     </script>
 }
-=======
-<p>
-    <a asp-action="Create">Crear Incidente</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserRequestBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Theme)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Priority)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Created)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Attended)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserRequestBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Theme)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Priority)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Created)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Attended)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new {  id=item.Id  }) |
-                @Html.ActionLink("Detalles", "Details", new {  id=item.Id }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-<style>
-
-    .table-bordered {
-        color: #463f57;
-        background-color: #004aad;
-        border-color: #463f57;
-    }
-
-    .btn-primary {
-        color: #FCFCFF;
-        background-color: #463f57;
-        border-color: #463f57;
-    }
-
-    .fa-building {
-        color: #463f57;
-    }
-
-    .j-color-text {
-        color: #463f57;
-    }
-</style>
->>>>>>> Stashed changes
