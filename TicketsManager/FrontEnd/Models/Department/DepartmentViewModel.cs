@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FrontEnd.Models.Status
+namespace FrontEnd.Models.Departament
 {
-    public class StatusViewModel
+    public class DepartmentViewModel
     {
         [Key]
         public int Id { get; set; }
 
-        [Display(Name ="Descripción")]
-        public string Description { get; set; }
+        [Display(Name="Nombre")]
+        public string Name { get; set; }
     }
 }

@@ -4,12 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using TicketsManager.DAL;
 using Microsoft.AspNetCore.Authorization;
-using System.Threading.Tasks;
+using FrontEnd.Models.Status;
 
 namespace FrontEnd.Controllers
 {
     public class StatusController : Controller
     {
+
+        private StatusViewModel Convertir(Status st)
+        {
+            return new StatusViewModel
+            {
+                Id = (int)st.Id,
+                Description = st.Description
+            };
+        }
         #region Lista
         [Authorize(Roles = "Administrador")]
         public IActionResult Index()
@@ -26,6 +35,14 @@ namespace FrontEnd.Controllers
                 = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
             {
                 status = Unidad.genericDAL.GetAll().ToList();
+            }
+
+            List<StatusViewModel> stVM = new List<StatusViewModel>();
+            StatusViewModel statusViewModel;
+            foreach (var item in status)
+            {
+                statusViewModel = this.Convertir(item);
+                stVM.Add(statusViewModel);
             }
             return Json(new { data = status });
         }
@@ -67,8 +84,8 @@ namespace FrontEnd.Controllers
                 status = Unidad.genericDAL.Get(id);
 
             }
-
-            return View(status);
+            StatusViewModel st = this.Convertir(status);
+            return View(st);
         }
 
         [Authorize(Roles = "Administrador")]
@@ -97,8 +114,8 @@ namespace FrontEnd.Controllers
                 status = Unidad.genericDAL.Get(id);
 
             }
-
-            return View(status);
+            StatusViewModel st = this.Convertir(status);
+            return View(st);
         }
 
         [Authorize(Roles = "Administrador")]
@@ -127,8 +144,8 @@ namespace FrontEnd.Controllers
                 status = Unidad.genericDAL.Get(id);
 
             }
-
-            return View(status);
+            StatusViewModel st = this.Convertir(status);
+            return View(st);
         }
         #endregion
     }
