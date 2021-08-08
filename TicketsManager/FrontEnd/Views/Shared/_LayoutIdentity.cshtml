@@ -9,29 +9,59 @@
     <title>@ViewData["Title"] - FrontEnd</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <img src="~/img/Barra.jpeg" width="1500" height="250" />
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - FrontEnd - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
-</body>
-</html>
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url("https://eskipaper.com/images/white-abstract-wallpaper-2.jpg");
+            background-size: cover;
+        }
+
+        .btn-primary {
+            color: #212529;
+            background-color: #7cc;
+            border-color: #5bc2c2
+        }
+
+        @*body {
+                   width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background-color: white;
+            background: linear-gradient(white 20%,black);
+        }*@
+    </style>
+ 
+</head>
+        <body >
+        @*<header >
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" >
+        <div class="container" >
+        <img src="~/img/Barra.jpeg" width="1500" height="250" / >
+        </div >
+        </nav >
+        </header >*@
+
+        <div class="container" >
+        <main role="main" class="pb-3" >
+        @RenderBody()
+        </main >
+        </div >
+
+        <footer class="border-top footer text-muted" >
+        <div class="container" >
+        &copy; 2021 - FrontEnd - <a asp-area="" asp-controller="Home" asp-action="Privacy" > Privacy</a >
+        </div >
+        </footer >
+        <script src="~/lib/jquery/dist/jquery.min.js" > </script >
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" > </script >
+        <script src="~/js/site.js" asp-append-version="true" > </script >
+        @RenderSection("Scripts", required: false)
+        </body >
+        </html >

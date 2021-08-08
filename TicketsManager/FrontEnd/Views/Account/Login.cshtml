@@ -13,6 +13,7 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
 
     <title>Login</title>
@@ -22,15 +23,22 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="styles.css">
+
+
 </head>
 
 
 <!------ AQUI INICIA EL LOGIN ---------->
 
 <body>
+    <div>
+    </div>
+    <center>
+        <img src="~/img/Logo3.jpg" width="200" height="150">
+    </center>
     <div class="container">
         <div class="d-flex justify-content-center h-100">
-            <div class="card">
+            <div class="card bg-danger text-white" style="width: 25rem">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-12 text-center">
@@ -45,6 +53,7 @@
                 </div>
 
                 <div class="card-body">
+
                     <form asp-action="Login">
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
@@ -52,9 +61,8 @@
                                 <input asp-for="Email" class="form-control" placeholder="Email" />
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
-
-
                         </div>
+
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -70,9 +78,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div style="text-align: right;width:165px">
-                                        <input type="submit" value="Ingresar" class="btn-dark login_btn" style="height: 30%" />
-                                    </div>
+                                    <center>
+                                        <div style="text-align: right;width:165px">
+
+                                            <input type="submit" value="Ingresar" class="btn-primary login_btn" style="height: 30%" />
+
+                                        </div>
+                                    </center>
                                 </div>
                             </div>
                         </div>
@@ -127,3 +139,36 @@
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }
 *@
+<style>
+    .btn-primary {
+        color: #FCFCFF;
+        background-color: #004aad;
+        border-color: #1313A8;
+    }
+
+    .card-header {
+        color: #FCFCFF;
+        background-color: #463f57;
+        border-color: #463f57;
+    }
+
+    .card-body {
+        color: #FCFCFF;
+        background-color: #463f57;
+        border-color: #463f57;
+    }
+
+    .input-group-text {
+        color: #FCFCFF;
+        background-color: #004aad;
+        border-color: #1313A8;
+    }
+
+    .input-group-prepend {
+        margin-left: 15%
+    }
+
+    .submit {
+        margin-left: 20%
+    }
+</style>
