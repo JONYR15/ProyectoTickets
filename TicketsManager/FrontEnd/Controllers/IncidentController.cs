@@ -22,14 +22,17 @@ namespace FrontEnd.Controllers
     {
         private readonly IHubContext<NotificationHub> _notificationHubContext;
         private readonly IEmailHelper _emailHelper;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public IncidentController(
             IHubContext<NotificationHub> notificationHubContext,
-            IEmailHelper emailHelper
+            IEmailHelper emailHelper,
+            UserManager<ApplicationUser> userManager
             )
         {
             _notificationHubContext = notificationHubContext;
             _emailHelper = emailHelper;
+            _userManager = userManager;
         }
 
         #region Lista
@@ -129,15 +132,17 @@ namespace FrontEnd.Controllers
             List<Priority> priority;
             List<Status> status;
             List<Category> categories;
-            
             var users = new List<RandomUser>();
             Incident incident = new Incident();
-
 
             using (UnidadDeTrabajo<ApplicationUser> Unidad
                 = new UnidadDeTrabajo<ApplicationUser>(new TicketsManagerContext()))
             {
-                users = Unidad.genericDAL.GetAll().Select(x => new RandomUser { Email = x.Email, UserId = x.Id }).ToList();
+                users = Unidad.genericDAL.GetAll()
+                    .Where(x => _userManager.IsInRoleAsync(x, "Soportista").Result)
+                    .Select(
+                    x => new RandomUser { Email = x.Email, UserId = x.Id })
+                    .ToList();
             }
 
             using (UnidadDeTrabajo<Priority> Unidad
@@ -176,12 +181,12 @@ namespace FrontEnd.Controllers
                 Unidad.Complete();
             }
 
-            var connectionIds = NotificationHub._connections.GetConnections(User.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.NameIdentifier)).Value);
+            var connectionIds = NotificationHub._connections.GetConnections(user.UserId);
             var urlSessionsDetails = Url.Action("Index", "Sesion", new { id = incident.Id });
 
             foreach (var connectionId in connectionIds)
             {
-                _notificationHubContext.Clients.AllExcept(connectionId).SendAsync("ReceiveNotification", new RecieveNotificationModel
+                _notificationHubContext.Clients.Client(connectionId).SendAsync("ReceiveNotification", new RecieveNotificationModel
                 {
                     Message = "New incident has been registered",
                     DropDownElement = $"<a class='dropdown-item d-flex align-items-center' href='{urlSessionsDetails}'>" +
@@ -203,8 +208,7 @@ namespace FrontEnd.Controllers
                 Body = "",
                 Subject = "",
                 To = user.Email
-            }
-                );
+            });
 
             return RedirectToAction("Index");
         }
