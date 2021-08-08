@@ -29,7 +29,7 @@ namespace FrontEnd
         {
             services.AddDbContext<TicketsManagerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             Util.ConnectionString = Configuration.GetConnectionString("DefaultConnection");
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<TicketsManagerContext>();
             services.Configure<IdentityOptions>(options =>
             {

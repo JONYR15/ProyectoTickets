@@ -8,6 +8,7 @@ using TicketsManager.DAL;
 using Backend.Entities;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
+using Backend.Models;
 
 namespace FrontEnd.Controllers
 {
@@ -165,7 +166,7 @@ namespace FrontEnd.Controllers
         public async Task<JsonResult> ListUser()
         {
             TicketsManagerContext db = new TicketsManagerContext();
-            List<IdentityUser> users;
+            List<ApplicationUser> users;
 
             users = db.aspUsers.ToList();
 

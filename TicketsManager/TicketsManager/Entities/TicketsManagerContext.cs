@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Backend.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 #nullable disable
@@ -18,7 +19,7 @@ namespace Backend.Entities
         {
         }
 
-        public virtual DbSet<IdentityUser> aspUsers { get; set; }
+        public virtual DbSet<ApplicationUser> aspUsers { get; set; }
         public virtual DbSet<IdentityRole> AspNetRoleClaims { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
