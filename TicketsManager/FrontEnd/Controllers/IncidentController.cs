@@ -196,7 +196,7 @@ namespace FrontEnd.Controllers
                             $"</div>" +
                         $"</div>" +
                        $" <div>" +
-                            $"<div class='small text-gray-500'>{incident.Created.ToString("dd/MM/yyyy hh:ss tt")}</div>" +
+                            $"<div class='small text-gray-500'>{incident.Created.ToString("dd/MM/yyyy hh:mm tt")}</div>" +
                             $"{incident.Theme}" +
                         $"</div>" +
                    $" </a>"
