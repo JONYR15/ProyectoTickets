@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/css/sb-admin-2.css" rel="stylesheet" />
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
+
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/lib/snackbar/dist/css/snackbar.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
@@ -30,7 +33,6 @@
 
             <div id="content">
                 <partial name="~/Views/Shared/TopBar.cshtml" />
-
                 <div class="container-fluid">
                     <main role="main" class="pb-3">
                         @RenderBody()
@@ -81,6 +83,14 @@
     <script src="~/js/sb-admin-2.min.js"></script>
     <script src="~/vendor/chart.js/Chart.min.js"></script>
     <script src="~/lib/snackbar/dist/js/snackbar.min.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
     <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
     <script src="~/js/NotificationHubConnection.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
