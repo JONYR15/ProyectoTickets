@@ -16,13 +16,13 @@ namespace FrontEnd.Controllers
     public class AccountController : Controller
     {
 
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
         private readonly RoleManager<IdentityRole> roleMngr;
 
 
-        public AccountController(UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleMngr)
+        public AccountController(UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleMngr)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -42,8 +42,8 @@ namespace FrontEnd.Controllers
             ViewBag.Name = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(roleMngr.Roles.ToList(), "Name", "Name");
             if (ModelState.IsValid)
             {
-                // Copy data from RegisterViewModel to IdentityUser
-                var user = new IdentityUser
+                // Copy data from RegisterViewModel to ApplicationUser
+                var user = new ApplicationUser
                 {
                     UserName = model.Email,
                     Email = model.Email,
