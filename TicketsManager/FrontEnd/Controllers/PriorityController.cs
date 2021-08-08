@@ -2,25 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using System.Threading.Tasks;
 using TicketsManager.DAL;
 using Microsoft.AspNetCore.Authorization;
-using FrontEnd.Models.Priority;
+using System.Threading.Tasks;
 
 namespace FrontEnd.Controllers
-{   
+{
+    
     public class PriorityController : Controller
     {
-        private PriorityViewModel Convertir(Priority pri)
-        {
-            return new PriorityViewModel
-            {
-                Id = (int)pri.Id,
-                Description = pri.Description
-            };
-        }
-
         #region Lista
         [Authorize(Roles = "Administrador")]
         public IActionResult Index()
@@ -37,13 +27,6 @@ namespace FrontEnd.Controllers
                 = new UnidadDeTrabajo<Priority>(new TicketsManagerContext()))
             {
                 priority = Unidad.genericDAL.GetAll().ToList();
-            }
-            List<PriorityViewModel> priorityVM = new List<PriorityViewModel>();
-            PriorityViewModel priorityViewModel;
-            foreach (var item in priority)
-            {
-                priorityViewModel = this.Convertir(item);
-                priorityVM.Add(priorityViewModel);
             }
             return Json(new { data = priority });
         }
@@ -84,8 +67,8 @@ namespace FrontEnd.Controllers
                 priority = Unidad.genericDAL.Get(id);
 
             }
-            PriorityViewModel pri = this.Convertir(priority);
-            return View(pri);
+
+            return View(priority);
         }
 
         [Authorize(Roles = "Administrador")]
@@ -114,8 +97,8 @@ namespace FrontEnd.Controllers
                 priority = Unidad.genericDAL.Get(id);
 
             }
-            PriorityViewModel pri = this.Convertir(priority);
-            return View(pri);
+
+            return View(priority);
         }
 
         [Authorize(Roles = "Administrador")]
@@ -144,9 +127,8 @@ namespace FrontEnd.Controllers
                 priority = Unidad.genericDAL.Get(id);
 
             }
-            PriorityViewModel pri = this.Convertir(priority);
 
-            return View(pri);
+            return View(priority);
         }
         #endregion
 

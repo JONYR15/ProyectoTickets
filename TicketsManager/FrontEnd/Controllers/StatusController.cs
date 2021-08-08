@@ -4,21 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using TicketsManager.DAL;
 using Microsoft.AspNetCore.Authorization;
-using FrontEnd.Models.Status;
+using System.Threading.Tasks;
 
 namespace FrontEnd.Controllers
 {
     public class StatusController : Controller
     {
-
-        private StatusViewModel Convertir(Status st)
-        {
-            return new StatusViewModel
-            {
-                Id = (int)st.Id,
-                Description = st.Description
-            };
-        }
         #region Lista
         [Authorize(Roles = "Administrador")]
         public IActionResult Index()
@@ -35,14 +26,6 @@ namespace FrontEnd.Controllers
                 = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
             {
                 status = Unidad.genericDAL.GetAll().ToList();
-            }
-
-            List<StatusViewModel> stVM = new List<StatusViewModel>();
-            StatusViewModel statusViewModel;
-            foreach (var item in status)
-            {
-                statusViewModel = this.Convertir(item);
-                stVM.Add(statusViewModel);
             }
             return Json(new { data = status });
         }
@@ -84,8 +67,8 @@ namespace FrontEnd.Controllers
                 status = Unidad.genericDAL.Get(id);
 
             }
-            StatusViewModel st = this.Convertir(status);
-            return View(st);
+
+            return View(status);
         }
 
         [Authorize(Roles = "Administrador")]
@@ -114,8 +97,8 @@ namespace FrontEnd.Controllers
                 status = Unidad.genericDAL.Get(id);
 
             }
-            StatusViewModel st = this.Convertir(status);
-            return View(st);
+
+            return View(status);
         }
 
         [Authorize(Roles = "Administrador")]
@@ -144,8 +127,8 @@ namespace FrontEnd.Controllers
                 status = Unidad.genericDAL.Get(id);
 
             }
-            StatusViewModel st = this.Convertir(status);
-            return View(st);
+
+            return View(status);
         }
         #endregion
     }

@@ -1,13 +1,14 @@
-﻿@model FrontEnd.Models.Status.StatusViewModel
+﻿@model Backend.Entities.Status
 
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Detalles</h1>
+<h1>Details</h1>
 
 <div>
+    <h4>Status</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -25,6 +26,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id  }) |
-    <a asp-action="Index">Regresar</a>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id  }) |
+    <a asp-action="Index">Back to List</a>
 </div>
