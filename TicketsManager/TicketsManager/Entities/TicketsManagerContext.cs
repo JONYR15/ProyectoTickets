@@ -20,7 +20,7 @@ namespace Backend.Entities
         }
 
         public virtual DbSet<ApplicationUser> aspUsers { get; set; }
-        public virtual DbSet<IdentityRole> AspNetRoleClaims { get; set; }
+        public virtual DbSet<IdentityRole> aspRoles { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Incident> Incidents { get; set; }

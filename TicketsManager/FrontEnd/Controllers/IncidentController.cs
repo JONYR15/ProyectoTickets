@@ -13,6 +13,8 @@ using FrontEnd.Hubs;
 using Microsoft.AspNetCore.SignalR;
 using System.Security.Claims;
 using Backend.Helpers;
+using Backend.Models;
+using System;
 
 namespace FrontEnd.Controllers
 {
@@ -60,13 +62,13 @@ namespace FrontEnd.Controllers
                 /*Casos Activos*/
                 if (User.IsInRole("Administrador") || User.IsInRole("Soportista"))
                 {
-                    incident = Unidad.genericDAL.GetAll().Where(x=> x.StatusId != status.Where(y => y.Description.Equals("Finalizado")).Select(z => z.Id).FirstOrDefault())
+                    incident = Unidad.genericDAL.GetAll().Where(x => x.StatusId != status.Where(y => y.Description.Equals("Finalizado")).Select(z => z.Id).FirstOrDefault())
                         .ToList();
                 }
                 else
                 {
-                    incident = Unidad.genericDAL.GetAll().Where(x=> x.UserId == User.Claims.First(c => c.Type.Contains("nameidentifier")).Value &&
-                    x.StatusId != status.Where(y=> y.Description.Equals("Finalizado")).Select(z=> z.Id).FirstOrDefault())
+                    incident = Unidad.genericDAL.GetAll().Where(x => x.UserId == User.Claims.First(c => c.Type.Contains("nameidentifier")).Value &&
+                    x.StatusId != status.Where(y => y.Description.Equals("Finalizado")).Select(z => z.Id).FirstOrDefault())
                     .ToList();
                 }
             }
@@ -127,7 +129,15 @@ namespace FrontEnd.Controllers
             List<Priority> priority;
             List<Status> status;
             List<Category> categories;
+            var users = new List<RandomUser>();
             Incident incident = new Incident();
+
+
+            using (UnidadDeTrabajo<ApplicationUser> Unidad
+                = new UnidadDeTrabajo<ApplicationUser>(new TicketsManagerContext()))
+            {
+                users = Unidad.genericDAL.GetAll().Select(x => new RandomUser { Email = x.Email, UserId = x.Id }).ToList();
+            }
 
             using (UnidadDeTrabajo<Priority> Unidad
                 = new UnidadDeTrabajo<Priority>(new TicketsManagerContext()))
@@ -154,6 +164,9 @@ namespace FrontEnd.Controllers
             incident.PriorityId = priority.Where(x => x.Description.Equals(incidentVM.Priority)).Select(y => y.Id).FirstOrDefault();
             incident.StatusId = status.Where(x => x.Description.Equals("Creado")).Select(y => y.Id).FirstOrDefault();
             incident.Created = System.DateTime.Now;
+            var rand = new Random();
+            var user = users[rand.Next(users.Count)];
+            incident.RequestById = user.UserId;
 
             using (UnidadDeTrabajo<Incident> Unidad
                 = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
@@ -183,6 +196,14 @@ namespace FrontEnd.Controllers
                    $" </a>"
                 });
             }
+
+            _emailHelper.SendEmailAsync(new BackEnd.Models.EmailModel
+            {
+                Body = "",
+                Subject = "",
+                To = user.Email
+            }
+                );
 
             return RedirectToAction("Index");
         }
