@@ -1,7 +1,12 @@
 ﻿using Backend.Entities;
+using Backend.Helpers;
+using Backend.Models;
+using FrontEnd.Hubs;
 using FrontEnd.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,6 +18,25 @@ namespace FrontEnd.Controllers
 {
     public class SesionController : Controller
     {
+        #region Helper Email
+        private readonly IHubContext<NotificationHub> _notificationHubContext;
+        private readonly IEmailHelper _emailHelper;
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public SesionController(
+            IHubContext<NotificationHub> notificationHubContext,
+            IEmailHelper emailHelper,
+            UserManager<ApplicationUser> userManager
+            )
+        {
+            _notificationHubContext = notificationHubContext;
+            _emailHelper = emailHelper;
+            _userManager = userManager;
+        }
+        #endregion
+
+
+
         #region Agregar
         [HttpGet]
         public PartialViewResult Create(int id)
@@ -27,6 +51,24 @@ namespace FrontEnd.Controllers
         {
             try
             {
+                Incident incident;
+
+                using (UnidadDeTrabajo<Incident> Unidad
+                   = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
+                {
+                    incident = Unidad.genericDAL.Get(sesions.Id);
+                }
+
+                incident.Attended = DateTime.Now;
+                incident.StatusId = 2;
+
+                using (UnidadDeTrabajo<Incident> Unidad
+                   = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
+                {
+                    Unidad.genericDAL.Update(incident);
+                    Unidad.Complete();
+                }
+
                 sesions.UserId = User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
                 sesions.Created = System.DateTime.Now;
                 using (UnidadDeTrabajo<Sesion> Unidad

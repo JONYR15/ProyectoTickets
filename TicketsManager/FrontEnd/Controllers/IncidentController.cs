@@ -20,6 +20,8 @@ namespace FrontEnd.Controllers
 {
     public class IncidentController : Controller
     {
+
+        #region Helper Email
         private readonly IHubContext<NotificationHub> _notificationHubContext;
         private readonly IEmailHelper _emailHelper;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -35,6 +37,8 @@ namespace FrontEnd.Controllers
             _userManager = userManager;
         }
 
+        #endregion
+
         #region Lista
         [Authorize]
         [HttpGet]
@@ -43,13 +47,13 @@ namespace FrontEnd.Controllers
             return View();
         }
 
-
-        public async Task<JsonResult> GetAllIndex()
+        [HttpGet]
+        public async Task<JsonResult> GetAllIndex(string tab)
         {
-
             List<Incident> incident;
             List<Status> status;
             List<Priority> priority;
+            var idUser = "";
 
             var incidents = new List<IncidentViewModel>();
 
@@ -62,17 +66,27 @@ namespace FrontEnd.Controllers
             using (UnidadDeTrabajo<Incident> Unidad
                 = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
             {
-                /*Casos Activos*/
-                if (User.IsInRole("Administrador") || User.IsInRole("Soportista"))
+                
+                if (User.IsInRole("Administrador"))
                 {
-                    incident = Unidad.genericDAL.GetAll().Where(x => x.StatusId != status.Where(y => y.Description.Equals("Finalizado")).Select(z => z.Id).FirstOrDefault())
+                    incident = Unidad.genericDAL.GetAll().Where(x => x.StatusId == status.Where(y => y.Description.Equals(tab))
+                                .Select(z => z.Id).FirstOrDefault())
                         .ToList();
+                }
+                else if (User.IsInRole("Soportista"))
+                {
+                    idUser = User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
+                    incident = Unidad.genericDAL.GetAll().Where(x => x.StatusId != status.Where(y => y.Description.Equals(tab) || x.UserId == idUser)
+                                .Select(z => z.Id).FirstOrDefault())
+                                .ToList();
                 }
                 else
                 {
-                    incident = Unidad.genericDAL.GetAll().Where(x => x.UserId == User.Claims.First(c => c.Type.Contains("nameidentifier")).Value &&
-                    x.StatusId != status.Where(y => y.Description.Equals("Finalizado")).Select(z => z.Id).FirstOrDefault())
-                    .ToList();
+                    idUser = User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
+                    incident = Unidad.genericDAL.GetAll().Where(x => x.UserId == idUser || 
+                                x.StatusId != status.Where(y => y.Description.Equals(tab))
+                                .Select(z => z.Id).FirstOrDefault())
+                                .ToList();
                 }
             }
 
@@ -132,6 +146,9 @@ namespace FrontEnd.Controllers
             List<Priority> priority;
             List<Status> status;
             List<Category> categories;
+            var UserId = User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
+            ApplicationUser userCreator;
+
             var users = new List<RandomUser>();
             Incident incident = new Incident();
 
@@ -143,6 +160,9 @@ namespace FrontEnd.Controllers
                     .Select(
                     x => new RandomUser { Email = x.Email, UserId = x.Id })
                     .ToList();
+
+                userCreator = Unidad.genericDAL.GetAll().Where(x => x.Id == UserId).FirstOrDefault(); ;
+
             }
 
             using (UnidadDeTrabajo<Priority> Unidad
@@ -163,12 +183,12 @@ namespace FrontEnd.Controllers
                 status = Unidad.genericDAL.GetAll().ToList();
             }
 
-            incident.UserId = User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
+            incident.UserId = UserId;
             incident.CategoryId = categories.Where(x => x.CategoryName.Equals(incidentVM.Category)).Select(y => y.Id).FirstOrDefault();
             incident.Theme = incidentVM.Theme;
             incident.Description = incidentVM.Description;
             incident.PriorityId = priority.Where(x => x.Description.Equals(incidentVM.Priority)).Select(y => y.Id).FirstOrDefault();
-            incident.StatusId = status.Where(x => x.Description.Equals("Creado")).Select(y => y.Id).FirstOrDefault();
+            incident.StatusId = status.Where(x => x.Description.Equals("Sin atender")).Select(y => y.Id).FirstOrDefault();
             incident.Created = System.DateTime.Now;
             var rand = new Random();
             var user = users[rand.Next(users.Count)];
@@ -188,7 +208,7 @@ namespace FrontEnd.Controllers
             {
                 _notificationHubContext.Clients.Client(connectionId).SendAsync("ReceiveNotification", new RecieveNotificationModel
                 {
-                    Message = "New incident has been registered",
+                    Message = "Un nuevo incidente ha sido registrado",
                     DropDownElement = $"<a class='dropdown-item d-flex align-items-center' href='{urlSessionsDetails}'>" +
                         $"<div class='mr-3'>" +
                             $"<div class='icon-circle bg-success'>" +
@@ -205,9 +225,16 @@ namespace FrontEnd.Controllers
 
             _emailHelper.SendEmailAsync(new BackEnd.Models.EmailModel
             {
-                Body = "",
-                Subject = "",
+                Body = " Se ha registrado un nuevo incidente",
+                Subject = "Nuevo incidente creado",
                 To = user.Email
+            });
+
+            _emailHelper.SendEmailAsync(new BackEnd.Models.EmailModel
+            {
+                Body = " Se creo su incidente con exito",
+                Subject = "Se ha registrado su incidente con exito.",
+                To = userCreator.Email
             });
 
             return RedirectToAction("Index");
@@ -327,6 +354,7 @@ namespace FrontEnd.Controllers
             return View(incident);
         }
         #endregion
+
 
         public async Task<List<Incident>> GetIncidentsByStatus(int statusId)
         {

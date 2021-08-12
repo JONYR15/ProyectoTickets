@@ -1,5 +1,21 @@
 ﻿@using Microsoft.AspNetCore.Identity
 
+@{
+    string Role = null;
+    if (User.IsInRole("Administrador"))
+    {
+        Role = "Administrador";
+    }
+    else if (User.IsInRole("Soportista"))
+    {
+        Role = "Soportista";
+    }
+    else
+    {
+        Role = "Cliente";
+    }
+}
+
 
 
 @inject SignInManager<ApplicationUser> SignInManager
@@ -35,6 +51,7 @@
                 <partial name="~/Views/Shared/TopBar.cshtml" />
                 <div class="container-fluid">
                     <main role="main" class="pb-3">
+                        @Role
                         @RenderBody()
                     </main>
                 </div>

@@ -26,5 +26,9 @@ namespace FrontEnd.Models
         [Required]
         [Display(Name = "Rol")]
         public string UserRoles { get; set; }
+
+        [Required]
+        [Display(Name = "Department")]
+        public string Department { get; set; }
     }
 }

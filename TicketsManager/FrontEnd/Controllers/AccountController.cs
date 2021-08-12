@@ -1,14 +1,11 @@
-﻿using FrontEnd.Models;
+﻿using Backend.Entities;
+using Backend.Models;
+using FrontEnd.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Security.Claims;
-using TicketsManager.DAL;
-using Backend.Entities;
-using Microsoft.AspNetCore.Authorization;
-using System.Collections.Generic;
-using Backend.Models;
 
 namespace FrontEnd.Controllers
 {
@@ -19,6 +16,7 @@ namespace FrontEnd.Controllers
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly RoleManager<IdentityRole> roleMngr;
+        private readonly TicketsManagerContext db = new TicketsManagerContext();
 
 
         public AccountController(UserManager<ApplicationUser> userManager,
@@ -33,13 +31,17 @@ namespace FrontEnd.Controllers
         public IActionResult Register()
         {
             ViewBag.Name = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(roleMngr.Roles.ToList(), "Name", "Name");
+            ViewBag.Departments = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(db.Departments.Select(y=> y.Name).ToList());
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+  
             ViewBag.Name = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(roleMngr.Roles.ToList(), "Name", "Name");
+            ViewBag.Departments = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(db.Departments.Select(y => y.Name).ToList());
+
             if (ModelState.IsValid)
             {
                 // Copy data from RegisterViewModel to ApplicationUser
