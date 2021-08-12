@@ -157,6 +157,8 @@
                     $lastNameInput.val(`${data.primerApellido} ${data.segundoApellido}`);
                     $lastNameInput.attr("readonly", true);
 
+                    $emailInput.val(data.correo);
+
                     $emailInput.focus();
                 } else {
                     $nameInput.val(``);
