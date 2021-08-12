@@ -11,6 +11,12 @@ namespace Backend.Models
     {
         public int DepartmentId { get; set; }
 
+        public string DocumentNumber { get; set; }
+
+        public string Name { get; set; }
+
+        public string LastName { get; set; }
+
         [ForeignKey("DepartmentId")]
         public Department Department { get; set; }
     }

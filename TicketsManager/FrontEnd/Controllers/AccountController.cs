@@ -3,8 +3,10 @@ using Backend.Models;
 using FrontEnd.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace FrontEnd.Controllers
@@ -17,22 +19,41 @@ namespace FrontEnd.Controllers
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly RoleManager<IdentityRole> roleMngr;
         private readonly TicketsManagerContext db = new TicketsManagerContext();
-
+        private readonly IHttpClientFactory _httpClientFactory;
 
         public AccountController(UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleMngr)
+            SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleMngr,
+            IHttpClientFactory httpClientFactory)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleMngr = roleMngr;
+            _httpClientFactory = httpClientFactory;
         }
 
         [HttpGet]
         public IActionResult Register()
         {
             ViewBag.Name = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(roleMngr.Roles.ToList(), "Name", "Name");
-            ViewBag.Departments = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(db.Departments.Select(y=> y.Name).ToList());
+            ViewBag.Departments = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(db.Departments.Select(y => new { y.Id, y.Name }).ToList(), "Id", "Name");
             return View();
+        }
+
+        [HttpPost]
+        public async Task<PadronViewModel> GetPadronData(string id)
+        {
+            var httpClient = _httpClientFactory.CreateClient("PadronAPI");
+
+            var response = await httpClient.GetAsync($"padron/getpadron?cedula={id}");
+            PadronViewModel padronData = null;
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                padronData = JsonConvert.DeserializeObject<PadronViewModel>(content);
+            }
+
+            return padronData;
         }
 
         [HttpPost]
@@ -40,19 +61,35 @@ namespace FrontEnd.Controllers
         {
   
             ViewBag.Name = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(roleMngr.Roles.ToList(), "Name", "Name");
-            ViewBag.Departments = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(db.Departments.Select(y => y.Name).ToList());
+            ViewBag.Departments = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(db.Departments.Select(y => new { y.Id, y.Name }).ToList(), "Id", "Name");
 
             if (ModelState.IsValid)
             {
+                var padronData = await GetPadronData(model.DocumentNumber);
+
                 // Copy data from RegisterViewModel to ApplicationUser
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
                     Email = model.Email,
+                    Name = model.Name,
+                    LastName = model.LastName,
+                    DepartmentId = model.DepartmentId,
+                    DocumentNumber = model.DocumentNumber
                 };
 
                 // Store user data in AspNetUsers database table
                 var result = await userManager.CreateAsync(user, model.Password);
+
+                if (!result.Succeeded)
+                {
+                    result.Errors.ToList().ForEach(x =>
+                    {
+                        ModelState.AddModelError("", x.Description);
+                    });
+
+                    return View(model);
+                }
 
                 //Assign Role to User
                 await this.userManager.AddToRoleAsync(user, model.UserRoles);

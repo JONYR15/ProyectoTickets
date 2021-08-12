@@ -30,7 +30,12 @@ namespace BackEndAPI.Controllers
                 padronCompleto = _unidadDeTrabajo.genericDAL.Find(x => x.Cedula.Equals(cedula)).FirstOrDefault();
 
                 if (padronCompleto is null) return NotFound();
-                
+
+                padronCompleto.Nombre = padronCompleto.Nombre.Trim();
+                padronCompleto.PrimerApellido = padronCompleto.PrimerApellido.Trim();
+                padronCompleto.SegundoApellido = padronCompleto.SegundoApellido.Trim();
+                padronCompleto.Cedula = padronCompleto.Cedula.Trim();
+
                 return Ok(padronCompleto);
             }
             catch (Exception ex)

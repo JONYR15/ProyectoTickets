@@ -44,6 +44,13 @@ namespace FrontEnd
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddSignalR();
+
+            services.AddHttpClient("PadronAPI", config =>
+            {
+                config.BaseAddress = new Uri("https://localhost:44394/api/");
+                config.Timeout = new TimeSpan(0, 0, 30);
+                config.DefaultRequestHeaders.Clear();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
