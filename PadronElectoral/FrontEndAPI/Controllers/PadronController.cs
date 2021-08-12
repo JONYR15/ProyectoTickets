@@ -10,37 +10,33 @@ using System.Threading.Tasks;
 
 namespace BackEndAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [Route("api/[controller]/[action]")]
     public class PadronController : ControllerBase
     {
-        // GET: api/<PadronController>
+        private readonly UnidadDeTrabajo<PadronCompleto> _unidadDeTrabajo;
+
+        public PadronController(UnidadDeTrabajo<PadronCompleto> unidadDeTrabajo)
+        {
+            _unidadDeTrabajo = unidadDeTrabajo;
+        }
+
         [HttpGet]
-        public JsonResult Get()
+        public IActionResult GetPadron(string cedula)
         {
-            IEnumerable<PadronCompleto> padronCompletoList;
-            using (UnidadDeTrabajo<PadronCompleto> unidad = new UnidadDeTrabajo<PadronCompleto>(new Padron_ElectoralContext()))
+            try
             {
-                padronCompletoList = unidad.genericDAL.GetAll();
+                PadronCompleto padronCompleto;
+
+                padronCompleto = _unidadDeTrabajo.genericDAL.Find(x => x.Cedula.Equals(cedula)).FirstOrDefault();
+
+                if (padronCompleto is null) return NotFound();
+                
+                return Ok(padronCompleto);
             }
-
-
-            return new JsonResult(padronCompletoList);
-        }
-
-        // GET api/<PadronController>/5
-        [HttpGet("{cedula}")]
-        public JsonResult Get(int cedula)
-        {
-            PadronCompleto padronCompleto;
-            using (UnidadDeTrabajo<PadronCompleto> unidad = new UnidadDeTrabajo<PadronCompleto>(new Padron_ElectoralContext()))
+            catch (Exception ex)
             {
-                padronCompleto = unidad.genericDAL.Get(cedula);
+                return Problem(ex.ToString(), null, 500);
             }
-
-            return new JsonResult(padronCompleto);
         }
-
-
     }
 }

@@ -20,8 +20,5 @@ namespace BackEnd.DAL
         bool Update(TEntity entity);
         bool Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
-
-
-
     }
 }

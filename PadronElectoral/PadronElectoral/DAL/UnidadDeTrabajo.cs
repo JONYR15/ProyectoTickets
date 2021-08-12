@@ -8,16 +8,13 @@ namespace BackEnd.DAL
     public class UnidadDeTrabajo<T> : IDisposable where T : class
     {
         private readonly Padron_ElectoralContext context;
-        //public IDALGenerico<Queja> quejaDAL;
-        //public IDALGenerico<TablaGeneral> tablaDAL;
-        public IDALGenerico<T> genericDAL;
 
+        public IDALGenerico<T> genericDAL;
 
         public UnidadDeTrabajo(Padron_ElectoralContext _context)
         {
             context = _context;
             genericDAL = new DALGenericoImpl<T>(context);
-
         }
 
         public bool Complete()
@@ -32,9 +29,7 @@ namespace BackEnd.DAL
                 string msj = e.Message;
                 return false;
             }
-
         }
-
 
         public void Dispose()
         {

@@ -10,7 +10,6 @@ namespace BackEnd.DAL
 {
     public class DALGenericoImpl<TEntity> : IDALGenerico<TEntity> where TEntity : class
     {
-
         protected readonly Padron_ElectoralContext Context;
 
         public DALGenericoImpl(Padron_ElectoralContext context)
@@ -18,18 +17,15 @@ namespace BackEnd.DAL
             Context = context;
         }
 
-
         public bool Add(TEntity entity)
         {
             try
             {
-
                 Context.Set<TEntity>().Add(entity);
                 return true;
             }
             catch (Exception)
             {
-
                 return false;
             }
         }
