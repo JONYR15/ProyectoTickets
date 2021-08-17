@@ -13,10 +13,7 @@
             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">SIN ATENDER</a>
                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">PROCESO</a>
-                @if (User.IsInRole("Administrador"))
-                {
-                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">FINALIZADO</a>
-                }
+                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">FINALIZADO</a>
             </div>
         </nav>
         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
@@ -125,7 +122,7 @@
                             <div class="row my-4">
 
                                 <div class="col-sm-12">
-                                    
+
 
                                     <hr />
 
@@ -380,8 +377,12 @@
                             { data: "status", autoWidth: false, className: "no-wrap text-center" },
                             { data: "created", autoWidth: false, className: "no-wrap text-center" },
                              {
-                                 className: "text-center",  data: function (data) {
-                                     var btn = `<a style="color:var(--primary)" class="tooltipped btn btn-xs waves-effect secondary-button blue-ina" href="@URLActualizar?id=${data.id}"><b><i class="align-middle fas fa-fw fa-edit mr-2"></i></b></a>&nbsp;&nbsp;`;
+                                 className: "text-center", data: function (data) {
+                                     @if (true)
+                                         {
+
+                                         }
+                                         var btn = `<a style="color:var(--primary)" class="tooltipped btn btn-xs waves-effect secondary-button blue-ina" href="@URLActualizar?id=${data.id}"><b><i class="align-middle fas fa-fw fa-edit mr-2"></i></b></a>&nbsp;&nbsp;`;
                                      btn += `<a style="color:var(--primary)" class="tooltipped btn btn-xs waves-effect secondary-button blue-ina" href="@URLSesiones?id=${data.id}"><b><i class="align-middle fas fa-fw fa-eye mr-2"></i></b></a>&nbsp;&nbsp;`;
                                        return btn;
                                     }

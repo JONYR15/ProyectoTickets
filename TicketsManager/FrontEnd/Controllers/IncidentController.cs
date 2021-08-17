@@ -37,6 +37,9 @@ namespace FrontEnd.Controllers
             _userManager = userManager;
         }
 
+
+
+
         #endregion
 
         #region Lista
@@ -354,6 +357,7 @@ namespace FrontEnd.Controllers
             return View(incident);
         }
         #endregion
+
 
 
         public async Task<List<Incident>> GetIncidentsByStatus(int statusId)

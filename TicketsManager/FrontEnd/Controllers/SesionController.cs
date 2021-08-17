@@ -42,6 +42,15 @@ namespace FrontEnd.Controllers
         public PartialViewResult Create(int id)
         {
             ViewBag.Id = id;
+            List<Status> status = new List<Status>();
+
+            using (UnidadDeTrabajo<Status> Unidad
+            = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
+            {
+                status = Unidad.genericDAL.GetAll().ToList();
+            }
+
+            ViewBag.Name = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(status.ToList(), "Description", "Description");
             return PartialView();
         }
 
@@ -52,11 +61,12 @@ namespace FrontEnd.Controllers
             try
             {
                 Incident incident;
+                
 
                 using (UnidadDeTrabajo<Incident> Unidad
                    = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
                 {
-                    incident = Unidad.genericDAL.Get(sesions.Id);
+                    incident = Unidad.genericDAL.Get(sesions.IncidentId);
                 }
 
                 incident.Attended = DateTime.Now;
@@ -71,6 +81,7 @@ namespace FrontEnd.Controllers
 
                 sesions.UserId = User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
                 sesions.Created = System.DateTime.Now;
+               
                 using (UnidadDeTrabajo<Sesion> Unidad
                     = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
                 {
