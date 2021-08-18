@@ -1,0 +1,108 @@
+﻿@{
+    ViewData["Title"] = "LogOut";
+    Layout = "~/Views/Shared/_LayoutIdentity.cshtml";
+    string URLLogOut = Url.Action("Logout", "Account");
+    string URLHome = Url.Action("Index", "Home");
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Login</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+
+</head>
+
+
+
+<body>
+    <div>
+    </div>
+    <center>
+        <img src="~/img/Logo3.jpg" width="200" height="150">
+    </center>
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card bg-danger text-white" style="width: 25rem">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h3>Cerrar Sesión</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <center>
+                        ¿Está seguro de que desea cerrar su sesión?
+                    </center>
+                    <div class="container" style="padding-top:50px;">
+                        <center>
+                            <div class="row">
+                                <div class="col">
+                                    <a href="@URLLogOut" class="btn btn-success"> Cerrar Sesion</a>
+                                </div>
+                                <div class="col">
+                                    <a href="@URLHome" class="btn btn-danger">Cancelar</a>
+                                </div>
+                            </div>
+                        </center>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<style>
+    .btn-primary {
+        color: #FCFCFF;
+        background-color: #004aad;
+        border-color: #1313A8;
+    }
+
+    .card-header {
+        color: #FCFCFF;
+        background-color: #463f57;
+        border-color: #463f57;
+    }
+
+    .card-body {
+        color: #FCFCFF;
+        background-color: #463f57;
+        border-color: #463f57;
+    }
+
+    .input-group-text {
+        color: #FCFCFF;
+        background-color: #004aad;
+        border-color: #1313A8;
+    }
+
+    .input-group-prepend {
+        margin-left: 15%
+    }
+
+    .submit {
+        margin-left: 20%
+    }
+</style>
