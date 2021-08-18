@@ -3,6 +3,7 @@ using Backend.Helpers;
 using Backend.Models;
 using FrontEnd.Hubs;
 using FrontEnd.Models;
+using FrontEnd.Models.Sesion;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TicketsManager.DAL;
+using static FrontEnd.Models.Sesion.SesionViewModels;
 
 namespace FrontEnd.Controllers
 {
@@ -42,26 +44,17 @@ namespace FrontEnd.Controllers
         public PartialViewResult Create(int id)
         {
             ViewBag.Id = id;
-            List<Status> status = new List<Status>();
-
-            using (UnidadDeTrabajo<Status> Unidad
-            = new UnidadDeTrabajo<Status>(new TicketsManagerContext()))
-            {
-                status = Unidad.genericDAL.GetAll().ToList();
-            }
-
-            ViewBag.Name = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(status.ToList(), "Description", "Description");
             return PartialView();
         }
 
         [HttpPost]
         [Authorize]
-        public bool Create(Sesion sesions)
+        public bool Create(SesionCreateViewModel sesions)
         {
             try
             {
                 Incident incident;
-                
+                Sesion sesion = new Sesion();
 
                 using (UnidadDeTrabajo<Incident> Unidad
                    = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
@@ -69,8 +62,17 @@ namespace FrontEnd.Controllers
                     incident = Unidad.genericDAL.Get(sesions.IncidentId);
                 }
 
-                incident.Attended = DateTime.Now;
-                incident.StatusId = 2;
+                if (sesions.UserId == User.Claims.First(c => c.Type.Contains("nameidentifier")).Value)
+                {
+                    incident.Attended = DateTime.Now;
+                    incident.StatusId = 2;
+                }
+
+                if (sesions.Finalizado)
+                {
+                    incident.StatusId = 3;
+                    incident.Resolved = DateTime.Now;
+                }
 
                 using (UnidadDeTrabajo<Incident> Unidad
                    = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))
@@ -79,13 +81,16 @@ namespace FrontEnd.Controllers
                     Unidad.Complete();
                 }
 
-                sesions.UserId = User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
-                sesions.Created = System.DateTime.Now;
+                sesion.Created = System.DateTime.Now;
+                sesion.Description = sesions.Description;
+                sesion.Hour = sesions.Hour;
+                sesion.IncidentId = sesions.IncidentId;
+                sesion.UserId = User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
                
                 using (UnidadDeTrabajo<Sesion> Unidad
                     = new UnidadDeTrabajo<Sesion>(new TicketsManagerContext()))
                 {
-                    Unidad.genericDAL.Add(sesions);
+                    Unidad.genericDAL.Add(sesion);
                     Unidad.Complete();
                 }
 

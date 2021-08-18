@@ -136,14 +136,12 @@
                                                 <th><font color="white">PRIORIDAD</font></th>
                                                 <th><font color="white">ESTATUS</font></th>
                                                 <th><font color="white">CREADA</font></th>
-                                                <th><font color="white">ACCIONES</font></th>
                                             </tr>
 
                                         </thead>
 
                                         <tbody>
                                             <tr>
-                                                <td></td>
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
@@ -222,8 +220,7 @@
                         { data: "created", autoWidth: false, className: "no-wrap text-center" },
                          {
                              className: "text-center",  data: function (data) {
-                                 var btn = `<a style="color:var(--primary)" class="tooltipped btn btn-xs waves-effect secondary-button blue-ina" href="@URLActualizar?id=${data.id}"><b><i class="align-middle fas fa-fw fa-edit mr-2"></i></b></a>&nbsp;&nbsp;`;
-                                 btn += `<a style="color:var(--primary)" class="tooltipped btn btn-xs waves-effect secondary-button blue-ina" href="@URLSesiones?id=${data.id}"><b><i class="align-middle fas fa-fw fa-eye mr-2"></i></b></a>&nbsp;&nbsp;`;
+                                 var btn =`<a style="color:var(--primary)" class="tooltipped btn btn-xs waves-effect secondary-button blue-ina" href="@URLSesiones?id=${data.id}"><b><i class="align-middle fas fa-fw fa-eye mr-2"></i></b></a>&nbsp;&nbsp;`;
                                    return btn;
                                 }
                          }
@@ -274,8 +271,7 @@
                         { data: "created", autoWidth: false, className: "no-wrap text-center" },
                          {
                              className: "text-center",  data: function (data) {
-                                 var btn = `<a style="color:var(--primary)" class="tooltipped btn btn-xs waves-effect secondary-button blue-ina" href="@URLActualizar?id=${data.id}"><b><i class="align-middle fas fa-fw fa-edit mr-2"></i></b></a>&nbsp;&nbsp;`;
-                                 btn += `<a style="color:var(--primary)" class="tooltipped btn btn-xs waves-effect secondary-button blue-ina" href="@URLSesiones?id=${data.id}"><b><i class="align-middle fas fa-fw fa-eye mr-2"></i></b></a>&nbsp;&nbsp;`;
+                                 var btn = `<a style="color:var(--primary)" class="tooltipped btn btn-xs waves-effect secondary-button blue-ina" href="@URLSesiones?id=${data.id}"><b><i class="align-middle fas fa-fw fa-eye mr-2"></i></b></a>&nbsp;&nbsp;`;
                                    return btn;
                                 }
                          }
@@ -326,8 +322,7 @@
                         { data: "created", autoWidth: false, className: "no-wrap text-center" },
                          {
                              className: "text-center",  data: function (data) {
-                                 var btn = `<a style="color:var(--primary)" class="tooltipped btn btn-xs waves-effect secondary-button blue-ina" href="@URLActualizar?id=${data.id}"><b><i class="align-middle fas fa-fw fa-edit mr-2"></i></b></a>&nbsp;&nbsp;`;
-                                 btn += `<a style="color:var(--primary)" class="tooltipped btn btn-xs waves-effect secondary-button blue-ina" href="@URLSesiones?id=${data.id}"><b><i class="align-middle fas fa-fw fa-eye mr-2"></i></b></a>&nbsp;&nbsp;`;
+                                 var btn = `<a style="color:var(--primary)" class="tooltipped btn btn-xs waves-effect secondary-button blue-ina" href="@URLSesiones?id=${data.id}"><b><i class="align-middle fas fa-fw fa-eye mr-2"></i></b></a>&nbsp;&nbsp;`;
                                    return btn;
                                 }
                          }
@@ -375,18 +370,7 @@
                             { data: "theme", autoWidth: false, className: "no-wrap text-center" },
                             { data: "priority", autoWidth: false, className: "no-wrap text-center" },
                             { data: "status", autoWidth: false, className: "no-wrap text-center" },
-                            { data: "created", autoWidth: false, className: "no-wrap text-center" },
-                             {
-                                 className: "text-center", data: function (data) {
-                                     @if (true)
-                                         {
-
-                                         }
-                                         var btn = `<a style="color:var(--primary)" class="tooltipped btn btn-xs waves-effect secondary-button blue-ina" href="@URLActualizar?id=${data.id}"><b><i class="align-middle fas fa-fw fa-edit mr-2"></i></b></a>&nbsp;&nbsp;`;
-                                     btn += `<a style="color:var(--primary)" class="tooltipped btn btn-xs waves-effect secondary-button blue-ina" href="@URLSesiones?id=${data.id}"><b><i class="align-middle fas fa-fw fa-eye mr-2"></i></b></a>&nbsp;&nbsp;`;
-                                       return btn;
-                                    }
-                             }
+                            { data: "created", autoWidth: false, className: "no-wrap text-center" }
                         ]
                         })
            });

@@ -26,9 +26,9 @@
             @if (User.IsInRole("Administrador,Soportista"))
             {
                 <div class="form-group">
-                    <label asp-for="Estado" class="control-label"></label>
-                    @Html.DropDownListFor(model => model.Estado, (SelectList)ViewBag.Name, "Seleccione uno", new { @class = "form-control", @style = "width:80%;" })
-                    <span asp-validation-for="Estado" class="text-danger" style="width: 30rem"></span>
+                    <label asp-for="Finalizado" class="control-label"></label>
+                    <input asp-for="Finalizado" class="form-control col-2" type="checkbox"/>
+                    <span asp-validation-for="Finalizado" class="text-danger" style="width: 30rem"></span>
                 </div>
             }
 
