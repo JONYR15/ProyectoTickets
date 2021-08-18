@@ -1,6 +1,6 @@
-﻿@{ 
-    string LogOut = Url.Action("Logout","Account");
-    string ChangePassword = Url.Action("ChangePassword","Account");
+﻿@{
+    string LogOut = Url.Action("Logout", "Account");
+    string ChangePassword = Url.Action("ChangePassword", "Account");
 }
 
 <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
@@ -45,24 +45,24 @@
         </li>
 
         <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" notification-alert>
-                    <i class="fas fa-bell fa-fw"></i>
-                    <span class="badge badge-danger badge-counter" id="notification-counter">0</span>
-                </a>
+            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" notification-alert>
+                <i class="fas fa-bell fa-fw"></i>
+                <span class="badge badge-danger badge-counter" id="notification-counter">0</span>
+            </a>
 
-                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                     aria-labelledby="alertsDropdown">
-                    <h6 class="dropdown-header">
-                        Alerts Center
-                        <i class="fas fa-trash float-right pointer" id="remove-notification-items" title="Remove notifications"></i>
-                    </h6>
+            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                 aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                    Alerts Center
+                    <i class="fas fa-trash float-right pointer" id="remove-notification-items" title="Remove notifications"></i>
+                </h6>
 
-                    <div id="notification-items">
-                   
-                    </div>
+                <div id="notification-items">
+
                 </div>
-            </li>
+            </div>
+        </li>
 
         <div class="topbar-divider d-sm-block"> </div>
 
@@ -92,41 +92,58 @@
 
                 <div class="dropdown-divider"></div>
 
+
                 <form action="/Account/LogOff" id="logoutForm" method="post">
                     @Html.AntiForgeryToken()
-                    <a  class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                    <a class="dropdown-item" id="btn-modal" data-toggle="modal" data-target="#logoutModal">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Cerrar Sesión
                     </a>
                 </form>
+
             </div>
         </li>
-
     </ul>
 
-
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cerrar Sesión</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ¿Está seguro de que desea cerrar su sesión?
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="@LogOut">Comfirmar</a>
+</nav>
+<div class="row div_centrado">
+    <div class="col-md-12">
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cerrar Sesión</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Está seguro de que desea cerrar su sesión?
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="@LogOut">Comfirmar</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-</nav>
+<style>
+    .modal-backdrop {
+        z-index: 0;
+    }
 
+    .div_centrado {
+        position: absolute !important;
+        bottom: 0 !important;
+        right: 30% !important;
+        left: 40%;
+        top: 10%;
+        bottom: 65% !important;
+    }
+</style>
 
 
