@@ -175,11 +175,11 @@ namespace FrontEnd.Controllers
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
-                    return View();
+                    return RedirectToAction("index", "home");
                 }
 
                 await signInManager.RefreshSignInAsync(usuario);
-                return View(model);
+                return View("index", "home");
             }
             return View(model);
         }
