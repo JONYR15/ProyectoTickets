@@ -7705,19 +7705,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\berna\\.nuget\\packages\\": {}
+    "C:\\Users\\melir\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\BackEndAPI.csproj",
+      "projectUniqueName": "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\BackEndAPI.csproj",
       "projectName": "BackEndAPI",
-      "projectPath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\BackEndAPI.csproj",
-      "packagesPath": "C:\\Users\\berna\\.nuget\\packages\\",
-      "outputPath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\obj\\",
+      "projectPath": "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\BackEndAPI.csproj",
+      "packagesPath": "C:\\Users\\melir\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\berna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\melir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7725,15 +7730,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://nuget.telerik.com/nuget": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj": {
-              "projectPath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj"
+            "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj": {
+              "projectPath": "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj"
             }
           }
         }
@@ -7784,7 +7788,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.WebApi.Core 5.2.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "message": "El paquete \"Microsoft.AspNet.WebApi.Core 5.2.7\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\" en lugar de la plataforma de destino del proyecto \".NETCoreApp,Version=v3.1\". Puede que el paquete no sea totalmente compatible con el proyecto.",
       "libraryId": "Microsoft.AspNet.WebApi.Core",
       "targetGraphs": [
         ".NETCoreApp,Version=v3.1"

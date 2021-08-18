@@ -16,15 +16,15 @@
     <div class="col-md-6">
         <div class="card shadow mb-4">
             <div class="card-header py-3 j-df j-color-text j-jc-center">
-                <h6>Details</h6>
+                <h6>Detalles</h6>
             </div>
 
             <div class="card-body">
-                <p>Number: @Model.Id</p>
-                <p>Theme: @Model.Theme</p>
-                <p>Created: @Model.Created</p>
+                <p>Id: @Model.Id</p>
+                <p>Tema: @Model.Theme</p>
+                <p>Creado: @Model.Created</p>
                 <hr />
-                <p>Description: @Model.Description</p>
+                <p>Descripción: @Model.Description</p>
             </div>
         </div>
     </div>
@@ -34,17 +34,17 @@
     <div class="col-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3 j-df j-color-text j-jc-center">
-                <h6>Sessions for the incident @Model.Theme</h6>
+                <h6>Sesiones por incidentes @Model.Theme</h6>
             </div>
 
             <div class="card-body">
                 <div class="mb-5 pb-1 d-flex justify-content-between border-bottom">
                     <div class="">
-                        <p>Sessions view in timeline</p>
-                        <p class="small"><strong><span id="total-hours"></span></strong> hours recorded in attention to the incident</p>
+                        <p>Vista de linea de tiempo de las sesiones</p>
+                        <p class="small"><strong><span id="total-hours"></span></strong> horas registradas rn atención al incidente</p>
                     </div>
                     <div class="text-center">
-                        <p>Options</p>
+                        <p>Opciones</p>
                         <button id="add-btn" data-id="@Model.Id" class="btn bg-transparent" title="Add"><i class="fas fa-plus"></i></button>
                         <button id="refresh-btn" class="btn bg-transparent" title="Refresh"><i class="fas fa-sync"></i></button>
                     </div>

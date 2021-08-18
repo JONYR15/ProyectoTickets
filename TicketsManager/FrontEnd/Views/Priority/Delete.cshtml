@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Delete</h1>
+<h1>Eliminar</h1>
 
-<h3>Esta seguro de eliminar el registro?</h3>
+<h3>Esta seguro que desea eliminar este registro?</h3>
 <div>
     <h4>Prioridad</h4>
     <hr />
@@ -22,7 +22,7 @@
     @*Se cambiaron las opciones a español*@
     <form asp-action="Delete">
         @Html.DisplayFor(model => model.Id, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
         <a asp-action="Index">Regresar</a>
     </form>
 </div>

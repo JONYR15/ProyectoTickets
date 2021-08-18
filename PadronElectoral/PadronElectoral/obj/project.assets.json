@@ -7509,19 +7509,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\berna\\.nuget\\packages\\": {}
+    "C:\\Users\\melir\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj",
+      "projectUniqueName": "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj",
       "projectName": "BackEnd",
-      "projectPath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj",
-      "packagesPath": "C:\\Users\\berna\\.nuget\\packages\\",
-      "outputPath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\obj\\",
+      "projectPath": "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj",
+      "packagesPath": "C:\\Users\\melir\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\berna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\melir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7529,8 +7534,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://nuget.telerik.com/nuget": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {

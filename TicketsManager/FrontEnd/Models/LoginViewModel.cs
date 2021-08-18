@@ -8,12 +8,13 @@ namespace FrontEnd.Models
 {
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Debe ingresar un correo")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Debe ingresar una clave")]
         [DataType(DataType.Password)]
+        [Display(Name = "Clave")]
         public string Password { get; set; }
 
         [Display(Name = "Recordar")]
