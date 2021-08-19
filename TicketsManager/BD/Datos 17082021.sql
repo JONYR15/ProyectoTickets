@@ -50,7 +50,7 @@ INSERT [dbo].[Status] ([Id], [Description], [Active]) VALUES (1, N'Sin atender',
 GO
 INSERT [dbo].[Status] ([Id], [Description], [Active]) VALUES (2, N'En proceso', 1)
 GO
-INSERT [dbo].[Status] ([Id], [Description], [Active]) VALUES (5, N'Finalizado', 1)
+INSERT [dbo].[Status] ([Id], [Description], [Active]) VALUES (3, N'Finalizado', 1)
 GO
 SET IDENTITY_INSERT [dbo].[Status] OFF
 GO

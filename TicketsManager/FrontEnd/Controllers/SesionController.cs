@@ -72,6 +72,11 @@ namespace FrontEnd.Controllers
                     incident.StatusId = 3;
                     incident.Resolved = DateTime.Now;
                 }
+                else
+                {
+                    incident.StatusId = 2;
+                    incident.Resolved = null;
+                }
 
                 using (UnidadDeTrabajo<Incident> Unidad
                    = new UnidadDeTrabajo<Incident>(new TicketsManagerContext()))

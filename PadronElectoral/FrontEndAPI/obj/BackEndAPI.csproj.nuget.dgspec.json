@@ -1,36 +1,42 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\BackEndAPI.csproj": {}
+    "C:\\Users\\kevin.monestel\\Desktop\\Personal Repos and Projects\\TicketsManager\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\BackEndAPI.csproj": {}
   },
   "projects": {
-    "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\BackEndAPI.csproj": {
+    "C:\\Users\\kevin.monestel\\Desktop\\Personal Repos and Projects\\TicketsManager\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\BackEndAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\BackEndAPI.csproj",
+        "projectUniqueName": "C:\\Users\\kevin.monestel\\Desktop\\Personal Repos and Projects\\TicketsManager\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\BackEndAPI.csproj",
         "projectName": "BackEndAPI",
-        "projectPath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\BackEndAPI.csproj",
-        "packagesPath": "C:\\Users\\berna\\.nuget\\packages\\",
-        "outputPath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\obj\\",
+        "projectPath": "C:\\Users\\kevin.monestel\\Desktop\\Personal Repos and Projects\\TicketsManager\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\BackEndAPI.csproj",
+        "packagesPath": "C:\\Users\\kevin.monestel\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kevin.monestel\\Desktop\\Personal Repos and Projects\\TicketsManager\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\berna\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\kevin.monestel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.telerik.com/nuget": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj": {
-                "projectPath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj"
+              "C:\\Users\\kevin.monestel\\Desktop\\Personal Repos and Projects\\TicketsManager\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj": {
+                "projectPath": "C:\\Users\\kevin.monestel\\Desktop\\Personal Repos and Projects\\TicketsManager\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj"
               }
             }
           }
@@ -72,30 +78,36 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj": {
+    "C:\\Users\\kevin.monestel\\Desktop\\Personal Repos and Projects\\TicketsManager\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj",
+        "projectUniqueName": "C:\\Users\\kevin.monestel\\Desktop\\Personal Repos and Projects\\TicketsManager\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj",
         "projectName": "BackEnd",
-        "projectPath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj",
-        "packagesPath": "C:\\Users\\berna\\.nuget\\packages\\",
-        "outputPath": "D:\\Personales\\Universidad\\Progra 5\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\obj\\",
+        "projectPath": "C:\\Users\\kevin.monestel\\Desktop\\Personal Repos and Projects\\TicketsManager\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj",
+        "packagesPath": "C:\\Users\\kevin.monestel\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kevin.monestel\\Desktop\\Personal Repos and Projects\\TicketsManager\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\berna\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\kevin.monestel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.telerik.com/nuget": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
@@ -151,7 +163,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
