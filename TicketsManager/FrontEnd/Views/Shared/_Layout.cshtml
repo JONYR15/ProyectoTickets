@@ -1,19 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 
 @{
-    string Role = null;
-    if (User.IsInRole("Administrador"))
-    {
-        Role = "Administrador";
-    }
-    else if (User.IsInRole("Soportista"))
-    {
-        Role = "Soportista";
-    }
-    else
-    {
-        Role = "Cliente";
-    }
+
 }
 
 
@@ -31,6 +19,9 @@
     <link href="~/css/sb-admin-2.css" rel="stylesheet" />
 
     <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/default.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/sceditor.min.js"></script>
 
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/lib/snackbar/dist/css/snackbar.min.css" rel="stylesheet" />
@@ -51,7 +42,6 @@
                 <partial name="~/Views/Shared/TopBar.cshtml" />
                 <div class="container-fluid">
                     <main role="main" class="pb-3">
-                        @Role
                         @RenderBody()
                     </main>
                 </div>
@@ -100,13 +90,15 @@
     <script src="~/js/sb-admin-2.min.js"></script>
     <script src="~/vendor/chart.js/Chart.min.js"></script>
     <script src="~/lib/snackbar/dist/js/snackbar.min.js"></script>
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
+    @*<script>
+            ClassicEditor
+                .create(document.querySelector('#editor'))
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>*@
+
+
 
     <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
     <script src="~/js/NotificationHubConnection.js"></script>
