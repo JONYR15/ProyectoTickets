@@ -37,8 +37,6 @@ namespace FrontEnd.Controllers
         }
         #endregion
 
-
-
         #region Agregar
         [HttpGet]
         public PartialViewResult Create(int id)

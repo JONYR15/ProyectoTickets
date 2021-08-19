@@ -3,7 +3,7 @@
     string IndexStatus = Url.Action("Index", "Status");
     string IndexDepartment = Url.Action("Index", "Department");
     string IndexIncident = Url.Action("Index", "Incident");
-
+    string AgregarUsuario = Url.Action("Register", "Account");
 }
 <div class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="background:#004aad">
     <div class="sidebar-brand d-flex align-items-center justify-content-center">
@@ -29,35 +29,41 @@
 
     @if (User.IsInRole("Administrador"))
     {
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="@IndexDepartment">
-                <i class="fas fa-person-booth"></i>
-                <span>Departamentos</span>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="@IndexDepartment">
+                    <i class="fas fa-person-booth"></i>
+                    <span>Departamentos</span>
+                </a>
+            </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="@IndexPriority">
-                <i class="fas fa-fw fa-clipboard-list"></i>
-                <span>Prioridades</span>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="@IndexPriority">
+                    <i class="fas fa-fw fa-clipboard-list"></i>
+                    <span>Prioridades</span>
+                </a>
+            </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="@IndexStatus">
-                <i class="fas fa-address-book"></i>
-                <span>Estatus</span>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="@IndexStatus">
+                    <i class="fas fa-address-book"></i>
+                    <span>Estatus</span>
+                </a>
+            </li>
 
-        <ul class="navbar-nav flex-grow-1">
+        
             <li class="nav-item">
                 <a class="nav-link collapsed" href="@IndexDepartment">
                     <i class="fas fa-utensils"></i>
                     <span>Cliente</span>
                 </a>
             </li>
-        </ul>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="@AgregarUsuario">
+                    <i class="fas fa-utensils"></i>
+                    <span>Registar Usuario</span>
+                </a>
+            </li>
     }
     <hr class="sidebar-divider d-none d-md-block">
 

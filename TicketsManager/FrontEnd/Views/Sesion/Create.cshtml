@@ -1,6 +1,6 @@
 ﻿@model FrontEnd.Models.Sesion.SesionViewModels.SesionCreateViewModel
 
-@{ 
+@{
     var URLCreateSesion = Url.Action("Create", "Sesion");
 }
 
@@ -23,11 +23,12 @@
                 <input asp-for="Hour" class="form-control col-2" />
                 <span asp-validation-for="Hour" class="text-danger"></span>
             </div>
-            @if (User.IsInRole("Administrador"))
-            { 
+
+            @if (User.IsInRole("Administrador") || User.IsInRole("Soportista"))
+            {
                 <div class="form-group">
                     <label asp-for="Finalizado" class="control-label"></label>
-                    <input asp-for="Finalizado" class="form-control col-2" type="checkbox"/>
+                    <input asp-for="Finalizado" class="form-control col-2" type="checkbox" />
                     <span asp-validation-for="Finalizado" class="text-danger" style="width: 30rem"></span>
                 </div>
             }
