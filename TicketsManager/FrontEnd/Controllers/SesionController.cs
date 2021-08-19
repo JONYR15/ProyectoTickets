@@ -60,11 +60,12 @@ namespace FrontEnd.Controllers
                     incident = Unidad.genericDAL.Get(sesions.IncidentId);
                 }
 
-                if (sesions.UserId == User.Claims.First(c => c.Type.Contains("nameidentifier")).Value)
-                {
-                    incident.Attended = DateTime.Now;
-                    incident.StatusId = 2;
-                }
+                //if (sesions.UserId == User.Claims.First(c => c.Type.Contains("nameidentifier")).Value)
+                //{
+                //    incident.Attended = DateTime.Now;
+                //    incident.StatusId = 2;
+                //}
+
 
                 if (sesions.Finalizado)
                 {
