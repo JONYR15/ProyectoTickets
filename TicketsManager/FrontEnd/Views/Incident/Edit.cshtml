@@ -64,7 +64,7 @@
                         </div>
                         <div class="form-group">
                             <label asp-for="Description" class="control-label">Descripción</label>
-                            <textarea asp-for="Description" class="form-control" readonly></textarea>
+                            <input id="Description" asp-for="Description" class="form-control" readonly />
                             <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
                         <div class="form-group">
@@ -120,6 +120,22 @@
             </div>
         </div>
     </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/formats/xhtml.min.js"></script>
+    <script>
+        // Replace the textarea #example with SCEditor
+        var textarea = document.getElementById('Description');
+        sceditor.create(textarea, {
+            format: 'xhtml',
+            style: 'https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/content/default.min.css',
+            readOnly: true,
+            width: "100%",
+            height: "500px"
+
+        });
+    </script>
+
 
 </body>
 </html>

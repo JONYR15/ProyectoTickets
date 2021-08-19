@@ -12,48 +12,54 @@
     <link href="~/lib/timeline/dist/css/jtimeline.css" rel="stylesheet" />
 }
 
-<div class="row">
-    <div class="col-md-6">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3 j-df j-color-text j-jc-center">
-                <h6>Details</h6>
-            </div>
+<div class="col-md-12">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 j-df j-color-text j-jc-center">
+            <h6>Details</h6>
+        </div>
 
-            <div class="card-body">
+        <div class="card-body row">
+            <div class="col-12 col-lg-4">
                 <p>Number: @Model.Id</p>
                 <p>Theme: @Model.Theme</p>
                 <p>Created: @Model.Created</p>
-                <hr />
-                <p>Description: @Model.Description</p>
+            </div>
+            <div class="col-sm-12 col-lg-8">
+                <p>
+                    Description:
+                    <br />
+                    <input id="Description" asp-for="Description" class="form-control" readonly />
+
+                </p>
             </div>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-12">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3 j-df j-color-text j-jc-center">
-                <h6>Sessions for the incident @Model.Theme</h6>
+
+
+<div class="col-12">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 j-df j-color-text j-jc-center">
+            <h6>Sessions for the incident @Model.Theme</h6>
+        </div>
+
+        <div class="card-body">
+            <div class="mb-5 pb-1 d-flex justify-content-between border-bottom">
+                <div class="">
+                    <p>Sessions view in timeline</p>
+                    <p class="small"><strong><span id="total-hours"></span></strong> hours recorded in attention to the incident</p>
+                </div>
+                <div class="text-center">
+                    <p>Options</p>
+                    <button id="add-btn" data-id="@Model.Id" class="btn bg-transparent" title="Add"><i class="fas fa-plus"></i></button>
+                    <button id="refresh-btn" class="btn bg-transparent" title="Refresh"><i class="fas fa-sync"></i></button>
+                </div>
             </div>
 
-            <div class="card-body">
-                <div class="mb-5 pb-1 d-flex justify-content-between border-bottom">
-                    <div class="">
-                        <p>Sessions view in timeline</p>
-                        <p class="small"><strong><span id="total-hours"></span></strong> hours recorded in attention to the incident</p>
-                    </div>
-                    <div class="text-center">
-                        <p>Options</p>
-                        <button id="add-btn" data-id="@Model.Id" class="btn bg-transparent" title="Add"><i class="fas fa-plus"></i></button>
-                        <button id="refresh-btn" class="btn bg-transparent" title="Refresh"><i class="fas fa-sync"></i></button>
-                    </div>
-                </div>
-
-                <div id="jtimeline-demo" class="jtimeline hide">
-                    <ul class="jtimeline-events" id="jtimeline-events">
-                    </ul>
-                </div>
+            <div id="jtimeline-demo" class="jtimeline hide">
+                <ul class="jtimeline-events" id="jtimeline-events">
+                </ul>
             </div>
         </div>
     </div>
@@ -71,6 +77,21 @@
 </div>
 
 @section scripts{
+
+    <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/formats/xhtml.min.js"></script>
+    <script>
+        // Replace the textarea #example with SCEditor
+        var textarea = document.getElementById('Description');
+        sceditor.create(textarea, {
+            format: 'xhtml',
+            style: 'https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/content/default.min.css',
+            readOnly: true,
+            width: "100%",
+            height: "300px"
+
+        });
+    </script>
+
     <script src="~/lib/timeline/dist/js/jtimeline.js"></script>
     <script>
         var $timeline = $('#jtimeline-demo');
