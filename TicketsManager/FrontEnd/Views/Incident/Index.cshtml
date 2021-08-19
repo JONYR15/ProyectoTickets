@@ -7,155 +7,153 @@
     string URLSesiones = Url.Action("Index", "Sesion");
 }
 
-<div class="row">
-    <div class="">
-        <nav>
-            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">SIN ATENDER</a>
-                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">PROCESO</a>
-                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">FINALIZADO</a>
-            </div>
-        </nav>
-        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3 j-df j-color-text j-jc-center">
-                        <h2><i class="fas fa-archive">&nbsp;&nbsp;</i> SIN ATENDER</h2>
+<div>
+    <nav>
+        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">SIN ATENDER</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">PROCESO</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">FINALIZADO</a>
+        </div>
+    </nav>
+    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 j-df j-color-text j-jc-center">
+                    <h2><i class="fas fa-archive">&nbsp;&nbsp;</i> SIN ATENDER</h2>
+                </div>
+
+                <div class="card-body">
+                    <div class="row my-4">
+
+                        <div class="col-sm-12">
+                            <a href="@URLAgregar" class="btn btn-primary">Agregar</a>
+                            <hr />
+
+                            <table class="table-bordered w-100" id="incidentesCreados">
+
+                                <thead>
+
+                                    <tr>
+                                        <th><font color="white">USUARIO</font></th>
+                                        <th><font color="white">TEMA</font></th>
+                                        <th><font color="white">PRIORIDAD</font></th>
+                                        <th><font color="white">ESTATUS</font></th>
+                                        <th><font color="white">CREADA</font></th>
+                                        <th><font color="white">ACCIONES</font></th>
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
 
-                    <div class="card-body">
-                        <div class="row my-4">
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 
-                            <div class="col-sm-12">
-                                <a href="@URLAgregar" class="btn btn-primary">Agregar</a>
-                                <hr />
 
-                                <table class="table-bordered w-100" id="incidentesCreados">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 j-df j-color-text j-jc-center">
+                    <h2><i class="fas fa-archive">&nbsp;&nbsp;</i> EN PROCESO</h2>
+                </div>
 
-                                    <thead>
+                <div class="card-body">
+                    <div class="row my-4">
 
-                                        <tr>
-                                            <th><font color="white">USUARIO</font></th>
-                                            <th><font color="white">TEMA</font></th>
-                                            <th><font color="white">PRIORIDAD</font></th>
-                                            <th><font color="white">ESTATUS</font></th>
-                                            <th><font color="white">CREADA</font></th>
-                                            <th><font color="white">ACCIONES</font></th>
-                                        </tr>
+                        <div class="col-sm-12">
 
-                                    </thead>
+                            <hr />
 
-                                    <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <table class="table-bordered w-100" id="incidentesEnProceso">
+
+                                <thead>
+
+                                    <tr>
+                                        <th><font color="white">USUARIO</font></th>
+                                        <th><font color="white">TEMA</font></th>
+                                        <th><font color="white">PRIORIDAD</font></th>
+                                        <th><font color="white">ESTATUS</font></th>
+                                        <th><font color="white">CREADA</font></th>
+                                        <th><font color="white">ACCIONES</font></th>
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        </div>
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 j-df j-color-text j-jc-center">
+                    <h2><i class="fas fa-archive">&nbsp;&nbsp;</i> FINALIZADOS</h2>
+                </div>
+
+                <div class="card-body">
+                    <div class="row my-4">
+
+                        <div class="col-sm-12">
 
 
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3 j-df j-color-text j-jc-center">
-                        <h2><i class="fas fa-archive">&nbsp;&nbsp;</i> EN PROCESO</h2>
-                    </div>
+                            <hr />
 
-                    <div class="card-body">
-                        <div class="row my-4">
+                            <table class="table-bordered w-100" id="incidentesFinalizado">
 
-                            <div class="col-sm-12">
+                                <thead>
 
-                                <hr />
+                                    <tr>
+                                        <th><font color="white">USUARIO</font></th>
+                                        <th><font color="white">TEMA</font></th>
+                                        <th><font color="white">PRIORIDAD</font></th>
+                                        <th><font color="white">ESTATUS</font></th>
+                                        <th><font color="white">CREADA</font></th>
+                                        <th><font color="white">ACCIONES</font></th>
+                                    </tr>
 
-                                <table class="table-bordered w-100" id="incidentesEnProceso">
+                                </thead>
 
-                                    <thead>
-
-                                        <tr>
-                                            <th><font color="white">USUARIO</font></th>
-                                            <th><font color="white">TEMA</font></th>
-                                            <th><font color="white">PRIORIDAD</font></th>
-                                            <th><font color="white">ESTATUS</font></th>
-                                            <th><font color="white">CREADA</font></th>
-                                            <th><font color="white">ACCIONES</font></th>
-                                        </tr>
-
-                                    </thead>
-
-                                    <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-
             </div>
-                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
 
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3 j-df j-color-text j-jc-center">
-                            <h2><i class="fas fa-archive">&nbsp;&nbsp;</i> FINALIZADOS</h2>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="row my-4">
-
-                                <div class="col-sm-12">
-
-
-                                    <hr />
-
-                                    <table class="table-bordered w-100" id="incidentesFinalizado">
-
-                                        <thead>
-
-                                            <tr>
-                                                <th><font color="white">USUARIO</font></th>
-                                                <th><font color="white">TEMA</font></th>
-                                                <th><font color="white">PRIORIDAD</font></th>
-                                                <th><font color="white">ESTATUS</font></th>
-                                                <th><font color="white">CREADA</font></th>
-                                                <th><font color="white">ACCIONES</font></th>
-                                            </tr>
-
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
         </div>
     </div>
 </div>
