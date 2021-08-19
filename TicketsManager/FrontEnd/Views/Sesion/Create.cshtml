@@ -26,10 +26,10 @@
 
             @if (User.IsInRole("Administrador") || User.IsInRole("Soportista"))
             {
-                <div class="form-group custom-control custom-switch">
-                    <label asp-for="Finalizado" class="control-label"></label>
+                <div class="form-group">
+                    <label asp-for="Finalizado" class="control-label" title="The incident ends">Finalize <i class="fas fa-info"></i></label>
 
-                    <input asp-for="Finalizado" class="form-control col-2" type="checkbox" />
+                    <input asp-for="Finalizado" class="form-check-input col-2" type="checkbox" />
 
                     <span asp-validation-for="Finalizado" class="text-danger" style="width: 30rem"></span>
                 </div>
