@@ -23,7 +23,7 @@
                 <input asp-for="Hour" class="form-control col-2" />
                 <span asp-validation-for="Hour" class="text-danger"></span>
             </div>
-            @if (User.IsInRole("Administrador,Soportista"))
+            @if (User.IsInRole("Administrador") || User.IsInRole("Soportista"))
             {
                 <div class="form-group">
                     <label asp-for="Finalizado" class="control-label"></label>
