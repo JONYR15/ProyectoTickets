@@ -1,12 +1,10 @@
 ﻿@model IncidentViewModelEdit
 
-@{
-    ViewBag.title = "Sessions";
-    var URLGetSessions = Url.Action("GetSesionsByIncident", "Sesion");
-    var URLDeleteSessions = Url.Action("Delete", "Sesion");
-    var URLDetailsSessions = Url.Action("Details", "Sesion");
-    var URLCreateSessions = Url.Action("Create", "Sesion");
-}
+@{ ViewBag.title = "Sessions";
+                var URLGetSessions = Url.Action("GetSesionsByIncident", "Sesion");
+                var URLDeleteSessions = Url.Action("Delete", "Sesion");
+                var URLDetailsSessions = Url.Action("Details", "Sesion");
+                var URLCreateSessions = Url.Action("Create", "Sesion"); }
 
 @section styles{
     <link href="~/lib/timeline/dist/css/jtimeline.css" rel="stylesheet" />
