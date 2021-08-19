@@ -1,19 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 
 @{
-    string Role = null;
-    if (User.IsInRole("Administrador"))
-    {
-        Role = "Administrador";
-    }
-    else if (User.IsInRole("Soportista"))
-    {
-        Role = "Soportista";
-    }
-    else
-    {
-        Role = "Cliente";
-    }
+
 }
 
 
@@ -54,7 +42,6 @@
                 <partial name="~/Views/Shared/TopBar.cshtml" />
                 <div class="container-fluid">
                     <main role="main" class="pb-3">
-                        @Role
                         @RenderBody()
                     </main>
                 </div>
@@ -104,14 +91,14 @@
     <script src="~/vendor/chart.js/Chart.min.js"></script>
     <script src="~/lib/snackbar/dist/js/snackbar.min.js"></script>
     @*<script>
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .catch(error => {
-                console.error(error);
-            });
-    </script>*@
+            ClassicEditor
+                .create(document.querySelector('#editor'))
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>*@
 
-   
+
 
     <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
     <script src="~/js/NotificationHubConnection.js"></script>

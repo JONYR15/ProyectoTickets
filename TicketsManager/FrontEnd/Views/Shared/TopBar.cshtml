@@ -1,6 +1,20 @@
 ﻿@{
     string LogOut = Url.Action("Logout", "Account");
     string ChangePassword = Url.Action("ChangePassword", "Account");
+
+    string Role = null;
+    if (User.IsInRole("Administrador"))
+    {
+        Role = "Administrador";
+    }
+    else if (User.IsInRole("Soportista"))
+    {
+        Role = "Soportista";
+    }
+    else
+    {
+        Role = "Cliente";
+    }
 }
 
 <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
@@ -22,6 +36,7 @@
 
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown no-arrow d-sm-none">
+
             @*<a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-search fa-fw"></i>
@@ -64,6 +79,14 @@
             </div>
         </li>
 
+        <div class="topbar-divider d-sm-block"> </div>
+        <li class="nav-item dropdown no-arrow">
+            <div class="nav-link dropdown-toggle">
+                <span class="mr-2 d-lg-inline j-color-text small">
+                  Role: @Role
+                </span>
+            </div>
+        </li>
         <div class="topbar-divider d-sm-block"> </div>
 
         <li class="nav-item dropdown no-arrow">
