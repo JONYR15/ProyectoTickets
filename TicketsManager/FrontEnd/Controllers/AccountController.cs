@@ -113,7 +113,11 @@ namespace FrontEnd.Controllers
             return View(model);
         }
 
-
+        [HttpGet]
+        public IActionResult CerrarSesion()
+        {
+            return View();
+        }
 
         public async Task<IActionResult> Logout()
         {
