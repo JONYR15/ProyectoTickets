@@ -19,7 +19,6 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
     </dl>
-    @*Se cambiaron las opciones a español*@
     <form asp-action="Delete">
         @Html.DisplayFor(model => model.Id, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
         <input type="submit" value="Eliminar" class="btn btn-danger" /> |

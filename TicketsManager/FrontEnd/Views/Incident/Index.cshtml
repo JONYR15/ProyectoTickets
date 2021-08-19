@@ -22,18 +22,13 @@
                     <div class="card-header py-3 j-df j-color-text j-jc-center">
                         <h2><i class="fas fa-archive">&nbsp;&nbsp;</i> SIN ATENDER</h2>
                     </div>
-
                     <div class="card-body">
                         <div class="row my-4">
-
                             <div class="col-sm-12">
                                 <a href="@URLAgregar" class="btn btn-primary">Agregar</a>
                                 <hr />
-
                                 <table class="table-bordered w-100" id="incidentesCreados">
-
                                     <thead>
-
                                         <tr>
                                             <th><font color="white">USUARIO</font></th>
                                             <th><font color="white">TEMA</font></th>
@@ -42,9 +37,7 @@
                                             <th><font color="white">CREADA</font></th>
                                             <th><font color="white">ACCIONES</font></th>
                                         </tr>
-
                                     </thead>
-
                                     <tbody>
                                         <tr>
                                             <td></td>
@@ -61,26 +54,17 @@
                     </div>
                 </div>
             </div>
-
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-
-
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 j-df j-color-text j-jc-center">
                         <h2><i class="fas fa-archive">&nbsp;&nbsp;</i> EN PROCESO</h2>
                     </div>
-
                     <div class="card-body">
                         <div class="row my-4">
-
                             <div class="col-sm-12">
-
                                 <hr />
-
                                 <table class="table-bordered w-100" id="incidentesEnProceso">
-
                                     <thead>
-
                                         <tr>
                                             <th><font color="white">USUARIO</font></th>
                                             <th><font color="white">TEMA</font></th>
@@ -89,9 +73,7 @@
                                             <th><font color="white">CREADA</font></th>
                                             <th><font color="white">ACCIONES</font></th>
                                         </tr>
-
                                     </thead>
-
                                     <tbody>
                                         <tr>
                                             <td></td>
@@ -107,27 +89,19 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             @if (User.IsInRole("Administrador"))
             {
                 <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 j-df j-color-text j-jc-center">
                             <h2><i class="fas fa-archive">&nbsp;&nbsp;</i> FINALIZADOS</h2>
                         </div>
-
                         <div class="card-body">
                             <div class="row my-4">
-
                                 <div class="col-sm-12">
-
-
                                     <hr />
-
                                     <table class="table-bordered w-100" id="incidentesFinalizado">
-
                                         <thead>
 
                                             <tr>
@@ -160,9 +134,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 
 @section scripts{
