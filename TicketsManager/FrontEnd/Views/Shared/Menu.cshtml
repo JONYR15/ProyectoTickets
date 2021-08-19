@@ -28,46 +28,42 @@
     </li>
 
     @if (User.IsInRole("Administrador"))
-    {<ul class="navbar-nav flex-grow-1">
+    {
             <li class="nav-item">
                 <a class="nav-link collapsed" href="@IndexDepartment">
                     <i class="fas fa-person-booth"></i>
                     <span>Departamentos</span>
                 </a>
             </li>
-        </ul>
-        <ul class="navbar-nav flex-grow-1">
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="@IndexPriority">
                     <i class="fas fa-fw fa-clipboard-list"></i>
                     <span>Prioridades</span>
                 </a>
             </li>
-        </ul>
-        <ul class="navbar-nav flex-grow-1">
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="@IndexStatus">
                     <i class="fas fa-address-book"></i>
                     <span>Estatus</span>
                 </a>
             </li>
-        </ul>
-        <ul class="navbar-nav flex-grow-1">
+
+        
             <li class="nav-item">
                 <a class="nav-link collapsed" href="@IndexDepartment">
                     <i class="fas fa-utensils"></i>
                     <span>Cliente</span>
                 </a>
             </li>
-        </ul>
-        <ul class="navbar-nav flex-grow-1">
+
             <li class="nav-item">
-                <a class="nav-link collapsed" href="@IndexDepartment">
+                <a class="nav-link collapsed" href="@AgregarUsuario">
                     <i class="fas fa-utensils"></i>
                     <span>Registar Usuario</span>
                 </a>
             </li>
-        </ul>
     }
     <hr class="sidebar-divider d-none d-md-block">
 
