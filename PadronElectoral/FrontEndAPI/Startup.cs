@@ -48,10 +48,20 @@ namespace FrontEndAPI
 
             app.UseSwagger();
 
-            app.UseSwaggerUI(c =>
+            if (env.IsDevelopment())
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Padron API");
-            });
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Padron API");
+                });
+            }
+            else
+            {
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/kevinmonestel/swagger/v1/swagger.json", "Padron API");
+                });
+            }
 
             app.UseHttpsRedirection();
 

@@ -47,7 +47,7 @@ namespace FrontEnd
 
             services.AddHttpClient("PadronAPI", config =>
             {
-                config.BaseAddress = new Uri("https://localhost:44394/api/");
+                config.BaseAddress = new Uri("https://bsite.net/kevinmonestel/api/");
                 config.Timeout = new TimeSpan(0, 0, 30);
                 config.DefaultRequestHeaders.Clear();
             });
