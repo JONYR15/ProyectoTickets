@@ -176,7 +176,7 @@
             $("#incidentesEnProceso").DataTable().destroy();
             $("#incidentesFinalizado").DataTable().destroy();
 
-            var urlMetodo = "BUrenaLopez/Incident/GetAllIndex?tab=Sin atender";
+            var urlMetodo = "./Incident/GetAllIndex?tab=Sin atender";
                     $("#incidentesCreados").DataTable({
 
                     ajax: {
@@ -227,7 +227,7 @@
 
             $("#nav-home-tab").click(function () {
                 $("#incidentesCreados").DataTable().destroy();
-                var urlMetodo = "BUrenaLopez/Incident/GetAllIndex?tab=Sin atender";
+                var urlMetodo = "./Incident/GetAllIndex?tab=Sin atender";
                     $("#incidentesCreados").DataTable({
 
                     ajax: {
@@ -277,7 +277,7 @@
             });
 
             $("#nav-profile-tab").click(function () {
-                var urlMetodo2 = "BUrenaLopez/Incident/GetAllIndex?tab=En proceso";
+                var urlMetodo2 = "./Incident/GetAllIndex?tab=En proceso";
                     $("#incidentesEnProceso").DataTable().destroy();
                 $("#incidentesEnProceso").DataTable({
 
@@ -328,7 +328,7 @@
             });
 
             $("#nav-contact-tab").click(function () {
-                var urlMetodo3 = "BUrenaLopez/Incident/GetAllIndex?tab=Finalizado";
+                var urlMetodo3 = "./Incident/GetAllIndex?tab=Finalizado";
                 $("#incidentesFinalizado").DataTable().destroy();
                     $("#incidentesFinalizado").DataTable({
 

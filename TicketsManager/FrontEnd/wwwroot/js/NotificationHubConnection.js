@@ -2,7 +2,7 @@
 var $notificationItems = $("#notification-items");
 
 if (userAuthorized) {
-    var connection = new signalR.HubConnectionBuilder().withUrl("BUrenaLopez/notificationHub").build();
+    var connection = new signalR.HubConnectionBuilder().withUrl("./notificationHub").build();
     var $notificationCounterSpan = $("#notification-counter");
     var notificationCount = 0;
 

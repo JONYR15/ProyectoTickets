@@ -148,7 +148,7 @@ namespace FrontEnd.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult Create(IncidentViewModelCreate incidentVM)
+        public async Task<IActionResult> Create(IncidentViewModelCreate incidentVM)
         {
             List<Priority> priority;
             List<Status> status;
@@ -213,7 +213,7 @@ namespace FrontEnd.Controllers
 
             foreach (var connectionId in connectionIds)
             {
-                _notificationHubContext.Clients.Client(connectionId).SendAsync("ReceiveNotification", new RecieveNotificationModel
+                await _notificationHubContext.Clients.Client(connectionId).SendAsync("ReceiveNotification", new RecieveNotificationModel
                 {
                     Message = "Un nuevo incidente ha sido registrado",
                     DropDownElement = $"<a class='dropdown-item d-flex align-items-center' href='{urlSessionsDetails}'>" +
@@ -230,14 +230,14 @@ namespace FrontEnd.Controllers
                 });
             }
 
-            _emailHelper.SendEmailAsync(new BackEnd.Models.EmailModel
+            await _emailHelper.SendEmailAsync(new BackEnd.Models.EmailModel
             {
                 Body = " Se ha registrado un nuevo incidente",
                 Subject = "Nuevo incidente creado",
                 To = user.Email
             });
 
-            _emailHelper.SendEmailAsync(new BackEnd.Models.EmailModel
+            await _emailHelper.SendEmailAsync(new BackEnd.Models.EmailModel
             {
                 Body = " Se creo su incidente con exito",
                 Subject = "Se ha registrado su incidente con exito.",
