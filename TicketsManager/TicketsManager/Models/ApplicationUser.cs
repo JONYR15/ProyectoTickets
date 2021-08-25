@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Backend.Models
 {
-    public class ApplicationUser: IdentityUser
+    public class AspUsers: IdentityUser
     {
         public int DepartmentId { get; set; }
 

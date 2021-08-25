@@ -15,14 +15,14 @@ namespace FrontEnd.Controllers
     public class AccountController : Controller
     {
 
-        private readonly UserManager<ApplicationUser> userManager;
-        private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly UserManager<AspUsers> userManager;
+        private readonly SignInManager<AspUsers> signInManager;
         private readonly RoleManager<IdentityRole> roleMngr;
         private readonly TicketsManagerContext db = new TicketsManagerContext();
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public AccountController(UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleMngr,
+        public AccountController(UserManager<AspUsers> userManager,
+            SignInManager<AspUsers> signInManager, RoleManager<IdentityRole> roleMngr,
             IHttpClientFactory httpClientFactory)
         {
             this.userManager = userManager;
@@ -68,7 +68,7 @@ namespace FrontEnd.Controllers
                 var padronData = await GetPadronData(model.DocumentNumber);
 
                 // Copy data from RegisterViewModel to ApplicationUser
-                var user = new ApplicationUser
+                var user = new AspUsers
                 {
                     UserName = model.Email,
                     Email = model.Email,
@@ -209,7 +209,7 @@ namespace FrontEnd.Controllers
         public async Task<JsonResult> ListUser()
         {
             TicketsManagerContext db = new TicketsManagerContext();
-            List<ApplicationUser> users;
+            List<AspUsers> users;
 
             users = db.aspUsers.ToList();
 

@@ -24,12 +24,12 @@ namespace FrontEnd.Controllers
         #region Helper Email
         private readonly IHubContext<NotificationHub> _notificationHubContext;
         private readonly IEmailHelper _emailHelper;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<AspUsers> _userManager;
 
         public IncidentController(
             IHubContext<NotificationHub> notificationHubContext,
             IEmailHelper emailHelper,
-            UserManager<ApplicationUser> userManager
+            UserManager<AspUsers> userManager
             )
         {
             _notificationHubContext = notificationHubContext;
@@ -154,13 +154,13 @@ namespace FrontEnd.Controllers
             List<Status> status;
             List<Category> categories;
             var UserId = User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
-            ApplicationUser userCreator;
+            AspUsers userCreator;
 
             var users = new List<RandomUser>();
             Incident incident = new Incident();
 
-            using (UnidadDeTrabajo<ApplicationUser> Unidad
-                = new UnidadDeTrabajo<ApplicationUser>(new TicketsManagerContext()))
+            using (UnidadDeTrabajo<AspUsers> Unidad
+                = new UnidadDeTrabajo<AspUsers>(new TicketsManagerContext()))
             {
                 users = Unidad.genericDAL.GetAll()
                     .Where(x => _userManager.IsInRoleAsync(x, "Soportista").Result)

@@ -23,12 +23,12 @@ namespace FrontEnd.Controllers
         #region Helper Email
         private readonly IHubContext<NotificationHub> _notificationHubContext;
         private readonly IEmailHelper _emailHelper;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<AspUsers> _userManager;
 
         public SesionController(
             IHubContext<NotificationHub> notificationHubContext,
             IEmailHelper emailHelper,
-            UserManager<ApplicationUser> userManager
+            UserManager<AspUsers> userManager
             )
         {
             _notificationHubContext = notificationHubContext;
