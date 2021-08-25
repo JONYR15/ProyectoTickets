@@ -1,5 +1,6 @@
-﻿.pointer {
-    cursor: pointer;
+﻿
+.sceditor-container, .sceditor-container div, div.sceditor-dropdown, div.sceditor-dropdown div {
+    z-index:1!important;
 }
 
 .lds-ellipsis {
