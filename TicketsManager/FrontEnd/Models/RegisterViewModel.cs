@@ -9,37 +9,39 @@ namespace FrontEnd.Models
 {
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="Debe ingresar un correo")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Debe ingresar una clave")]
+        [Display(Name = "Clave")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required]
-        [Display(Name = "Document Number")]
+        [Required(ErrorMessage = "Debe ingresar un número de cédula")]
+        [Display(Name = "Número de cédula")]
         public string DocumentNumber { get; set; }
 
-        [Required]
-        [Display(Name = "Name")]
+        [Required(ErrorMessage ="Debe ingresar un nombre")]
+        [Display(Name = "Nombre")]
         public string Name { get; set; }
 
-        [Required]
-        [Display(Name = "Last Name")]
+        [Required(ErrorMessage ="Debe ingresar los apellidos")]
+        [Display(Name = "Apellidos")]
         public string LastName { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name ="Confirm password")]
-        [Compare("Password",ErrorMessage ="Password and Confirmation do not match")]
+        [Required(ErrorMessage ="Debe confirmar la clave nueva")]
+        [Display(Name ="Confirmar nueva clave")]
+        [Compare("Password",ErrorMessage = "La contraseña nueva y su confirmación no coinciden")]
         public string ComfirmPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Debe seleccionar un rol")]
         [Display(Name = "Rol")]
         public string UserRoles { get; set; }
 
-        [Required]
-        [Display(Name = "Department")]
+        [Required(ErrorMessage ="Debe seleccionar un departamento")]
+        [Display(Name = "Departmento")]
         public int DepartmentId { get; set; }
     }
 

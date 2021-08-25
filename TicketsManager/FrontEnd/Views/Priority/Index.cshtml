@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     string URLAgregar = Url.Action("Create", "Priority");
@@ -11,47 +10,41 @@
         <div class="card-header py-3 j-df j-color-text j-jc-center">
             <h2><i class="fas fa-fw fa-clipboard-list">&nbsp;&nbsp;</i> PRIORIDADES</h2>
         </div>
-
-    <div class="card-body">
-        <div class="row my-4">
-
-            <div class="col-sm-12">
-                <a href="@URLAgregar" class="btn btn-primary">Agregar</a>
-
-                <hr />
-
-                <table class="table-bordered w-100" id="priority">
-
-                    <thead>
+        <div class="card-body">
+            <div class="row my-4">
+                <div class="col-sm-12">
+                    <a href="@URLAgregar" class="btn btn-primary">Agregar</a>
+                    <hr />
+                    <table class="table-bordered w-100" id="priority">
+                        <thead>
                             <tr>
                                 <th><font color="white">ID</font></th>
                                 <th><font color="white">PRIORIDAD</font></th>
                                 <th><font color="white">ACCIONES</font></th>
                             </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-@section scripts{
-    <script src="~/lib/datatable/js/jquery.dataTables.js"></script>
-    <script src="~/lib/datatable/js/dataTables.bootstrap4.js"></script>
-    <script src="~/lib/datatable-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="~/lib/datatable-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="~/lib/datatable/js/dataTables.buttons.min.js"></script>
-    <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
+    @section scripts{
+        <script src="~/lib/datatable/js/jquery.dataTables.js"></script>
+        <script src="~/lib/datatable/js/dataTables.bootstrap4.js"></script>
+        <script src="~/lib/datatable-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="~/lib/datatable-responsive/js/responsive.bootstrap4.min.js"></script>
+        <script src="~/lib/datatable/js/dataTables.buttons.min.js"></script>
+        <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
 
-    <script>
+        <script>
         $(document).ready(function () {
             $("#priority").DataTable().destroy();
 
@@ -100,27 +93,27 @@
                 ]
             });
         });
-    </script>
-}
-<style>
-
-    .table-bordered {
-        color: #463f57;
-        background-color: #004aad;
-        border-color: #463f57;
+        </script>
     }
+    <style>
 
-    .btn-primary {
-        color: #FCFCFF;
-        background-color: #463f57;
-        border-color: #463f57;
-    }
+        .table-bordered {
+            color: #463f57;
+            background-color: #004aad;
+            border-color: #463f57;
+        }
 
-    .fa-building {
-        color: #463f57;
-    }
+        .btn-primary {
+            color: #FCFCFF;
+            background-color: #463f57;
+            border-color: #463f57;
+        }
 
-    .j-color-text {
-        color: #463f57;
-    }
-</style>
+        .fa-building {
+            color: #463f57;
+        }
+
+        .j-color-text {
+            color: #463f57;
+        }
+    </style>

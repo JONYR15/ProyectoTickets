@@ -7506,14 +7506,20 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\kevin.monestel\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+=======
+    "C:\\Users\\melir\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+>>>>>>> origin/Mari
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\kevin.monestel\\Desktop\\Personal Repos and Projects\\TicketsManager\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj",
       "projectName": "BackEnd",
       "projectPath": "C:\\Users\\kevin.monestel\\Desktop\\Personal Repos and Projects\\TicketsManager\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj",
@@ -7530,6 +7536,21 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+=======
+      "projectUniqueName": "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj",
+      "projectName": "BackEnd",
+      "projectPath": "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj",
+      "packagesPath": "C:\\Users\\melir\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\melir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> origin/Mari
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"

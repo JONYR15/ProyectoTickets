@@ -13,9 +13,7 @@
 <head>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
@@ -25,7 +23,6 @@
         <h2><i class="fas fa-person-booth">&nbsp;&nbsp;</i>DEPARTAMENTOS</h2>
         <hr class="hrn-hr" />
     </div>
-
 </div>
 
 <body>
@@ -38,7 +35,6 @@
                             <h3>Agregar</h3>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="card-body">
@@ -56,9 +52,6 @@
                                 <a href="~/Department/Index" class="btn btn-danger" style=" width:20%">Regresar</a>
                             </center>
                         </div>
-
-
-
                     </form>
                 </div>
             </div>
@@ -70,36 +63,6 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-
-<!------ AQUI INICIA EL CÓDIGO VIEJO ---------->
-@*<h1>Crear</h1>*@
-
-@*<h4>Departamento</h4>*@
-@*<hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Crear Departamento" class="btn btn-primary" />
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div>
-        <a asp-action="Index">Regresar</a>
-    </div>
-
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
-*@
 <style>
     .btn-primary {
         color: #FCFCFF;

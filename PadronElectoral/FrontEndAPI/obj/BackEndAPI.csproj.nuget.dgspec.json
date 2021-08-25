@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\kevin.monestel\\Desktop\\Personal Repos and Projects\\TicketsManager\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\BackEndAPI.csproj": {}
   },
   "projects": {
@@ -23,6 +24,27 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+=======
+    "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\BackEndAPI.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\BackEndAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\BackEndAPI.csproj",
+        "projectName": "BackEndAPI",
+        "projectPath": "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\BackEndAPI.csproj",
+        "packagesPath": "C:\\Users\\melir\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\FrontEndAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\melir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> origin/Mari
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -35,8 +57,13 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
+<<<<<<< HEAD
               "C:\\Users\\kevin.monestel\\Desktop\\Personal Repos and Projects\\TicketsManager\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj": {
                 "projectPath": "C:\\Users\\kevin.monestel\\Desktop\\Personal Repos and Projects\\TicketsManager\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj"
+=======
+              "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj": {
+                "projectPath": "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj"
+>>>>>>> origin/Mari
               }
             }
           }
@@ -82,6 +109,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "C:\\Users\\kevin.monestel\\Desktop\\Personal Repos and Projects\\TicketsManager\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -101,6 +129,24 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+=======
+    "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj",
+        "projectName": "BackEnd",
+        "projectPath": "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\BackEnd.csproj",
+        "packagesPath": "C:\\Users\\melir\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\melir\\Documents\\GitHub\\ProyectoTickets\\PadronElectoral\\PadronElectoral\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\melir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> origin/Mari
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
