@@ -131,6 +131,23 @@ namespace FrontEnd.Controllers
             return View();
         }
 
+        //[HttpGet]
+        //public ActionResult ListarCliente()
+        //{
+        //    var Role = roleMngr.Roles.ToList();
+        //    return View();
+        //}
+
+        //[HttpGet]
+        //public JsonResult ListarClienteJSON()
+        //{
+        //    var Role = roleMngr.Roles.Where(x=> x.Name == "Cliente").FirstOrDefault();
+
+            
+
+
+        //    return Json(new { data = status });
+        //}
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
