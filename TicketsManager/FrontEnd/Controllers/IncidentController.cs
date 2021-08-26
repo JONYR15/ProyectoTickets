@@ -79,19 +79,14 @@ namespace FrontEnd.Controllers
                 else if (User.IsInRole("Soportista"))
                 {
                     idUser = User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
-                    if (tab.Equals("custom-control-label"))
-                    {
-
-                    }
-                    incident = Unidad.genericDAL.GetAll().Where(x => x.StatusId != status.Where(y => y.Description.Equals(tab) || x.RequestById == idUser)
-                                .Select(z => z.Id).FirstOrDefault())
+                    incident = Unidad.genericDAL.GetAll().Where(x => x.StatusId == status.Where(y => y.Description.Equals(tab))
+                               .Select(z => z.Id).FirstOrDefault())
                                 .ToList();
                 }
                 else
                 {
                     idUser = User.Claims.First(c => c.Type.Contains("nameidentifier")).Value;
-                    incident = Unidad.genericDAL.GetAll().Where(x => x.UserId == idUser && 
-                                x.StatusId == status.Where(y => y.Description.Equals(tab))
+                    incident = Unidad.genericDAL.GetAll().Where(x => x.StatusId == status.Where(y => y.Description.Equals(tab))
                                 .Select(z => z.Id).FirstOrDefault())
                                 .ToList();
                 }
